@@ -130,12 +130,12 @@ const EmailAnimation=styled.div`
 `
 
 function FitText(lLTRef,lSTRef,lTRef,rT_1Ref,rT_2Ref){
-    lLTRef.current.innerHTML=Data.HomepageData[4].content.leftLargeTitle
-    lSTRef.current.innerHTML=Data.HomepageData[4].content.leftSmallTitle
-    lTRef.current.innerHTML=Data.HomepageData[4].content.leftText
+    lLTRef.current.innerHTML=Data.HomepageData[2].content.leftLargeTitle
+    lSTRef.current.innerHTML=Data.HomepageData[2].content.leftSmallTitle
+    lTRef.current.innerHTML=Data.HomepageData[2].content.leftText
 
     let linesAccommodated=parseInt(rT_1Ref.current.offsetHeight/20+1)
-    let textSliced=SplitParagraph(Data.HomepageData[4].content.rightText,linesAccommodated,24)
+    let textSliced=SplitParagraph(Data.HomepageData[2].content.rightText,linesAccommodated,24)
 
     rT_1Ref.current.innerHTML=textSliced[0]
     rT_2Ref.current.innerHTML=textSliced[1]
@@ -176,9 +176,9 @@ const Passage2=memo((props)=>{
                 </LeftText>
                 <LeftEmailSpace>
                     <EmailAnimation>
-                        {Data.HomepageData[4].content.leftEmail}
+                        {Data.HomepageData[2].content.leftEmail}
                         <br/>
-                        {Data.HomepageData[4].content.leftEmail}
+                        {Data.HomepageData[2].content.leftEmail}
                     </EmailAnimation>
                     {Svg.FrontArrow}
                 </LeftEmailSpace>
@@ -186,10 +186,10 @@ const Passage2=memo((props)=>{
             </LeftPassage>
             <RightPassage>
                 <RightSmallTitle>
-                    {Data.HomepageData[4].content.rightSmallTitle}
+                    {Data.HomepageData[2].content.rightSmallTitle}
                 </RightSmallTitle>
                 <RightLargeTitle>
-                    {Data.HomepageData[4].content.rightLargeTitle}
+                    {Data.HomepageData[2].content.rightLargeTitle}
                 </RightLargeTitle>
                 <TextArea>
                     <OnePassage ref={rT_1Ref}>

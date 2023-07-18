@@ -1,85 +1,124 @@
-import * as Images from "../../../GlobalComponents/image";
-import React,{memo} from 'react'
-import styled, {keyframes} from "styled-components";
+import * as Images from '../../../GlobalComponents/image';
+import React, { memo, useEffect, useRef, useState } from 'react';
+import styled, { keyframes } from 'styled-components';
+import { getElementError } from '@testing-library/react';
 
-const LetterShadow=styled.div`
+
+
+const LetterShadow = styled.div`
+  width: 100%;
+  height: 100%;
   position: absolute;
   //background-color: coral;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   //transition: all 3s;
-  opacity: ${props=>props.opacity};
+  //opacity: ${(props) => props.opacity};
   filter: blur(10px);
-  transform: translate(${props => props.left}px,${props=>props.top}px) scale(${props=>props.scale});
+  // transform: scale(${(props) => props.scale});
+  transition: 0.5s all ease-out;
+  left: 0;
+  top: 0;
   //transform: translate(50px,50px);
   //top: ;
-`
+`;
+const LetterSelf = styled.div`
+  width: 100%;
+  height: 100%;
+  //left:10px;
+  transform: scale(${(props) => props.scale}) translate(${(props) => props.left}px,${(props) => props.top}px);
+  // top: ${(props) => props.top}px;
+  //background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
-const LetterDiv=styled.div`
+const LetterDiv = styled.div`
   width: 120px;
   height: 150px;
   //background-color: #0c0c0c;
-  //opacity: 0.7;
+  opacity: 0.7;
   margin: 1px;
   position: relative;
   transform-origin: left top;
-  animation:${props => {
-    if(props.ifAnimation){
-        return (
-            keyframes`
-            0%{
-              transform:  translate(${props.startX}%,${props.startY}%) scale(1.5) rotate(${props.rotate}deg);
-            }
-            100%{
-              transform: translate(${props.endX}%,${props.endY}%)  scale(${props.endScale}) rotate(0);
-            }
-           `
-        )
-    }
-}} ease-in 1.5s forwards;
-`
-const Image=styled.img`
+`;
+const Image = styled.img`
   width: 100px;
-`
+  position: absolute;
+`;
 
-class Letter extends React.PureComponent{
-    state={
-        shadowX:0,
-        shadowY:0,
-        shadowAve:0
-    }
-    handleMouseMove=(e)=>{
-        this.setState(prevState=>({
-            shadowX:((e.clientX-document.body.clientWidth/2)/document.body.clientWidth*2),
-            shadowY:((e.clientY-document.body.clientHeight/2)/document.body.clientHeight*2),
-            shadowAve:Math.max(Math.abs(prevState.shadowX),Math.abs(prevState.shadowY))
-        }))
+const Letter = (props) => {
+  const { content, children, center, endXY, endScale } = props;
+  const shadowRef = useRef(null);
+  const shadowRef2=useRef(null)
+  const debounce = (func) => {
+    let f;
+    return function () {
+      const context = this;
+      const args = arguments;
+      cancelAnimationFrame(f);
+      f = requestAnimationFrame(function () {
+        func.apply(context, args);
+      });
+    };
+  };
+  useEffect(() => {
+    // if (content === 'N') {
+    window.addEventListener(
+      'mousemove',
+      debounce((e) => {
+        let distToCenter = center.current.getBoundingClientRect();
+        const horizontalCenter = (e.clientX - distToCenter.left).toFixed(2);
+        const verticalCenter = (e.clientY - distToCenter.top).toFixed(2);
+        const distanceCenter = Math.sqrt(
+          horizontalCenter * horizontalCenter + verticalCenter * verticalCenter
+        );
+        const calDis = Math.log10(10 * distanceCenter + 1) / 2.6;
+        // console.log('中心距', calDis);
 
-    }
+        const thisLetter = document.getElementById(`letter.${props.content}`);
+        let dist = thisLetter.getBoundingClientRect();
+        const horizontal = (e.clientX - dist.left).toFixed(2)+endXY.x;
+        const vertical = (e.clientY - dist.top).toFixed(2)+endXY.y;
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.props.ifAnimation){
-            document.addEventListener('mousemove',this.handleMouseMove)
-        }else {
-            document.removeEventListener('mousemove',this.handleMouseMove)
-        }
-    }
-    render() {
-        console.log(this.props.children)
-        return(
-            <LetterDiv startX={this.props.startXY.x} startY={this.props.startXY.y} endX={this.props.endXY.x} endY={this.props.endXY.y} rotate={this.props.rotate} ifAnimation={this.props.ifAnimation} endScale={this.props.endScale}>
-                opacity:{(1-this.state.shadowAve*0.5).toFixed(2)}
-                <br/>
-                scale:{(this.state.shadowAve*1.4+1).toFixed(2)}
-                <LetterShadow left={-(this.state.shadowX)*50}
-                              top={-(this.state.shadowY)*50}
-                              opacity={1-this.state.shadowAve*0.5}
-                              scale={this.state.shadowAve*1.4+1}
-                >
-                    <Image src={this.props.children} />
-                </LetterShadow>
-                <Image src={this.props.children} />
-            </LetterDiv>
-        )
-    }
-}
+        const calHor =
+          horizontal > 0
+            ? 10 * Math.log10(10 * horizontal + 1)
+            : -10 * Math.log10(-10 * horizontal + 1);
+        const calVer =
+          horizontal > 0
+            ? 10 * Math.log10(10 * vertical + 1)
+            : -10 * Math.log10(-10 * vertical + 1);
+        // const inverDistance = 3 - Math.log10(3 * distance + 1);
+        // console.log('换算后距离',calHor,calVer);
+        shadowRef.current.style.left = `${-1 * calHor}px`;
+        shadowRef.current.style.top = `${-1 * calVer}px`;
+        shadowRef.current.style.transform = `scale(${calDis})`;
+  
+        shadowRef2.current.style.left = `${-5 * calHor}px`;
+        shadowRef2.current.style.top = `${-5 * calVer}px`;
+        shadowRef2.current.style.transform = `scale(3)`;
+        // setShadowXY([horizontal, vertical]);
+      })
+    );
+    // }
+  }, []);
+  console.log("检测",-1 * endXY.y)
+  return (
+    <LetterDiv id={props.id}>
+      <LetterShadow ref={shadowRef}>
+        <Image src={children} rotate={props.rotate} />
+      </LetterShadow>
+      <LetterShadow ref={shadowRef2} style={{opacity:'0.3', filter:'blur(20px);'}}>
+        <Image src={children} rotate={props.rotate} />
+      </LetterShadow>
+      <LetterSelf left={endXY.x} top={-1 * endXY.y} scale={endScale}>
+        <Image src={children} />
+      </LetterSelf>
+    </LetterDiv>
+  );
+};
 
-export default Letter
+export default Letter;
