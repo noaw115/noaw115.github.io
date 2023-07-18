@@ -15,7 +15,8 @@ const BackgroundFrame=styled.div`
 const BackgroundImage2=styled.div`
   position: absolute;
   //z-index: -1;
-  background-image: url(${props=>props.img});
+  background-image: linear-gradient(to right, #FAFAFA 70%, rgba(12,129,208,0.1) 100%);
+  //opacity: 0.2;
   background-size: cover;
   background-repeat: no-repeat;
   height: ${props => props.height}vh;
@@ -23,14 +24,14 @@ const BackgroundImage2=styled.div`
   transition:0.4s all ease-out;
   transform: scale(${props => props.scale});
   transform-origin:center center;
-  filter: blur(${props=>props.blur}px);
+  //filter: blur(${props=>props.blur}px);
 `
 
 
 const FirstBackground=memo((props)=>{
     return(
         <BackgroundFrame width={props.width}>
-            <BackgroundImage2 img={props.img}  blur={props.blur} height={props.height}/>
+            <BackgroundImage2 height={props.height}/>
             {props.children}
         </BackgroundFrame>
     )

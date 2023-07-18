@@ -9,7 +9,7 @@ import TopBar from '../../GlobalComponents/TopBar';
 import BasicData from '../../GlobalComponents/Data/movingPara';
 import NoaWen from '../Homepage/Components/NoaWen';
 import Parallax from './Components/Parallax';
-import StaticContent from "./Components/StaticContent";
+import StaticContent from './Components/StaticContent';
 
 // const {LargeFrame}=MovingFrame
 const LargeFrame = memo(styled.div`
@@ -26,7 +26,7 @@ const LargeFrame = memo(styled.div`
             0%{
               opacity: 0;
               transform:translateX(-20%);
-              filter: blur(20px);
+              filter: blur(20px)
             }
 
             100%{
@@ -44,7 +44,7 @@ const BlurFrame = styled.div`
   height: 100vh;
   background-color: red;
   filter: blur(20px);
-`
+`;
 const FixedFrame = styled.div`
   //background-color: aquamarine;
   width: 100vw;
@@ -85,8 +85,8 @@ function CalculateAppearArray(PageDate, factor) {
   let lengthTemp = 0;
   for (let i = 0; i < PageDate.length; i++) {
     lengthTemp += PageDate[i].length;
-    console.log("第几页",i)
-    console.log("多长",PageDate[i].length)
+    console.log('第几页', i);
+    console.log('多长', PageDate[i].length);
     beginToAppearArray.push(parseInt(lengthTemp - 100));
     //Begin这个用于判定高斯模糊
     hasAppearedArray.push(parseInt(lengthTemp) * factor);
@@ -174,7 +174,8 @@ class Main extends React.PureComponent {
 
     /**针对视差滚动**/
     this.paraScr1 =
-      (this.state.deltaY - this.len[1][0] * this.widthFactor) / ((this.len[1][1] + 100) * this.widthFactor);
+      (this.state.deltaY - this.len[1][0] * this.widthFactor) /
+      ((this.len[1][1] + 100) * this.widthFactor);
     // this.paraScr2 =
     //   (this.state.deltaY - this.len[2][0] * this.widthFactor) /
     //   ((this.len[2][1] + 100) * this.widthFactor);
@@ -195,12 +196,18 @@ class Main extends React.PureComponent {
     //针对页面判断用到的是this.appearArray.hasAppeared
     if (
       e.deltaY > 0 &&
-      this.appearArray.hasAppeared[this.currentPageHasAppeared + 1] - this.state.deltaY - 400 < 200
+      this.appearArray.hasAppeared[this.currentPageHasAppeared + 1] -
+        this.state.deltaY -
+        400 <
+        200
     ) {
       this.currentPageHasAppeared++;
     } else if (
       e.deltaY < 0 &&
-      this.state.deltaY + 400 - this.appearArray.hasAppeared[this.currentPageHasAppeared] < 200 &&
+      this.state.deltaY +
+        400 -
+        this.appearArray.hasAppeared[this.currentPageHasAppeared] <
+        200 &&
       this.currentPageHasAppeared > 0
     ) {
       this.currentPageHasAppeared--;
@@ -220,7 +227,9 @@ class Main extends React.PureComponent {
       //👈允许吸附
       if (
         e.deltaY > 0 &&
-        Math.abs(this.appearArray.hasAppeared[this.isSnap + 1] - this.state.deltaY) < 500
+        Math.abs(
+          this.appearArray.hasAppeared[this.isSnap + 1] - this.state.deltaY
+        ) < 500
       ) {
         // console.log("判定吸附-前滚到",this.isSnap+1,"位置是",this.appearArray.hasAppeared[this.isSnap + 1])
         this.setState({
@@ -275,19 +284,22 @@ class Main extends React.PureComponent {
          *
          */
     /**高斯模糊**/
-    
+
     if (
       e.deltaY > 0 &&
-      this.state.deltaY > this.appearArray.beginToAppear[this.currentPageBeginToAppear]*this.widthFactor
+      this.state.deltaY >
+        this.appearArray.beginToAppear[this.currentPageBeginToAppear] *
+          this.widthFactor
     ) {
-      console.log("blurControl[",this.currentPageBeginToAppear+1,']=false')
+      console.log('blurControl[', this.currentPageBeginToAppear + 1, ']=false');
       this.blurControl[this.currentPageBeginToAppear + 1] = false;
-      console.log("currentpage增加了")
+      console.log('currentpage增加了');
       this.currentPageBeginToAppear++;
     } else if (
       e.deltaY < 0 &&
       this.state.deltaY <
-        this.appearArray.beginToAppear[this.currentPageBeginToAppear]*this.widthFactor
+        this.appearArray.beginToAppear[this.currentPageBeginToAppear] *
+          this.widthFactor
     ) {
       this.blurControl[this.currentPageBeginToAppear + 1] = true;
       // console.log("currentpage减少了")
@@ -302,8 +314,11 @@ class Main extends React.PureComponent {
     //👆 [总长度,[第一个视差滚动的起点,第一个视差滚动的长度],[第二个视差滚动的起点,第二个视差滚动的长度],...]
     this.totalLength = this.len[0]; //总长度
     this.blurControl = [];
-    this.appearArray = CalculateAppearArray(this.HomepageData, this.widthFactor);
-    console.log("初始化",this.len,this.appearArray)
+    this.appearArray = CalculateAppearArray(
+      this.HomepageData,
+      this.widthFactor
+    );
+    console.log('初始化', this.len, this.appearArray);
 
     this.snapLock = false;
     //👆false：未上锁，允许贴靠（远离边界时）
@@ -342,7 +357,7 @@ class Main extends React.PureComponent {
 
   render() {
     // console.log("到底哪里有问题",this.appearArray)
-    console.log("deltaY",this.state.deltaY)
+    console.log('deltaY', this.state.deltaY);
     // console.log("blurContorl",this.blurControl)
     return (
       <LargeFrame>
@@ -358,7 +373,7 @@ class Main extends React.PureComponent {
           >
             <Doors />
           </Frame>
-          
+
           <Frame
             color={this.HomepageData[1].backgroundColor}
             width={this.HomepageData[1].length}
@@ -374,15 +389,14 @@ class Main extends React.PureComponent {
           <Frame
             color={this.HomepageData[3].backgroundColor}
             width={this.HomepageData[3].length}
-            style={{overflowX: 'visible',zIndex:'3'}}
+            style={{ overflowX: 'visible', zIndex: '3' }}
           >
-            <StaticContent/>
+            <StaticContent />
             <Parallax
               blur={this.blurControl[3]}
               offset={this.state.paraScr1 * 500}
             />
           </Frame>
-          
         </MoveFrame>
       </LargeFrame>
     );

@@ -22,25 +22,30 @@ const ParallaxImage=memo((props)=>{
   };
     
     const calBlur = (e) => {
-      const dist = imgRef.current.getBoundingClientRect()
-      // console.log(dist)
-      const horizontal = (e.clientX - dist.left-dist.width/2).toFixed(2)
-      const vertical = (e.clientY - dist.top-dist.height/2).toFixed(2)
-      const distance = Math.sqrt(horizontal*horizontal+vertical*vertical)
-      let calDistance = Math.log10(distance+1)-1
-      if(calDistance<1){
-        calDistance = 1
-      }else {
-        calDistance=calDistance.toFixed(2)
+      if (imgRef.current) {
+        const dist = imgRef.current.getBoundingClientRect()
+        // console.log(dist)
+        const horizontal = (e.clientX - dist.left-dist.width/2).toFixed(2)
+        const vertical = (e.clientY - dist.top-dist.height/2).toFixed(2)
+        const distance = Math.sqrt(horizontal*horizontal+vertical*vertical)
+        let calDistance = Math.log10(distance+1)-1
+        if(calDistance<1){
+          calDistance = 1
+        }else {
+          calDistance=calDistance.toFixed(2)
+        }
+        imgRef.current.style.filter = `blur(${2*calDistance-2}px)`
       }
-      imgRef.current.style.filter = `blur(${2*calDistance-2}px)`
-      // imgRef.current.style.transform = `scale(${calDistance/2})`
-      console.log("a",calDistance)
     }
   useEffect(()=>{
     window.addEventListener('mousemove',debounce((e)=>{
       calBlur(e)
     }))
+    return (()=>{
+      window.removeEventListener('mousemove',debounce((e)=>{
+        calBlur(e)
+      }))
+    })
   },[])
     return(
         <ParallaxImg src={Image.GreenBack} ref={imgRef}/>

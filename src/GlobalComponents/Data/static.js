@@ -36,7 +36,7 @@ export const HomepageData = [
     title: 'Unnamed5',
     describe: '白幕文字',
   },
- 
+
   // {
   //   num: 2,
   //   length: 100, //单位vw
@@ -98,7 +98,6 @@ export const HomepageData = [
                         ご相談はお気軽にご連絡くださいませ。<br/>
                         `,
     },
-    
   },
   {
     num: 3,
@@ -129,215 +128,204 @@ export const CoverData = [
 //mini指的是 192分辨率下 450长 200宽的小图片
 export const GraphicsData = [
   {
-    type: 'text',
-    title: '大美新疆 (毕业旅行游记 + 攻略）',
-    text: `
-        从期盼已久的新疆毕业旅行开始的那一刻，代表着申请季间所有的焦虑和辛苦都在一瞬间烟消云散。长达十天的北疆环游也正式开始。
-        <br/>
-        <br/>
-        TIPS：新疆地广物博，景点间的车程长达数小时，并且山路蜿蜒崎岖，因此建议联系靠谱的旅行社跟团游或私人定制。
-        提到新疆很多人第一反应便是茫茫的戈壁滩，因此，在整个新疆之旅前，我一直有着“无隔壁，不新疆”的想法。可即便如此，吐鲁番之行还是我认为最艰难的一天。即使是六月初，在这个四面环山的天然大火炉里，我的热情仿佛也一点点的被蒸发了。 但吐鲁番自古以来也是丝绸之路的重镇，别有一番风情。
-        `,
-  },
-  {
     type: 'photo',
-    describe: '交河故城',
     photoId: '/Graphics/0.png',
-  },
-  {
-    type: 'photo',
-    describe: '交河故城',
-    photoId: '/Graphics/1.png',
-  },
-  {
-    type: 'photo',
-    describe: '交河故城',
-    photoId: '/Graphics/2.png',
+    imageScale: '0.6',
   },
   {
     type: 'text',
+    width: '600',
     text: `
-        交河故城是西域36国之一“车师前国”的都城，有2000多年的历史。由于吐鲁番得天独厚的干燥气候，主体建筑得以较为完整的保存。但我个人倾向于它展现的更多是戈壁的苍茫壮阔。 天气炎热，风沙较大，建议佩戴眼镜，口罩（纱巾）等，准备充足的水分，适合游玩2个小时左右。
-        <br/>
-         <br/>
-        坎儿井
-        <br/>
-         <br/>
-        坎儿井这里我没有拍照片，因为这里更多是教育意义多一点。作为我国古代最伟大的水利工程之一，坎儿井蕴含的智慧与浩大的工程量令人肃然起敬。
-        <br/>
-         <br/>
-        火焰山
-        <br/>
-         <br/>
-        作为西游记里火焰山的原型，也是吐鲁番最著名的景点，据说地表温度最高可达89℃。山体呈赤红色，寸草不生。我们去的当天风沙很大。如若前往，一定要做好防暑准备。不建议身体欠佳的游客前往。
+        My design approach is characterized by pushing the boundaries of traditional graphic design, experimenting fearlessly with unconventional color palettes and combinations. I believe that colors are a powerful tool to evoke emotions, convey messages, and create unique visual experiences. As I continue my journey in graphic design, I am excited to keep pushing the envelope and creating designs that captivate and inspire audiences.
         `,
   },
   {
     type: 'photo',
-    describe: '坎儿井',
-    photoId: '/Graphics/3.png',
+    width: '500',
+    photoId: '/Graphics/1.png',
+    imageScale: '1.1',
   },
   {
     type: 'photo',
-    describe: '火焰山',
+    width: '500',
+    photoId: '/Graphics/2.png',
+    imageScale: '1.1',
+  },
+  {
+    type: 'photo',
+    photoId: '/Graphics/3.png',
+    imageScale: '0.8',
+  },
+  {
+    type: 'photo',
     photoId: '/Graphics/4.png',
+    imageScale: '0.8',
+  },
+  {
+    type: 'photo',
+    photoId: '/Graphics/5.png',
+    // imageScale: '0.8',
+  },
+  {
+    type: 'photo',
+    photoId: '/Graphics/6.png',
+    width: '1200',
+    // imageScale: '0.8',
+  },
+  {
+    type: 'photo',
+    photoId: '/Graphics/7.png',
+    width: '1200',
+    // imageScale: '0.8',
+  },
+  {
+    type: 'photo',
+    photoId: '/Graphics/8.1.png',
+    width: '1200',
+    // imageScale: '0.8',
+  },
+  {
+    type: 'photo',
+    photoId: '/Graphics/8.2.png',
+    width: '1200',
+    // imageScale: '0.8',
+  },
+  {
+    type: 'photo',
+    photoId: '/Graphics/8.3.png',
+    width: '1200',
+    // imageScale: '0.8',
+  },
+  {
+    type: 'photo',
+    photoId: '/Graphics/8.4.png',
+    width: '1200',
+    // imageScale: '0.8',
+  },
+  {
+    type: 'photo',
+    photoId: '/Graphics/9.png',
+    width: '1200',
+    // imageScale: '0.8',
   },
 ];
 
 export const WebUIDesignDate = [
   {
-    type: 'text',
-    title: '西藏游记',
-    text: `
-        这是一篇记录2018年6月1日—6月15日到西藏毕业旅游的推送，因为已经过去了大半年了，部分记忆相对比较模糊，所以这篇游记主要讲旅途当中比较难忘的一些瞬间。
-         <br/>
-         <br/>
-        从西藏回来的这大半年时间里，还是会经常念着在西藏的那段日子。
-        <br/>
-         <br/>
-        温馨提示：篇幅较长；文末有想去西藏的朋友可能会比较关注的问题梳理。
-        `,
-  },
-  {
     type: 'photo',
-    describe: '交河故城',
     photoId: '/Web&UI/0.png',
   },
   {
     type: 'text',
+    width: '600',
+    // title: '西藏游记',
     text: `
-        2018年6月1日上午11点45分，从广州到达拉萨的Z264火车开始出发。 
-        
-        <br/>
-        <br/>
-        坐火车途中其实还是很无聊的，我打发时间的主要途径有：和隔壁车厢的大叔聊天、和隔壁的隔壁车厢的退休老干部聊天、看别人吃零食、看书。（说起这本书，当时因为太厚，撕了一半带上行李，结果回来之后另一半找不到了）。
+        My interest in web design can be traced back to 10 years ago when I used to study various outstanding websites to guess the personality or attitude of the website owner. For me, a website is not just a platform for listing information, but also a window for communication and interaction. I draw inspiration from games, art installations, exhibitions, science fiction, or literary works to think about how to convey the spirit of clients to viewers in a more immersive way.
+I also enjoy experimenting with cutting-edge or fun technologies with my friends as a way of storytelling within the limited pages/ screens.
+For me, sparking inspiration and exploring innovation are essential parts of website design. I am willing to continuously experiment and try new things, incorporating more unique elements into designs, making each project full of personality and distinctive charm.
         `,
   },
   {
     type: 'photo',
-    describe: '交河故城',
+    width: '1200',
+    imageScale:'1',
     photoId: '/Web&UI/1.png',
+    mask: '30',
   },
   {
     type: 'photo',
-    describe: '交河故城',
+    width: '1200',
+    imageScale:'1',
     photoId: '/Web&UI/2.png',
-  },
-  {
-    type: 'text',
-    text: `
-        6月2日下午六点多，火车到了中转站西宁站，换上了一辆配有氧气的火车，到这里之后我就开始很兴奋了，因为从这里开始，海拔就会慢慢上升，传说中的高原反应就会慢慢上来，而且最关键是第二天（6月3日）一早起来，我就能看到心心念念的雪山了。
-        
-        <br/>
-        <br/>
-       早上六点就起来了，火车已经到达海拔4000+米的地区，赶紧爬到了窗外，果然出现了我心心念念已久的场景。 
-        `,
+    mask: '30',
+    transformY: '20px'
   },
   {
     type: 'photo',
-    describe: '交河故城',
+    width: '1200',
+    imageScale:'1',
     photoId: '/Web&UI/3.png',
-  },
-  {
-    type: 'text',
-    text: `
-        6月3日下午五点左右，火车终于到达拉萨。我去了在网上订好的青旅，放下行李之后，就让老板娘帮忙推荐接下来的行程：拉萨（1天）—林芝（4天）—拉萨（1天）—纳木错（1天）—拉萨（1天）—珠峰大本营（3天） 
-        <br/>
-         <br/>
-        到西藏的第一天是高原反应最严重的时候，通常都是晚上睡觉的时候开始发作，我也是。
-        <br/>
-         <br/>
-        因为去西藏之前我是有低烧的，所以当天晚上直接发高烧了，这是我在西藏期间的第一次发烧，西藏地区本身氧气含量很低，发烧又会增加耗氧量，所以第一天晚上真的非常痛苦（主要是头疼）。第二天一大早，青旅老板就带我去一个小诊所打吊瓶。（这样的剧本我完全没想到，因为在西藏地区感冒发烧对于平原生活的人来说是非常严重的疾病，我一度以为我的西藏之旅到此就圆满结束了）。
-       
-        `,
+    mask: '30',
+    transformY: '20px'
   },
   {
     type: 'photo',
-    describe: '坎儿井',
+    width: '1200',
+    imageScale:'1',
     photoId: '/Web&UI/4.png',
+    mask: '30',
   },
   {
     type: 'photo',
-    describe: '火焰山',
+    width: '1200',
+    imageScale:'1',
     photoId: '/Web&UI/5.png',
+    mask: '30',
   },
+  {
+    type: 'photo',
+    imageScale:'0.7',
+    photoId: '/Web&UI/6.png'
+  }
 ];
 
 export const ModelingsDate = [
   {
+    type: 'photo',
+    photoId: '/Modelings/0.png',
+    imageScale: '0.7',
+  },
+
+  {
     type: 'text',
-    title: '只是懒得改名字的另一篇西藏游记',
+    width: '600',
     text: `
-        这是一篇记录2018年6月1日—6月15日到西藏毕业旅游的推送，因为已经过去了大半年了，部分记忆相对比较模糊，所以这篇游记主要讲旅途当中比较难忘的一些瞬间。
-         <br/>
-         <br/>
-        从西藏回来的这大半年时间里，还是会经常念着在西藏的那段日子。
-        <br/>
-         <br/>
-        温馨提示：篇幅较长；文末有想去西藏的朋友可能会比较关注的问题梳理。
+        As a designer with a background in industrial design, I have witnessed the rapid evolution of 3D technology. It's astonishing how quickly the field has progressed, and I must admit that keeping up with the latest software like Blender and mastering various rendering techniques has been an exhilarating journey.
+      <br/>
+      <br/>
+As the world of 3D design continues to evolve, I am energized by the opportunities to constantly learn, grow, and create groundbreaking designs. The ever-changing landscape of 3D technology fuels my curiosity and motivates me to continue honing my skills and creating innovative and awe-inspiring 3D designs that push the boundaries of what's possible.
         `,
   },
   {
     type: 'photo',
-    describe: '交河故城',
-    photoId: '/Web&UI/0.png',
+    photoId: '/Modelings/1.png',
+    imageScale: '1',
+  },
+  {
+    type: 'photo',
+    photoId: '/Modelings/2.png',
+    imageScale: '0.7',
+    describe: 'Game Museum Wall Design, 2.4m x 2.2m, LED and Polyurethane Foam',
   },
   {
     type: 'text',
+    width: '600',
     text: `
-        2018年6月1日上午11点45分，从广州到达拉萨的Z264火车开始出发。 
-        
-        <br/>
-        <br/>
-        坐火车途中其实还是很无聊的，我打发时间的主要途径有：和隔壁车厢的大叔聊天、和隔壁的隔壁车厢的退休老干部聊天、看别人吃零食、看书。（说起这本书，当时因为太厚，撕了一半带上行李，结果回来之后另一半找不到了）。
+       This is a gate installation design for a game museum, which not only needs to be eye-catching, but also to integrate various game elements. Therefore, based on the client's preferences, I attempted to use LED lights and acrylic materials to suspend the elements and create a realistic game HUD (head-up display) visual effect.
+      
         `,
   },
   {
     type: 'photo',
-    describe: '交河故城',
-    photoId: '/Web&UI/1.png',
-  },
-  {
-    type: 'photo',
-    describe: '交河故城',
-    photoId: '/Web&UI/2.png',
+    describe: 'Vtuber character design and modeling, Live2d',
+    photoId: '/Modelings/3.png',
   },
   {
     type: 'text',
+    width: '600',
     text: `
-        6月2日下午六点多，火车到了中转站西宁站，换上了一辆配有氧气的火车，到这里之后我就开始很兴奋了，因为从这里开始，海拔就会慢慢上升，传说中的高原反应就会慢慢上来，而且最关键是第二天（6月3日）一早起来，我就能看到心心念念的雪山了。
-        
-        <br/>
-        <br/>
-       早上六点就起来了，火车已经到达海拔4000+米的地区，赶紧爬到了窗外，果然出现了我心心念念已久的场景。 
+      By constantly learning the new techniques, I am able to turn my original character drawings into motion capture models and stream them live on various platforms.
         `,
   },
   {
     type: 'photo',
-    describe: '交河故城',
-    photoId: '/Web&UI/3.png',
-  },
-  {
-    type: 'text',
-    text: `
-        6月3日下午五点左右，火车终于到达拉萨。我去了在网上订好的青旅，放下行李之后，就让老板娘帮忙推荐接下来的行程：拉萨（1天）—林芝（4天）—拉萨（1天）—纳木错（1天）—拉萨（1天）—珠峰大本营（3天） 
-        <br/>
-         <br/>
-        到西藏的第一天是高原反应最严重的时候，通常都是晚上睡觉的时候开始发作，我也是。
-        <br/>
-         <br/>
-        因为去西藏之前我是有低烧的，所以当天晚上直接发高烧了，这是我在西藏期间的第一次发烧，西藏地区本身氧气含量很低，发烧又会增加耗氧量，所以第一天晚上真的非常痛苦（主要是头疼）。第二天一大早，青旅老板就带我去一个小诊所打吊瓶。（这样的剧本我完全没想到，因为在西藏地区感冒发烧对于平原生活的人来说是非常严重的疾病，我一度以为我的西藏之旅到此就圆满结束了）。
-       
-        `,
+    width: '600',
+    photoId: '/Modelings/4.png'
   },
   {
     type: 'photo',
-    describe: '坎儿井',
-    photoId: '/Web&UI/4.png',
-  },
-  {
-    type: 'photo',
-    describe: '火焰山',
-    photoId: '/Web&UI/5.png',
-  },
+    width: '600',
+    imageScale: '0.6',
+    photoId: '/Modelings/5.png'
+  }
 ];

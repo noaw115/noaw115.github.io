@@ -63,7 +63,6 @@ const BackgroundImage2=styled.div`
   transition:0.4s all ease-out;
   transform: scale(${props => props.scale});
   transform-origin:center center;
-  // filter: blur(${props=>props.blur}px);
 `
 const Frame=styled.div`
   background-color: ${props => props.color};

@@ -69,38 +69,37 @@ const Letter = (props) => {
     window.addEventListener(
       'mousemove',
       debounce((e) => {
-        let distToCenter = center.current.getBoundingClientRect();
-        const horizontalCenter = (e.clientX - distToCenter.left).toFixed(2);
-        const verticalCenter = (e.clientY - distToCenter.top).toFixed(2);
-        const distanceCenter = Math.sqrt(
-          horizontalCenter * horizontalCenter + verticalCenter * verticalCenter
-        );
-        const calDis = Math.log10(10 * distanceCenter + 1) / 2.6;
-        // console.log('中心距', calDis);
-
-        const thisLetter = document.getElementById(`letter.${props.content}`);
-        let dist = thisLetter.getBoundingClientRect();
-        const horizontal = (e.clientX - dist.left).toFixed(2)+endXY.x;
-        const vertical = (e.clientY - dist.top).toFixed(2)+endXY.y;
-
-        const calHor =
-          horizontal > 0
-            ? 10 * Math.log10(10 * horizontal + 1)
-            : -10 * Math.log10(-10 * horizontal + 1);
-        const calVer =
-          horizontal > 0
-            ? 10 * Math.log10(10 * vertical + 1)
-            : -10 * Math.log10(-10 * vertical + 1);
-        // const inverDistance = 3 - Math.log10(3 * distance + 1);
-        // console.log('换算后距离',calHor,calVer);
-        shadowRef.current.style.left = `${-1 * calHor}px`;
-        shadowRef.current.style.top = `${-1 * calVer}px`;
-        shadowRef.current.style.transform = `scale(${calDis})`;
+        if (center.current){
+          let distToCenter = center.current.getBoundingClientRect();
+          const horizontalCenter = (e.clientX - distToCenter.left).toFixed(2);
+          const verticalCenter = (e.clientY - distToCenter.top).toFixed(2);
+          const distanceCenter = Math.sqrt(
+            horizontalCenter * horizontalCenter + verticalCenter * verticalCenter
+          );
+          const calDis = Math.log10(10 * distanceCenter + 1) / 2.6;
+          const thisLetter = document.getElementById(`letter.${props.content}`);
   
-        shadowRef2.current.style.left = `${-5 * calHor}px`;
-        shadowRef2.current.style.top = `${-5 * calVer}px`;
-        shadowRef2.current.style.transform = `scale(3)`;
-        // setShadowXY([horizontal, vertical]);
+          let dist = thisLetter.getBoundingClientRect();
+          const horizontal = (e.clientX - dist.left).toFixed(2)+endXY.x;
+          const vertical = (e.clientY - dist.top).toFixed(2)+endXY.y;
+  
+          const calHor =
+            horizontal > 0
+              ? 10 * Math.log10(10 * horizontal + 1)
+              : -10 * Math.log10(-10 * horizontal + 1);
+          const calVer =
+            horizontal > 0
+              ? 10 * Math.log10(10 * vertical + 1)
+              : -10 * Math.log10(-10 * vertical + 1);
+          
+          shadowRef.current.style.left = `${-1 * calHor}px`;
+          shadowRef.current.style.top = `${-1 * calVer}px`;
+          shadowRef.current.style.transform = `scale(${calDis})`;
+  
+          shadowRef2.current.style.left = `${-5 * calHor}px`;
+          shadowRef2.current.style.top = `${-5 * calVer}px`;
+          shadowRef2.current.style.transform = `scale(3)`;
+        }
       })
     );
     // }

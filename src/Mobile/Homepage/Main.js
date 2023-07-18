@@ -35,7 +35,7 @@ const LargeFrame=styled.div`
             0%{
               opacity: 0;
               transform:translateY(-20%);
-              filter: blur(20px);
+              filter: blur(20px)
             }
             
             100%{

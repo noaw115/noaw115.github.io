@@ -48,17 +48,18 @@ const NoaWen = memo(() => {
   };
   
  
-  const changeBetweenWidth = (e, ref, direction = -1, change = 'width',average=false) => {
-    //-1代表左边那个Letter 1代表 右边那个Letter
-    let dist = ref.current.getBoundingClientRect();
-    const horizontal = Math.abs(e.clientX - dist.left + direction * -60);
-    const vertical = Math.abs(e.clientY - dist.top - 10);
-    const distance = Math.sqrt(horizontal * horizontal + vertical * vertical);
-    const inverDistance = 3 - Math.log10(3 * distance + 1);
-    // console.log("闭包后的距离",Math.abs(inverDistance*20).toFixed(2))
-    ref.current.style[change] = Math.abs(inverDistance * 40).toFixed(2) + 'px';
+  const changeBetweenWidth = (e, ref, direction = -1, change = 'width',average=false) => {//-1代表左边那个Letter 1代表 右边那个Letter
+    if (ref.current) {
+      let dist = ref.current.getBoundingClientRect();
+      const horizontal = Math.abs(e.clientX - dist.left + direction * -60);
+      const vertical = Math.abs(e.clientY - dist.top - 10);
+      const distance = Math.sqrt(horizontal * horizontal + vertical * vertical);
+      const inverDistance = 3 - Math.log10(3 * distance + 1);
+      ref.current.style[change] = Math.abs(inverDistance * 40).toFixed(2) + 'px';
+    }
   };
 
+ 
   useEffect(() => {
     // window.addEventListener('mousemove',calAverageDist)
     window.addEventListener(
@@ -73,11 +74,18 @@ const NoaWen = memo(() => {
       })
     );
     return () => {
-      window.removeEventListener('mousemove', debounce);
+      console.log("remove了")
+      window.removeEventListener('mousemove', debounce((e) => {
+        changeBetweenWidth(e, between1, -1);
+        changeBetweenWidth(e, between2, 1);
+        changeBetweenWidth(e, between3, -1);
+        changeBetweenWidth(e, between4, 1,'width',true);
+        changeBetweenWidth(e, betweenCenter, 1, 'height');
+      }));
       // window.removeEventListener('mousemove', calAverageDist);
       
     };
-  }, [betweenCenter]);
+  }, []);
   return (
     <LargeFrame id={'noawen.large.frame'}>
       <HalfFrame>
