@@ -16,3 +16,8 @@ code {
   font-family:'Floane';
   src:url('GlobalComponents/Fonts/Floane-Regular.otf') format('TrueType');
 }
+
+@font-face {
+  font-family: 'XiaoWei';
+  src:url('GlobalComponents/Fonts/xiaowei.ttf') format('TrueType');
+}

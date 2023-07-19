@@ -39,10 +39,10 @@ export const Star4=(
 export const FrontArrow=(
     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23">
         <g id="组_1" data-name="组 1" transform="translate(-1048.357 -89)">
-            <line id="直线_3" data-name="直线 3" x2="14.835" transform="translate(1051.372 100.463)" fill="none" stroke="#fff" strokeLinecap="round" strokeWidth="1"/>
-            <line id="直线_4" data-name="直线 4" x2="6.743" y2="6.743" transform="translate(1059.463 93.72)" fill="none" stroke="#fff" strokeLinecap="round" strokeWidth="1"/>
-            <line id="直线_5" data-name="直线 5" y1="6.743" x2="6.743" transform="translate(1059.463 100.463)" fill="none" stroke="#fff" strokeLinecap="round" strokeWidth="1"/>
-            <g id="椭圆_3" data-name="椭圆 3" transform="translate(1048.357 89)" fill="none" stroke="#fff" strokeWidth="1">
+            <line id="直线_3" data-name="直线 3" x2="14.835" transform="translate(1051.372 100.463)" fill="none" stroke="#000" strokeLinecap="round" strokeWidth="1"/>
+            <line id="直线_4" data-name="直线 4" x2="6.743" y2="6.743" transform="translate(1059.463 93.72)" fill="none" stroke="#000" strokeLinecap="round" strokeWidth="1"/>
+            <line id="直线_5" data-name="直线 5" y1="6.743" x2="6.743" transform="translate(1059.463 100.463)" fill="none" stroke="#000" strokeLinecap="round" strokeWidth="1"/>
+            <g id="椭圆_3" data-name="椭圆 3" transform="translate(1048.357 89)" fill="none" stroke="#000" strokeWidth="1">
                 <circle cx="11.5" cy="11.5" r="11.5" stroke="none"/>
                 <circle cx="11.5" cy="11.5" r="11" fill="none"/>
             </g>

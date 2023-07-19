@@ -37,66 +37,30 @@ export const HomepageData = [
     describe: '白幕文字',
   },
 
-  // {
-  //   num: 2,
-  //   length: 100, //单位vw
-  //   mobileLength: null,
-  //   backgroundColor: '#161616',
-  //   logoColor: '#ffffff',
-  //   ParallaxScroll: false,
-  //   describe: '黑幕文字，正好100',
-  //   title: 'Unnamed2',
-  //   content: {
-  //     title: `Sharpen your sensory and intuitive <br/>
-  //                       imagination with a flexible perspective.`,
-  //     text1: `Without being bound by stereotypes, I always look at things in a soft way. <br/>
-  //                        To form images and sensations from the five senses. By valuing imagination, flexible ideas, and sensory and intuitive perspectives I would like to be involved in the creation of attractive products that make people fall in love with them the moment they touch them.`,
-  //     text2: `ものづくりは魅力的であると第三者に対して伝える手段であり、デザインとはそのものに触れる人にとって、生活や心を豊かにするべきものだと私は思います。<br/>
-  //                       最近では重要視しがちな一方的な“便利さ”とは実は何かを犠牲にして成り立っているように思えるのです。コーヒーミルを挽く時間、相手を想いながら手紙をしたためる時間、すでに省かれつつあるさまざまな事柄や時間にこそ本質的に大切なモノ・コトが隠れているのではないか。そして一番大切なのは単純な利便性ではなく生活を一変させるような「心を揺らす」ことだと思っています。デザインはあくまで手段であって、継続的に愛情を注いでいける器となる環境や過程を一緒に作り上げていくことこそ、今必要とされているのではないかとかんじています。<br/>
-  //                       比喩になりますが、ふわりふわりと漂っている掴みきれないような雲のようなものを少しづつかたちづくっていくようなものづくりを心がけたい。<br/>
-  //                       屋号には想像、解決、集中、直感に優れるとされている「右脳」をそのまま名付けました。固定概念にとらわれることなく、 五感で触れた人の心を揺らす美しさ、人の心が惹かれゆくような魅力という視点を大切にしていきたいと思っています。<br/>
-  //                       定性的なモノの見方や切り方を重視し、直感的・感情的なイメージを大切に地道な一歩一歩をお客さまと一緒に歩めるように携わってゆきたいと思っています。`,
-  //   },
-  // },
-  // {
-  //   num: 3,
-  //   length: 50, //单位vw
-  //   mobileLength: 40,
-  //   backgroundColor: '#ffffff',
-  //   logoColor: '#000000',
-  //   ParallaxScroll: true,
-  //   describe: '一张视差滚动图',
-  //   title: 'Unnamed3',
-  // },
+ 
   {
     num: 2,
-    length: 100, //单位vw
+    length: 45, //单位vw
     mobileLength: 100,
-    backgroundColor: '#161616',
-    logoColor: '#ffffff',
+    backgroundColor: '#e0e0e0',
+    logoColor: '#000000',
     ParallaxScroll: false,
     describe: '黑幕文字',
     title: 'Unnamed4',
     content: {
-      leftLargeTitle: `Art Director<br/>
-                        Designer<br/>
-                        Photographer
+      largeTitle: `Web Design/ App Design/ Interactive Design/ Illustration/<br/> Branding/ Art Direction/ Design Consultancy/ 3D <br/>Prototyping/ Package Design
                         `,
-      leftSmallTitle: `
-                        Art direction / Graphic design / CI,VI design / Web design / Photo direction / Concept making
-                        `,
-      leftText: `#404 3-4-26 Shinonome-machi,<br/>
-                        Hakata-ku, Fukuoka 812 0871<br/>
-                        812 0871 福岡県福岡市博多区東雲町3-4-26 #404
-                        `,
+      text: `
+      I'm Noa, a creative designer and illustrator, and also a hardcore otaku.
+      <br/><br/>
+I see designing is like playing a video game, where I analyze objectives from clients, extract stories, and challenge myself to connect them using various interactive methods to present to the target audience.
+      `,
+      smallText: `
+        My special skills are figure skating and having an exceptional memory for anime.
+Recently, I'm obsessed with watching Chiikawa drawn by Nagano-sensei and creating Live 2D models.
+      `,
       leftEmail: 'tsuruta@unou.jp',
       rightLargeTitle: 'RYO TSURUTA',
-      rightSmallTitle: 'Profile',
-      rightText: `
-                        1984年佐賀県唐津市生まれ。服飾専門学校卒業後デザインワークを開始。ファッションフリーペーパーを発行する企業で広告デザインやサイト運営に従事。その後、デザイン事務所にて取締役兼アートディレクターとしてファッション・ビューティ関連のWebやCI、VIデザイン制作に携わり、中でもコレクションメゾンのECやコレクションサ<br/>
-                        イトのプロジェクトの中核として様々な活動に携わりました。2021年に福岡にてUNOUを立ち上げフリーランスとして独立。グラフィックデザインをベースとしたCI,VIデザインやアートディレクション、パッケージデザインやWebデザインなどを中心にお仕事のご依頼をいただいています。<br/>
-                        ご相談はお気軽にご連絡くださいませ。<br/>
-                        `,
     },
   },
   {
@@ -228,45 +192,45 @@ For me, sparking inspiration and exploring innovation are essential parts of web
   {
     type: 'photo',
     width: '1200',
-    imageScale:'1',
+    imageScale: '1',
     photoId: '/Web&UI/1.png',
     mask: '30',
   },
   {
     type: 'photo',
     width: '1200',
-    imageScale:'1',
+    imageScale: '1',
     photoId: '/Web&UI/2.png',
     mask: '30',
-    transformY: '20px'
+    transformY: '20px',
   },
   {
     type: 'photo',
     width: '1200',
-    imageScale:'1',
+    imageScale: '1',
     photoId: '/Web&UI/3.png',
     mask: '30',
-    transformY: '20px'
+    transformY: '20px',
   },
   {
     type: 'photo',
     width: '1200',
-    imageScale:'1',
+    imageScale: '1',
     photoId: '/Web&UI/4.png',
     mask: '30',
   },
   {
     type: 'photo',
     width: '1200',
-    imageScale:'1',
+    imageScale: '1',
     photoId: '/Web&UI/5.png',
     mask: '30',
   },
   {
     type: 'photo',
-    imageScale:'0.7',
-    photoId: '/Web&UI/6.png'
-  }
+    imageScale: '0.7',
+    photoId: '/Web&UI/6.png',
+  },
 ];
 
 export const ModelingsDate = [
@@ -320,12 +284,12 @@ As the world of 3D design continues to evolve, I am energized by the opportuniti
   {
     type: 'photo',
     width: '600',
-    photoId: '/Modelings/4.png'
+    photoId: '/Modelings/4.png',
   },
   {
     type: 'photo',
     width: '600',
     imageScale: '0.6',
-    photoId: '/Modelings/5.png'
-  }
+    photoId: '/Modelings/5.png',
+  },
 ];

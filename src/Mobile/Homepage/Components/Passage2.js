@@ -138,7 +138,7 @@ function MobilePassage2(props){
         <Frame blur={blur}>
             <LeftPassage>
                 <LeftLargeTitle ref={lLTRef}>
-                    Loading
+                
                 </LeftLargeTitle>
                 <LeftSmallTitle ref={lSTRef}>
                     Loading

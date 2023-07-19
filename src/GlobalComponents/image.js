@@ -1,4 +1,4 @@
-export const TestImage = require('./Image/Door.png');
+
 export const LogoWhite = require('./Image/icon_white.png');
 export const LogoBlack = require('./Image/icon_black.png');
 

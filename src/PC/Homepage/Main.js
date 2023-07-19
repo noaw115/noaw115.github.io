@@ -378,7 +378,7 @@ class Main extends React.PureComponent {
             color={this.HomepageData[1].backgroundColor}
             width={this.HomepageData[1].length}
           >
-            <NoaWen />
+            <NoaWen deltaY={this.state.deltaY}/>
           </Frame>
           <Frame
             color={this.HomepageData[2].backgroundColor}

@@ -5,7 +5,7 @@ import * as Data from '../../../GlobalComponents/Data/static';
 import * as Image from '../../../GlobalComponents/image';
 import SvgMask from '../../../GlobalComponents/SVGmask';
 import { useNavigate, Link } from 'react-router-dom';
-
+import DoorsFrame from "./DoorsFrame";
 const Frame = styled.div`
   background-color: ${(props) => props.color};
   position: relative;
@@ -172,7 +172,7 @@ const Doors = memo((props) => {
           {Svg.Star3}
         </RotateStar>
       </Circle>
-
+      <DoorsFrame/>
       {/*0号 靠左*/}
       <Works left={23} bottom={13}>
         <Link to={`/${Data.HomepageData[0].contend.Door0.text}`}>

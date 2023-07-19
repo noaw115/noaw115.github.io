@@ -49,7 +49,7 @@ const NoaWen = memo(() => {
   
  
   const changeBetweenWidth = (e, ref, direction = -1, change = 'width',average=false) => {//-1代表左边那个Letter 1代表 右边那个Letter
-    if (ref.current) {
+    if (ref.current ) {
       let dist = ref.current.getBoundingClientRect();
       const horizontal = Math.abs(e.clientX - dist.left + direction * -60);
       const vertical = Math.abs(e.clientY - dist.top - 10);
