@@ -28,15 +28,14 @@ export const HomepageData = [
   },
   {
     num: 1,
-    length: 50, //单位vw
+    length: 100, //单位vw
     mobileLength: 100,
     backgroundColor: '#ffffff',
     logoColor: '#000000',
-    ParallaxScroll: false,
+    ParallaxScroll: true,
     title: 'Unnamed5',
     describe: '白幕文字',
   },
-
  
   {
     num: 2,

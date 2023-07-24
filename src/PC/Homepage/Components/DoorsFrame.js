@@ -22,15 +22,11 @@ const Line = styled.div`
 const BigBlock = styled.div`
   width: 275px;
   height: 400px;
-  //background-color: green;
+  background-color: rgba(103,193,220,0.4);
   margin: 1px;
   transition: 0.5s all;
   display: flex;
   position: relative;
-  &:hover {
-    width: ${(props) => (props.width ? props.width * 275 + 'px' : '275px')};
-    height: ${(props) => (props.height ? props.height * 400 + 'px' : '400px')};
-  }
 `;
 const SmallBlock = styled.div`
   width: 1100px;
@@ -38,10 +34,6 @@ const SmallBlock = styled.div`
   background-color: rgba(2, 192, 23, 0.2);
   margin: 1px;
   transition: 0.5s all;
-  &:hover {
-    width: ${(props) => (props.width ? props.width * 1100 + 'px' : '1100')};
-    height: ${(props) => (props.height ? props.height * 100 + 'px' : '100px')};
-  }
 `;
 const Mask = styled.div`
   height: 370px;
@@ -80,7 +72,7 @@ const DoorsFrame = () => {
         <BigBlock height={1.2} width={1.4} />
         <BigBlock>
           {/*上方*/}
-          <Mask style={{ top: '10px', left: '50px' }}>
+          <Mask style={{ top: '10px', left: '30px' }}>
             <DoorImg
               src={require(`../../../GlobalComponents/Image/DoorImage.png`)}
               style={{ height: '110%', left: '-20%' }}
@@ -104,7 +96,7 @@ const DoorsFrame = () => {
       <Line>
         <BigBlock>
           {/*左边*/}
-          <Mask style={{ top: '-5px', left: '50px' }}>
+          <Mask style={{ top: '-35px', left: '50px' }}>
             <DoorImg
               style={{ height: '120%', left: '-370%' }}
               src={require(`../../../GlobalComponents/Image/DoorImage.png`)}
@@ -121,7 +113,7 @@ const DoorsFrame = () => {
         </BigBlock>
         <BigBlock>
           {/*右边*/}
-          <Mask style={{ top: '-160px', left: '110px' }}>
+          <Mask style={{ top: '-180px', left: '40px' }}>
             <DoorImg
               src={require(`../../../GlobalComponents/Image/DoorImage.png`)}
               style={{ height: '110%', left: '-400%' }}
@@ -130,7 +122,7 @@ const DoorsFrame = () => {
         </BigBlock>
         <BigBlock>
           {/*左边*/}
-          <ChineseTitle style={{ top: '0px', left: '110px' }}>
+          <ChineseTitle style={{ top: '0px', left: '90px' }}>
             {Data.HomepageData[0].contend.Door2.chinese_text}
           </ChineseTitle>
           <WorksTitle style={{ top: '40px', left: '70px' }}>

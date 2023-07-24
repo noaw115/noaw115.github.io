@@ -172,7 +172,7 @@ const Doors = memo((props) => {
           {Svg.Star3}
         </RotateStar>
       </Circle>
-      <DoorsFrame/>
+      {/*<DoorsFrame/>*/}
       {/*0号 靠左*/}
       <Works left={23} bottom={13}>
         <Link to={`/${Data.HomepageData[0].contend.Door0.text}`}>

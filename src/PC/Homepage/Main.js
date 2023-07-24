@@ -159,7 +159,7 @@ class Main extends React.PureComponent {
     resize: false,
   };
   handleWheel = (e) => {
-    //console.log("Main一直在监听")
+    console.log("Main一直在监听")
     /**在范围内把滚轮产生的deltaY累加起来**/
     if (
       this.state.deltaY + e.deltaY * BasicData.moveSpeedFactor >= 0 &&
@@ -173,12 +173,10 @@ class Main extends React.PureComponent {
     }
 
     /**针对视差滚动**/
-    this.paraScr1 =
-      (this.state.deltaY - this.len[1][0] * this.widthFactor) /
-      ((this.len[1][1] + 100) * this.widthFactor);
-    // this.paraScr2 =
-    //   (this.state.deltaY - this.len[2][0] * this.widthFactor) /
-    //   ((this.len[2][1] + 100) * this.widthFactor);
+    this.paraScr1 = (this.state.deltaY - this.len[1][0] * this.widthFactor) / ((this.len[1][1] + 100) * this.widthFactor);
+    this.paraScr2 =
+      (this.state.deltaY - this.len[2][0] * this.widthFactor) /
+      ((this.len[2][1] + 100) * this.widthFactor);
     //针对第一个视差滚动页面
     if (this.paraScr1 >= -0.1 && this.paraScr1 <= 1.1) {
       this.setState({
@@ -186,28 +184,22 @@ class Main extends React.PureComponent {
       });
     }
     //针对第二个视差滚动界面
-    // if (this.paraScr2 >= -0.1 && this.paraScr2 <= 1.1) {
-    //   this.setState({
-    //     paraScr2: this.paraScr2,
-    //   });
-    // }
+    if (this.paraScr2 >= -0.1 && this.paraScr2 <= 1.1) {
+      this.setState({
+        paraScr2: this.paraScr2,
+      });
+    }
 
     /**判定当前页数，原理和判定吸附相同，但是要提前一点因为要预备变色**/
     //针对页面判断用到的是this.appearArray.hasAppeared
     if (
       e.deltaY > 0 &&
-      this.appearArray.hasAppeared[this.currentPageHasAppeared + 1] -
-        this.state.deltaY -
-        400 <
-        200
+      this.appearArray.hasAppeared[this.currentPageHasAppeared + 1] - this.state.deltaY - 400 < 200
     ) {
       this.currentPageHasAppeared++;
     } else if (
       e.deltaY < 0 &&
-      this.state.deltaY +
-        400 -
-        this.appearArray.hasAppeared[this.currentPageHasAppeared] <
-        200 &&
+      this.state.deltaY + 400 - this.appearArray.hasAppeared[this.currentPageHasAppeared] < 200 &&
       this.currentPageHasAppeared > 0
     ) {
       this.currentPageHasAppeared--;
@@ -355,6 +347,7 @@ class Main extends React.PureComponent {
     window.removeEventListener('resize', this.initialAction);
   }
 
+  
   render() {
     // console.log("到底哪里有问题",this.appearArray)
     console.log('deltaY', this.state.deltaY);
@@ -373,13 +366,23 @@ class Main extends React.PureComponent {
           >
             <Doors />
           </Frame>
-
+          
           <Frame
             color={this.HomepageData[1].backgroundColor}
             width={this.HomepageData[1].length}
           >
-            <NoaWen deltaY={this.state.deltaY}/>
+            <Parallax
+              blur={this.blurControl[1]}
+              offset={this.state.paraScr1 * 500}
+            />
           </Frame>
+          
+          {/*<Frame*/}
+          {/*  color={this.HomepageData[1].backgroundColor}*/}
+          {/*  width={this.HomepageData[1].length}*/}
+          {/*>*/}
+          {/*  <NoaWen deltaY={this.state.deltaY}/>*/}
+          {/*</Frame>*/}
           <Frame
             color={this.HomepageData[2].backgroundColor}
             width={this.HomepageData[2].length}
@@ -394,7 +397,7 @@ class Main extends React.PureComponent {
             <StaticContent />
             <Parallax
               blur={this.blurControl[3]}
-              offset={this.state.paraScr1 * 500}
+              offset={this.state.paraScr2 * 500}
             />
           </Frame>
         </MoveFrame>

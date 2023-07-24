@@ -27,7 +27,7 @@ const BetweenSpan = styled.div`
   transition: all 0.5s ease-out;
   //background-color: red;
 `;
-let averageDist=0
+
 const NoaWen = memo(() => {
   const between1 = useRef(null);
   const between2 = useRef(null);
@@ -35,17 +35,21 @@ const NoaWen = memo(() => {
   const between4 = useRef(null);
   const betweenCenter = useRef(null);
   
-  const debounce = (func) => {
+  const debounce = () => {
     let f;
-    return function () {
-      const context = this;
-      const args = arguments;
+    return function (e) {
       cancelAnimationFrame(f);
-      f = requestAnimationFrame(function () {
-        func.apply(context, args);
-      });
+      f = requestAnimationFrame(() => {
+        changeBetweenWidth(e, between1, -1);
+        changeBetweenWidth(e, between2, 1);
+        changeBetweenWidth(e, between3, -1);
+        changeBetweenWidth(e, between4, 1,'width',true);
+        changeBetweenWidth(e, betweenCenter, 1, 'height');
+      })
     };
   };
+  
+  const runDebounce =debounce();
   
  
   const changeBetweenWidth = (e, ref, direction = -1, change = 'width',average=false) => {//-1代表左边那个Letter 1代表 右边那个Letter
@@ -61,29 +65,10 @@ const NoaWen = memo(() => {
 
  
   useEffect(() => {
-    // window.addEventListener('mousemove',calAverageDist)
-    window.addEventListener(
-      'mousemove',
-      debounce((e) => {
-        changeBetweenWidth(e, between1, -1);
-        changeBetweenWidth(e, between2, 1);
-        changeBetweenWidth(e, between3, -1);
-        changeBetweenWidth(e, between4, 1,'width',true);
-        changeBetweenWidth(e, betweenCenter, 1, 'height');
-
-      })
-    );
+    window.addEventListener('mousemove', runDebounce);
     return () => {
-      console.log("remove了")
-      window.removeEventListener('mousemove', debounce((e) => {
-        changeBetweenWidth(e, between1, -1);
-        changeBetweenWidth(e, between2, 1);
-        changeBetweenWidth(e, between3, -1);
-        changeBetweenWidth(e, between4, 1,'width',true);
-        changeBetweenWidth(e, betweenCenter, 1, 'height');
-      }));
-      // window.removeEventListener('mousemove', calAverageDist);
-      
+      console.log('remove了');
+      window.removeEventListener('mousemove', runDebounce);
     };
   }, []);
   return (
