@@ -3,23 +3,23 @@ import styled from 'styled-components';
 import LoadingParallaxImage from './LoadingParallaxImage';
 import ParallaxImage from "./ParallaxImage";
 
-const ParallaxScroll = memo(styled.div`
+const ParallaxScroll = styled.div`
   height: 100%;
-  width: 100%;
-  background-color: aliceblue;
+  position: relative;
   transition: 0.6s all ease-out;
   transform: translateX(-${(props) => props.offset}px);
   filter: blur(${(props) => (props.blur ? '20' : '0')}px);
-`);
+  width: 100%;
+`;
 
-const Parallax = memo((props) => {
+const Parallax = memo(({blur = false, offset = () => {}, children}) => {
   return (
     <ParallaxScroll
-      blur={props.blur}
+      blur={blur}
       style={{ overflow: 'visible' }}
-      offset={props.offset}
+      offset={offset}
     >
-      <ParallaxImage />
+      {children}
     </ParallaxScroll>
   );
 });

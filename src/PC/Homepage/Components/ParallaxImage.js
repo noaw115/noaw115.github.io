@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import * as Image from '../../../GlobalComponents/image';
 const ParallaxImg = styled.img`
   width: 100%;
-  transform: translateY(-170px) translateX(20px);
+  //transform: translateY(-170px) translateX(20px);
 `;
 
 const ParallaxImage = memo((props) => {

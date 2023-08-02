@@ -6,7 +6,7 @@ import qe from 'styled-components';
 import { clear } from '@testing-library/user-event/dist/clear';
 
 const LargeFrame = styled.div`
-  width: 100%;
+  width: 120%;
   height: 100%;
   //background-color: brown;
 
@@ -71,6 +71,7 @@ const NoaWen = memo(() => {
       window.removeEventListener('mousemove', runDebounce);
     };
   }, []);
+  
   return (
     <LargeFrame id={'noawen.large.frame'}>
       <HalfFrame>
