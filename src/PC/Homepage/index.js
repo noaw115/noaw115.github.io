@@ -36,16 +36,7 @@ const LargeFrame = memo(styled.div`
     }}
     ease-out ${BasicData.PCBlurTime} forwards;
 `);
-const BlurFrame = styled.div`
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 40vw;
-  height: 100vh;
-  //background-color: red;
-  backdrop-filter: blur(20px);
-  filter: blur(20px);
-`;
+
 const FixedFrame = styled.div`
   //background-color: aquamarine;
   width: 100vw;
@@ -71,12 +62,12 @@ const MoveFrame = styled.div`
 `;
 
 const Frame = memo(styled.div`
-  background-color: ${(props) => props.color};
+  border: ${(props) => props.color} 1px solid;
   height: 100%;
   width: ${(props) => props.width}vw;
   flex-shrink: 0;
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
   display: flex;
 `);
 
@@ -84,8 +75,8 @@ class PageData {
   constructor() {
     this.lengthMap = [
       { descri: '门的页面', length: 100, blur: false },
-      { descri: '视差滚动NOA', length: 46, blur: true },
-      { descri: '详细介绍页', length: 45, blur: true },
+      { descri: '视差滚动NOA', length: 60, blur: true },
+      { descri: '详细介绍页', length: 50, blur: true },
       { descri: '山中之门页', length: 80, blur: true },
       { descri: '联系信息', length: 40, blur: true },
     ];
@@ -100,18 +91,8 @@ class PageData {
     return res;
   };
   
-  findPageFieldVw = (descri) => {
-    // 找到某一页的长度（vw长度）
-    let res = 0;
-    this.lengthMap.forEach((item) => {
-      if (item.descri === descri) {
-        res = item.length;
-      }
-    });
-    return res;
-  };
   
-  findPageField = (descri, field) => {
+  getPageField = (descri, field) => {
     // 找到某一页的属性，第二项代表属性名，不传则是所有属性，传index则是返回index
     let res;
     this.lengthMap.forEach((item,index) => {
@@ -128,7 +109,7 @@ class PageData {
     return res;
   };
   
-  findStartToPageVw = (descri) => {
+  calStartToPageVw = (descri) => {
     // 找到某一页的起点长度（vw长度）
     let res = 0;
     let addFlag = true;
@@ -145,7 +126,7 @@ class PageData {
     // 计算吸附列表 是一个[0,width1,width1+width2,...]这样的列表（实际长度）
     let array = [];
     this.lengthMap.forEach((item) => {
-      array.push(this.findStartToPageVw(item.descri) * widthFactor);
+      array.push(this.calStartToPageVw(item.descri) * widthFactor);
     });
     console.log('snapArray', array);
     return array;
@@ -156,7 +137,7 @@ class PageData {
     let array = [];
     this.lengthMap.forEach((item) => {
       array.push(
-        (this.findStartToPageVw(item.descri) + this.findPageFieldVw(item.descri) - 100) *
+        (this.calStartToPageVw(item.descri) + this.getPageField(item.descri,'length') - 100) *
         widthFactor +
         offset
       );
@@ -248,15 +229,15 @@ const Main = (props) => {
   useEffect(() => {
     //处理高斯模糊相关的逻辑
     if (blurControl) {
+      // console.log('现在的delta是', deltaX, '是否小于第', blurPage.current, '页即',blurArray[blurPage.current] ,"?", deltaX>blurArray[blurPage.current] );
       if (deltaDirection.current > 0 && deltaX > blurArray[blurPage.current]) {
         blurPage.current = limitNumber(blurPage.current+1, pages.lengthMap.length-1, 0)
         setBlurControl(blurPage.current)
       }
-      // console.log('现在的delta是', deltaX, '是否小于第', blurPage.current, '页即',blurArray[blurPage.current] ,"?", deltaX>blurArray[blurPage.current] );
-      if (deltaDirection.current < 0 && deltaX < blurArray[blurPage.current-1]){
-        blurPage.current = limitNumber(blurPage.current-1, pages.lengthMap.length-1, 0)
-        setBlurControl(blurPage.current, true)
-      }
+      // if (deltaDirection.current < 0 && deltaX < blurArray[blurPage.current-1]){
+      //   blurPage.current = limitNumber(blurPage.current-1, pages.lengthMap.length-1, 0)
+      //   setBlurControl(blurPage.current, true)
+      // }
     }
   }, [deltaX]);
   
@@ -276,17 +257,25 @@ const Main = (props) => {
     });
   };
 
-  const handleParaScr = (descri, factor) => {
+  const handleParaScreenPercent = (descri, upper = 0.5, lower = -0.5) => {
     // 针对视差滚动的函数,返回值是视差滚动的offset
-    const _subDeltaX =
-      (deltaX - pages.findStartToPageVw(descri) * widthFactor) /
-      ((pages.findPageFieldVw(descri) + 100) * widthFactor);
-    return limitNumber(_subDeltaX + 0.5, 1, 0) * factor;
+    
+    const rangeLength = upper - lower;
+    let _percent =
+      (deltaX + document.body.clientWidth - pages.calStartToPageVw(descri)*widthFactor ) /
+      ((pages.getPageField(descri,'length'))*widthFactor + document.body.clientWidth);
+    // 分子：该页目前滚过的距离（不是从起点算，仅该页） 要加clientWidth的原因：deltaX是从左边缘开始计算的，但是我们算滚过的距离得从右侧算。有点复杂，多画图
+    // 分母：该页从出现到完全消失的长度
+    // _percent: 该页被经过的比例，0-1之间
+    
+    _percent = _percent*rangeLength // 将_percent范围按要求放大或缩小
+    // console.log("_percent",_percent)
+    return limitNumber(_percent-rangeLength/2, upper, lower);
   };
   
   const handleBlur = (descri) => {
     if (blurControl) {
-      return blurControl[pages.findPageField(descri,'index')]
+      return blurControl[pages.getPageField(descri,'index')]
     }
     return false
   }
@@ -295,32 +284,36 @@ const Main = (props) => {
     <LargeFrame>
       <FixedFrame>deltaX={deltaX}</FixedFrame>
       <MoveFrame id="moveFrame" offset={deltaX} width={pages.calTotalVw()}>
-        <Frame width={pages.findPageFieldVw('门的页面')}>
+        <Frame width={pages.getPageField('门的页面','length')} color={'red'}>
           <Doors />
         </Frame>
 
-        <Frame width={pages.findPageFieldVw('视差滚动NOA')}>
+        <Frame style={{display: 'block'}} width={pages.getPageField('视差滚动NOA','length')} color={'blue'}>
           <Parallax
             blur={handleBlur('视差滚动NOA')}
-            offset={handleParaScr('视差滚动NOA', 500)}
+            percent={handleParaScreenPercent('视差滚动NOA',0.2,-0.2)}
+            pageLength={pages.getPageField('视差滚动NOA','length')*widthFactor}
+            // percentCorrection={-0.125} // 百分比修正，为的是让内容停在居中位置
           >
             <NoaWen deltaY={deltaX} />
           </Parallax>
         </Frame>
 
-        <Frame width={pages.findPageFieldVw('详细介绍页')}>
+        <Frame width={pages.getPageField('详细介绍页','length')} color={'yellow'}>
           <Passage2 blur={handleBlur('详细介绍页')}/>
         </Frame>
 
-        <Frame width={pages.findPageFieldVw('山中之门页')}>
+        <Frame  style={{display: 'block'}} width={pages.getPageField('山中之门页','length')}>
           <Parallax
             blur={handleBlur('山中之门页')}
-            offset={handleParaScr('山中之门页', 500)}
+            percent={handleParaScreenPercent('山中之门页',0.5,-0.1)}
+            pageLength={pages.getPageField('山中之门页','length')*widthFactor}
+            // offset={handleParaScreenPercent('山中之门页', 500)}
           >
             <ParallaxImage />
           </Parallax>
         </Frame>
-        <Frame width={pages.findPageFieldVw('联系信息')}>{/*<Passage2 />*/}</Frame>
+        <Frame width={pages.getPageField('联系信息','length')}>{/*<Passage2 />*/}</Frame>
       </MoveFrame>
     </LargeFrame>
   );
