@@ -1,7 +1,6 @@
 export const HomepageData = [
   {
     num: 0,
-    length: 100, //单位vw
     mobileLength: 130, //单位vh
     backgroundColor: 'linear-gradient(to right, white , #F4FAFD)',
     logoColor: '#000000',
@@ -28,7 +27,6 @@ export const HomepageData = [
   },
   {
     num: 1,
-    length: 100, //单位vw
     mobileLength: 100,
     backgroundColor: '#ffffff',
     logoColor: '#000000',
@@ -39,7 +37,6 @@ export const HomepageData = [
  
   {
     num: 2,
-    length: 45, //单位vw
     mobileLength: 100,
     backgroundColor: '#e0e0e0',
     logoColor: '#000000',
@@ -64,7 +61,6 @@ Recently, I'm obsessed with watching Chiikawa drawn by Nagano-sensei and creatin
   },
   {
     num: 3,
-    length: 60, //单位vw
     mobileLength: 40,
     backgroundColor: '#ffffff',
     logoColor: '#000000',

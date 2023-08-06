@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import * as Data from '../../../GlobalComponents/Data/static';
 import * as Image from '../../../GlobalComponents/image';
 import * as Svg from '../../../GlobalComponents/Data/svgs';
+import { PlayGroundContext } from './RenderPlayGround';
 
 const Frame = styled.div`
   position: relative;
@@ -11,11 +12,19 @@ const Frame = styled.div`
   box-sizing: border-box;
   flex-shrink: 0;
   display: flex;
+  background-color: greenyellow;
   flex-direction: column;
   align-items: flex-end;
   color: black;
   filter: blur(${(props) => (props.blur ? '40' : '0')}px);
-  transition: 1.2s all ease-out;
+  transition: 1.2s all ease-out,
+    ${(props) => {
+      if (props.direction){
+        return props.duration + 's'
+      }else {
+        return '1.2s'
+      }
+    }} left ease-in-out;
 `;
 
 const LargeTitle = styled.div`
@@ -93,24 +102,42 @@ const EmailAnimation = styled.div`
   margin-right: 20px;
 `;
 
-function FitText(lLTRef, lTRef) {
-  lLTRef.current.innerHTML = Data.HomepageData[2].content.largeTitle;
-  lTRef.current.innerHTML = Data.HomepageData[2].content.text;
-}
+const Consumer = memo((props) => {
+  return (
+    <PlayGroundContext.Consumer>
+      {(value) => <Passage2 {...props} offset={value} />}
+    </PlayGroundContext.Consumer>
+  );
+});
 
 const Passage2 = memo((props) => {
-  let { blur } = props;
+  const { blur, delayTime = 3, offset, width, duration = 3, direction } = props;
   const lLTRef = useRef(null);
   const lTRef = useRef(null);
   const lTRef2 = useRef(null);
+  const frameRef = useRef();
   useEffect(() => {
+    frameRef.current.style.left = width+'px';
     lLTRef.current.innerHTML = Data.HomepageData[2].content.largeTitle;
     lTRef.current.innerHTML = Data.HomepageData[2].content.text;
     lTRef2.current.innerHTML = Data.HomepageData[2].content.smallText;
   }, []);
 
+  useEffect(() => {
+    if (offset === 0) {
+      console.log('passage页准备好了');
+      setTimeout(() => {
+        // console.log('开始变形');
+        frameRef.current.style.left = '0';
+      }, delayTime * 1000); // 停留的秒数
+    }
+    if (offset < 0) {
+      // console.log('恢复');
+      frameRef.current.style.left = width+'px';
+    }
+  }, [offset]);
   return (
-    <Frame blur={blur}>
+    <Frame blur={blur} ref={frameRef} duration={duration} direction={direction}>
       <LogoSpace>
         <LogoImage2 />
       </LogoSpace>
@@ -130,4 +157,4 @@ const Passage2 = memo((props) => {
   );
 });
 
-export default Passage2;
+export default Consumer;

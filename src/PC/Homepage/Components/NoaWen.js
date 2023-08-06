@@ -6,7 +6,7 @@ import qe from 'styled-components';
 import { clear } from '@testing-library/user-event/dist/clear';
 
 const LargeFrame = styled.div`
-  width: 120%;
+  width: 100%;
   height: 100%;
   //background-color: brown;
 

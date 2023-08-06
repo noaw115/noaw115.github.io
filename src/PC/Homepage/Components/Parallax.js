@@ -12,14 +12,17 @@ const ParallaxScroll = styled.div`
   align-items: center;
   transform: translateX(${(props) => -1*props.offset}px);
   filter: blur(${(props) => (props.blur ? '20' : '0')}px);
-  width: 150%;
+  width: 200%;
 `;
 
+export const calOffset = (percent, percentCorrection, pageLength) => {
+  // console.log("percentCorrection应该=",-1*(percent + percentCorrection).toFixed(2))
+  return pageLength * (percent + percentCorrection).toFixed(2);
+};
+
 const Parallax = memo(({blur = false, percent = 0, children, start = 0, pageLength = 100, percentCorrection = 0}) => {
-  console.log("percent",percent)
-  const _percent = percent + percentCorrection
-  const offset = pageLength*(_percent)
-  // console.log("offset",offset)
+  const offset = calOffset(percent, percentCorrection, pageLength)
+  
   return (
     <ParallaxScroll
       blur={blur}
