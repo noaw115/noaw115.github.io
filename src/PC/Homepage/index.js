@@ -83,8 +83,8 @@ class PageData {
         length: 60,
         blur: true,
         custom: {
-          delayTime: 2, //先等这段时间
-          animationDuration:2, //再花这段时间走动画
+          delayTime: 3, //先等这段时间
+          animationDuration:1, //再花这段时间走动画
         },
       },
       {
@@ -93,7 +93,7 @@ class PageData {
         blur: true,
         custom: {
           delayTime: 3, //先等这段时间
-          animationDuration:1, //再花这段时间走动画
+          animationDuration:2, //再花这段时间走动画
         },
       },
       { descri: '山中之门页', length: 80, blur: true },

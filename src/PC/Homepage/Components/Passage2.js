@@ -19,12 +19,13 @@ const Frame = styled.div`
   filter: blur(${(props) => (props.blur ? '40' : '0')}px);
   transition: 1.2s all ease-out,
     ${(props) => {
-      if (props.direction){
-        return props.duration + 's'
-      }else {
-        return '1.2s'
-      }
-    }} left ease-in-out;
+        if (props.direction) {
+          return props.duration + 's';
+        } else {
+          return '1.2s';
+        }
+      }}
+      left ease-out;
 `;
 
 const LargeTitle = styled.div`
@@ -117,23 +118,34 @@ const Passage2 = memo((props) => {
   const lTRef2 = useRef(null);
   const frameRef = useRef();
   useEffect(() => {
-    frameRef.current.style.left = width+'px';
+    frameRef.current.style.left = width + 'px';
     lLTRef.current.innerHTML = Data.HomepageData[2].content.largeTitle;
     lTRef.current.innerHTML = Data.HomepageData[2].content.text;
     lTRef2.current.innerHTML = Data.HomepageData[2].content.smallText;
   }, []);
 
+  const reScroll = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    frameRef.current.style.left = '0';
+    document.removeEventListener('mousewheel', reScroll, {
+      passive: false,
+    });
+  };
   useEffect(() => {
     if (offset === 0) {
       console.log('passage页准备好了');
       setTimeout(() => {
         // console.log('开始变形');
-        frameRef.current.style.left = '0';
+
+        document.addEventListener('mousewheel', reScroll, {
+          passive: false,
+        });
       }, delayTime * 1000); // 停留的秒数
     }
     if (offset < 0) {
       // console.log('恢复');
-      frameRef.current.style.left = width+'px';
+      frameRef.current.style.left = width + 'px';
     }
   }, [offset]);
   return (

@@ -46,6 +46,14 @@ const NoaWenParallaxInner = memo((props) => {
     e.preventDefault();
     e.stopPropagation();
   };
+  const reScroll = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    parallaxRef.current.style.width = '100%';
+    document.removeEventListener('mousewheel', reScroll,{
+      passive: false,
+    })
+  }
   useEffect(() => {
     if (direction && offset === 0) { //direction表示必须是正向移动
       document.addEventListener('mousewheel', cannotScroll, {
@@ -53,10 +61,12 @@ const NoaWenParallaxInner = memo((props) => {
       });
       setTimeout(() => {
         // console.log('开始变形');
-        parallaxRef.current.style.width = '100%';
         document.removeEventListener('mousewheel', cannotScroll, {
           passive: false,
         });
+        document.addEventListener('mousewheel', reScroll,{
+          passive: false,
+        })
       }, delayTime * 1000); // noawen停留的秒数
     }
     if (offset < 0) {
