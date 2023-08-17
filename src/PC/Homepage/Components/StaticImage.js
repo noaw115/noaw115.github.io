@@ -1,12 +1,15 @@
-import React, { memo, useEffect, useRef } from 'react';
+import React, {memo, useEffect, useRef, useState} from 'react';
 import styled, { keyframes } from 'styled-components';
 import * as Image from '../../../GlobalComponents/image';
+
 const ParallaxImg = styled.img`
   width: 100%;
-  //transform: translateY(-170px) translateX(20px);
+  transform: translateY(0px) translateX(-80px);
 `;
 
-const ParallaxImage = memo((props) => {
+
+
+const StaticImage = memo((props) => {
   const imgRef = useRef(null);
 
   const debounce = () => {
@@ -41,6 +44,11 @@ const ParallaxImage = memo((props) => {
       window.removeEventListener('mousemove', runDebounce);
     };
   }, []);
-  return <ParallaxImg src={Image.GreenBack} ref={imgRef} />;
+
+
+
+  return (
+      <ParallaxImg src={Image.GreenBack} ref={imgRef} />
+  );
 });
-export default ParallaxImage;
+export default StaticImage;

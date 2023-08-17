@@ -1,7 +1,6 @@
 import React, { memo, lazy, Suspense } from 'react';
 import styled from 'styled-components';
-import LoadingParallaxImage from './LoadingParallaxImage';
-import ParallaxImage from "./ParallaxImage";
+
 
 const ParallaxScroll = styled.div`
   height: 100%;
@@ -12,7 +11,7 @@ const ParallaxScroll = styled.div`
   align-items: center;
   transform: translateX(${(props) => -1*props.offset}px);
   filter: blur(${(props) => (props.blur ? '20' : '0')}px);
-  width: 200%;
+  width: 110%;
 `;
 
 export const calOffset = (percent, percentCorrection, pageLength) => {

@@ -9,10 +9,11 @@ const Frame = styled.div`
   position: relative;
   width: 100%;
   padding: 10vh;
+  height: 100%;
   box-sizing: border-box;
   flex-shrink: 0;
   display: flex;
-  background-color: greenyellow;
+  background-color: #EBEBEB;
   flex-direction: column;
   align-items: flex-end;
   color: black;
@@ -128,26 +129,36 @@ const Passage2 = memo((props) => {
     e.preventDefault();
     e.stopPropagation();
     frameRef.current.style.left = '0';
-    document.removeEventListener('mousewheel', reScroll, {
-      passive: false,
-    });
+    setTimeout(()=>{
+      document.removeEventListener('mousewheel',reScroll, { passive: false })
+    },duration*1000)
+
   };
+
+  // const banScrollFor = (e) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   setTimeout(()=>{
+  //     document.removeEventListener('mousewheel',banScrollFor, { passive: false })
+  //   },duration*1000)
+  // }
+  // console.log("offset是啥",offset)
+
   useEffect(() => {
     if (offset === 0) {
       console.log('passage页准备好了');
       setTimeout(() => {
-        // console.log('开始变形');
-
-        document.addEventListener('mousewheel', reScroll, {
-          passive: false,
-        });
+        console.log('开始变形');
+        document.addEventListener('mousewheel', reScroll, {passive: false});
+        // document.addEventListener('mousewheel',banScrollFor,{passive:false})
       }, delayTime * 1000); // 停留的秒数
     }
     if (offset < 0) {
-      // console.log('恢复');
+      console.log('恢复');
       frameRef.current.style.left = width + 'px';
     }
   }, [offset]);
+
   return (
     <Frame blur={blur} ref={frameRef} duration={duration} direction={direction}>
       <LogoSpace>

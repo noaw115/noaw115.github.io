@@ -6,9 +6,10 @@ import TopBar from '../../GlobalComponents/TopBar';
 import BasicData from '../../GlobalComponents/Data/movingPara';
 import NoaWen from '../Homepage/Components/NoaWen';
 import Parallax from './Components/Parallax';
-import ParallaxImage from './Components/ParallaxImage';
+import StaticImage from './Components/StaticImage';
 import NoaWenParallax from './Components/NoaWenParallax';
 import RenderPlayGround from './Components/RenderPlayGround';
+import WithFlowers from "./Components/WithFlowers";
 
 // const {LargeFrame}=MovingFrame
 const LargeFrame = memo(styled.div`
@@ -64,7 +65,7 @@ const MoveFrame = styled.div`
 `;
 
 const Frame = memo(styled.div`
-  border: ${(props) => props.color} 1px solid;
+  //border: ${(props) => props.color} 1px solid;
   height: 100%;
   width: ${(props) => props.width}vw;
   flex-shrink: 0;
@@ -83,8 +84,8 @@ class PageData {
         length: 60,
         blur: true,
         custom: {
-          delayTime: 3, //先等这段时间
-          animationDuration:1, //再花这段时间走动画
+          delayTime: 2, //先等这段时间
+          animationDuration:2, //再花这段时间走动画
         },
       },
       {
@@ -92,12 +93,12 @@ class PageData {
         length: 40,
         blur: true,
         custom: {
-          delayTime: 3, //先等这段时间
+          delayTime: 2, //先等这段时间
           animationDuration:2, //再花这段时间走动画
         },
       },
-      { descri: '山中之门页', length: 80, blur: true },
-      { descri: '联系信息', length: 40, blur: true },
+      { descri: '山中之门页', length: 50, blur: true },
+      { descri: '联系信息', length: 50, blur: true },
     ];
   }
 
@@ -341,6 +342,7 @@ const Main = (props) => {
           </Frame>
           <Frame
             width={pages.getPageField('详细介绍页', 'length')}
+            style={{ display: 'block' , overflow: 'visible'}}
           >
             <Passage2
               width={pages.getPageField('详细介绍页', 'length')*widthFactor}
@@ -354,17 +356,18 @@ const Main = (props) => {
         
 
         <Frame
-          style={{ display: 'block' }}
+          style={{ display: 'block', overflow: 'visible' }}
           width={pages.getPageField('山中之门页', 'length')}
         >
-          {/*<Parallax*/}
-          {/*  blur={handleBlur('山中之门页')}*/}
-          {/*  percent={handleParaScreenPercent('山中之门页',0.5,-0.1)}*/}
-          {/*  pageLength={pages.getPageField('山中之门页','length')*widthFactor}*/}
-          {/*  // offset={handleParaScreenPercent('山中之门页', 500)}*/}
-          {/*>*/}
-          {/*  <ParallaxImage />*/}
-          {/*</Parallax>*/}
+          <WithFlowers>
+            <Parallax
+              blur={handleBlur('山中之门页')}
+              percent={handleParaScreenPercent('山中之门页',0.1,-0.1)}
+              pageLength={pages.getPageField('山中之门页','length')*widthFactor}
+            >
+              <StaticImage />
+            </Parallax>
+          </WithFlowers>
         </Frame>
         <Frame width={pages.getPageField('联系信息', 'length')}>
           {/*<Passage2 />*/}

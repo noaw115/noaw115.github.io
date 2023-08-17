@@ -1,7 +1,5 @@
 import React, { memo, lazy, Suspense, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import LoadingParallaxImage from './LoadingParallaxImage';
-import ParallaxImage from './ParallaxImage';
 import { PlayGroundContext } from './RenderPlayGround';
 
 const ParallaxScroll = styled.div`
@@ -74,7 +72,7 @@ const NoaWenParallaxInner = memo((props) => {
       parallaxRef.current.style.width = '100vw';
     }
   }, [offset]);
-  console.log('offset', offset);
+  // console.log('offset', offset);
 
   return (
     <ParallaxScroll
