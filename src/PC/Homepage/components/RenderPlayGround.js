@@ -1,5 +1,5 @@
 import React from 'react';
-import { calOffset } from './Parallax';
+import { calOffset } from '../pages/passage2/components/Parallax';
 
 export const PlayGroundContext = React.createContext();
 const RenderPlayGround = (props) => {

@@ -99,7 +99,7 @@ export default function (props) {
   }
 
   const isMouseOverElement = (event, element) => {
-    if (element) {
+    if (element && element.current) {
       const {left,top,right,bottom} = element.current.getBoundingClientRect()
       return ( event.clientX >= left &&
         event.clientX <= right &&

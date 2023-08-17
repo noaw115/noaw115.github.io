@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
-import * as Images from '../../../GlobalComponents/image';
+import * as Images from '../../../../GlobalComponents/image';
 import React, {memo, useCallback, useEffect, useRef, useState} from 'react';
-import Letter from '../components/noawen/Letter';
+import Letter from './components/Letter';
 import qe from 'styled-components';
 import { clear } from '@testing-library/user-event/dist/clear';
 
@@ -28,7 +28,7 @@ const BetweenSpan = styled.div`
   //background-color: red;
 `;
 
-const NoaWen = memo(() => {
+const Index = memo(() => {
   const between1 = useRef(null);
   const between2 = useRef(null);
   const between3 = useRef(null);
@@ -148,4 +148,4 @@ const NoaWen = memo(() => {
   );
 });
 
-export default NoaWen;
+export default Index;

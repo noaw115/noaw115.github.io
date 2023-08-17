@@ -1,6 +1,6 @@
 import React, { memo, lazy, Suspense, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { PlayGroundContext } from '../RenderPlayGround';
+import { PlayGroundContext } from '../../../components/RenderPlayGround';
 
 const ParallaxScroll = styled.div`
   height: 100%;

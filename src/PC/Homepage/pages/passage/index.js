@@ -1,6 +1,6 @@
 import React,{memo,useState,useEffect,useRef} from "react";
 import styled,{keyframes} from "styled-components";
-import * as Data from '../../../GlobalComponents/Data/static'
+import * as Data from '../../../../GlobalComponents/Data/static'
 
 const Frame=styled.div`
   //background-color: #61dafb;
@@ -97,7 +97,7 @@ function FitText(titleRef,text1Ref,text2_1Ref,text2_2Ref){
     //text2_1Ref.current.innerHTML=Data.HomepageData[2].content.text2
 }
 
-const Passage=memo((props)=>{
+const Index=memo((props)=>{
     let {blur}=props
     const titleRef=useRef(null)
     const text1Ref=useRef(null)
@@ -134,4 +134,4 @@ const Passage=memo((props)=>{
     )
 })
 
-export default Passage;
+export default Index;

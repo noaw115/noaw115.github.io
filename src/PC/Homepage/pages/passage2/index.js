@@ -1,9 +1,9 @@
 import React, { memo, useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
-import * as Data from '../../../GlobalComponents/Data/static';
-import * as Image from '../../../GlobalComponents/image';
-import * as Svg from '../../../GlobalComponents/Data/svgs';
-import { PlayGroundContext } from '../components/RenderPlayGround';
+import * as Data from '../../../../GlobalComponents/Data/static';
+import * as Image from '../../../../GlobalComponents/image';
+import * as Svg from '../../../../GlobalComponents/Data/svgs';
+import { PlayGroundContext } from '../../components/RenderPlayGround';
 
 const Frame = styled.div`
   position: relative;
@@ -107,12 +107,12 @@ const EmailAnimation = styled.div`
 const Consumer = memo((props) => {
   return (
     <PlayGroundContext.Consumer>
-      {(value) => <Passage2 {...props} offset={value} />}
+      {(value) => <Index {...props} offset={value} />}
     </PlayGroundContext.Consumer>
   );
 });
 
-const Passage2 = memo((props) => {
+const Index = memo((props) => {
   const { blur, delayTime = 3, offset, width, duration = 3, direction } = props;
   const lLTRef = useRef(null);
   const lTRef = useRef(null);
