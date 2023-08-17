@@ -9,9 +9,11 @@ import Parallax from './components/Parallax';
 import StaticImage from './pages/StaticImage';
 import NoaWenParallax from './components/noawen/NoaWenParallax';
 import RenderPlayGround from './components/RenderPlayGround';
-import WithFlowers from "./components/WithFlowers";
+import WithFlowers from './components/WithFlowers';
+import Cursor from '../components/Cursor';
+import * as Image from '../../GlobalComponents/image';
+import { CursorContext } from '../components/Cursor';
 
-// const {LargeFrame}=MovingFrame
 const LargeFrame = memo(styled.div`
   width: 100vw;
   height: 100vh;
@@ -20,6 +22,7 @@ const LargeFrame = memo(styled.div`
   top: 0;
   left: 0;
   overflow: hidden;
+  cursor: url(${Image.Cursor}), auto;
   animation: ${(props) => {
       return keyframes`
 
@@ -85,7 +88,7 @@ class PageData {
         blur: true,
         custom: {
           delayTime: 2, //先等这段时间
-          animationDuration:2, //再花这段时间走动画
+          animationDuration: 2, //再花这段时间走动画
         },
       },
       {
@@ -94,7 +97,7 @@ class PageData {
         blur: true,
         custom: {
           delayTime: 2, //先等这段时间
-          animationDuration:2, //再花这段时间走动画
+          animationDuration: 2, //再花这段时间走动画
         },
       },
       { descri: '山中之门页', length: 50, blur: true },
@@ -160,7 +163,7 @@ class PageData {
           this.getPageField(item.descri, 'length') -
           100) *
           widthFactor +
-          offset
+          offset,
       );
     });
     console.log('calBlurArray', array);
@@ -185,19 +188,23 @@ const moveLimit = (pages.calTotalVw() - 100) * widthFactor;
 const snapArray = pages.calSnapArray();
 const blurArray = pages.calBlurArray(100);
 
-
 const Main = (props) => {
   return (
     <LargeFrame>
-      <FixedFrame>
-        <TopBar/>
-      </FixedFrame>
-      <MovePart {...props} />
+      <Cursor>
+        <FixedFrame>
+          <TopBar />
+        </FixedFrame>
+        <CursorContext.Consumer>
+          {(value) =>  <MovePart {...props} pushElement={value} />}
+        </CursorContext.Consumer>
+      </Cursor>
     </LargeFrame>
-  )
-}
+  );
+};
 
 const MovePart = (props) => {
+  console.log('成功没', props);
   const snapLock = useRef();
   //👆false：允许贴靠（远离边界时）
   //true：不允许贴靠（靠近边界时）
@@ -247,7 +254,7 @@ const MovePart = (props) => {
         snapPage.current = limitNumber(
           snapPage.current + 1,
           pages.lengthMap.length - 1,
-          0
+          0,
         );
         setDeltaX(snapArray[snapPage.current]);
       }
@@ -259,7 +266,7 @@ const MovePart = (props) => {
         snapPage.current = limitNumber(
           snapPage.current - 1,
           pages.lengthMap.length - 1,
-          0
+          0,
         );
         setDeltaX(snapArray[snapPage.current]);
       }
@@ -274,7 +281,7 @@ const MovePart = (props) => {
         blurPage.current = limitNumber(
           blurPage.current + 1,
           pages.lengthMap.length - 1,
-          0
+          0,
         );
         setBlurControl(blurPage.current);
       }
@@ -328,62 +335,67 @@ const MovePart = (props) => {
   };
 
   return (
-      <MoveFrame id="moveFrame" offset={deltaX} width={pages.calTotalVw()}>
-        <Frame width={pages.getPageField('门的页面', 'length')} color={'red'}>
-          <Doors />
-        </Frame>
+    <MoveFrame id="moveFrame" offset={deltaX} width={pages.calTotalVw()}>
+      <Frame width={pages.getPageField('门的页面', 'length')} color={'red'}>
+        <Doors {...props} />
+      </Frame>
 
-        <RenderPlayGround
-          percent={handleParaScreenPercent('视差滚动NOA', 0.2, -0.2)}
-          pageLength={pages.getPageField('视差滚动NOA', 'length') * widthFactor}
-          percentCorrection={-0.05} // 百分比修正，为的是让内容停在居中位置
-        >
-          <Frame
-            style={{ display: 'block' , overflow: 'visible'}}
-            width={pages.getPageField('视差滚动NOA', 'length')}
-          >
-            <NoaWenParallax
-              blur={handleBlur('视差滚动NOA')}
-              delayTime={pages.getPageField('视差滚动NOA', 'custom').delayTime}
-              duration={pages.getPageField('视差滚动NOA', 'custom').animationDuration}
-              direction={deltaDirection.current > 0}
-            >
-              <NoaWen deltaY={deltaX} />
-            </NoaWenParallax>
-          </Frame>
-          <Frame
-            width={pages.getPageField('详细介绍页', 'length')}
-            style={{ display: 'block' , overflow: 'visible'}}
-          >
-            <Passage2
-              width={pages.getPageField('详细介绍页', 'length')*widthFactor}
-              blur={handleBlur('详细介绍页')}
-              delayTime={pages.getPageField('详细介绍页', 'custom').delayTime}
-              duration={pages.getPageField('详细介绍页', 'custom').animationDuration}
-              direction={deltaDirection.current > 0}
-            />
-          </Frame>
-        </RenderPlayGround>
-        
-
+      <RenderPlayGround
+        percent={handleParaScreenPercent('视差滚动NOA', 0.2, -0.2)}
+        pageLength={pages.getPageField('视差滚动NOA', 'length') * widthFactor}
+        percentCorrection={-0.05} // 百分比修正，为的是让内容停在居中位置
+      >
         <Frame
           style={{ display: 'block', overflow: 'visible' }}
-          width={pages.getPageField('山中之门页', 'length')}
+          width={pages.getPageField('视差滚动NOA', 'length')}
         >
-          <WithFlowers>
-            <Parallax
-              blur={handleBlur('山中之门页')}
-              percent={handleParaScreenPercent('山中之门页',0.1,-0.1)}
-              pageLength={pages.getPageField('山中之门页','length')*widthFactor}
-            >
-              <StaticImage />
-            </Parallax>
-          </WithFlowers>
+          <NoaWenParallax
+            blur={handleBlur('视差滚动NOA')}
+            delayTime={pages.getPageField('视差滚动NOA', 'custom').delayTime}
+            duration={
+              pages.getPageField('视差滚动NOA', 'custom').animationDuration
+            }
+            direction={deltaDirection.current > 0}
+          >
+            <NoaWen deltaY={deltaX} />
+          </NoaWenParallax>
         </Frame>
-        <Frame width={pages.getPageField('联系信息', 'length')}>
-          {/*<Passage2 />*/}
+        <Frame
+          width={pages.getPageField('详细介绍页', 'length')}
+          style={{ display: 'block', overflow: 'visible' }}
+        >
+          <Passage2
+            width={pages.getPageField('详细介绍页', 'length') * widthFactor}
+            blur={handleBlur('详细介绍页')}
+            delayTime={pages.getPageField('详细介绍页', 'custom').delayTime}
+            duration={
+              pages.getPageField('详细介绍页', 'custom').animationDuration
+            }
+            direction={deltaDirection.current > 0}
+          />
         </Frame>
-      </MoveFrame>
+      </RenderPlayGround>
+
+      <Frame
+        style={{ display: 'block', overflow: 'visible' }}
+        width={pages.getPageField('山中之门页', 'length')}
+      >
+        <WithFlowers {...props}>
+          <Parallax
+            blur={handleBlur('山中之门页')}
+            percent={handleParaScreenPercent('山中之门页', 0.1, -0.1)}
+            pageLength={
+              pages.getPageField('山中之门页', 'length') * widthFactor
+            }
+          >
+            <StaticImage />
+          </Parallax>
+        </WithFlowers>
+      </Frame>
+      <Frame width={pages.getPageField('联系信息', 'length')}>
+        {/*<Passage2 />*/}
+      </Frame>
+    </MoveFrame>
   );
 };
 

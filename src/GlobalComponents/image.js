@@ -23,3 +23,5 @@ export const RightTopFlower = require('./Image/FLOWER1.png')
 export const TopFlower = require('./Image/FLOWER3.png')
 
 export const RightBottomFlower = require('./Image/FLOWER4.png')
+
+export const Cursor = require('./Image/cursor.gif')

@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, {memo, useEffect, useRef} from 'react';
 import styled, { keyframes } from 'styled-components';
 import * as Svg from '../../../GlobalComponents/Data/svgs';
 import * as Data from '../../../GlobalComponents/Data/static';
@@ -66,7 +66,6 @@ const WorksInner = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  cursor: pointer;
   //background-color: #61dafb;
 `;
 
@@ -117,12 +116,26 @@ const RotateStar = styled.div`
     4s ease-in-out infinite alternate;
   transform-origin: ${(props) => props.r / 2}vw ${(props) => props.r / 2}vw;
 `;
-// function SelectedPhotoScale(index){
-//     console.log("进入函数",document.getElementsByName(`Door${index}`))
-// }
+
 const Doors = memo((props) => {
   const CircleR = [70, 50, 30];
   //console.log("【性能警告】Doors在渲染")
+
+  const {pushElement} = props
+
+  const worksInnerRef1 = useRef()
+  const worksInnerRef2 = useRef()
+  const worksInnerRef3 = useRef()
+
+  useEffect(()=>{ // 为了鼠标样式改变
+    if (worksInnerRef1 &&worksInnerRef2 &&worksInnerRef3){
+      pushElement(worksInnerRef1)
+      pushElement(worksInnerRef2)
+      pushElement(worksInnerRef3)
+    }
+  },[worksInnerRef1,worksInnerRef2,worksInnerRef3])
+
+
   return (
     <Frame>
       {/*内圈*/}
@@ -174,11 +187,11 @@ const Doors = memo((props) => {
       </Circle>
       {/*<DoorsFrame/>*/}
       {/*0号 靠左*/}
-      <Works left={23} bottom={13}>
+      <Works left={23} bottom={13} >
         <Link to={`/${Data.HomepageData[0].contend.Door0.text}`}>
-          <WorksInner>
+          <WorksInner >
             <ShakePicture delay={0} interval={4}>
-              <Mask>
+              <Mask ref={worksInnerRef1}>
                 <DoorImg
                   style={{ height: '120%', left: '-370%' }}
                   src={require(`../../../GlobalComponents/Image/DoorImage.png`)}
@@ -195,9 +208,9 @@ const Doors = memo((props) => {
       {/*1号 靠中间*/}
       <Works left={36} top={7}>
         <Link to={`/${Data.HomepageData[0].contend.Door1.text}`}>
-          <WorksInner>
+          <WorksInner  >
             <ShakePicture delay={0} interval={5}>
-              <Mask>
+              <Mask ref={worksInnerRef2}>
                 <DoorImg
                   src={require(`../../../GlobalComponents/Image/DoorImage.png`)}
                   style={{ height: '110%', left: '-20%' }}
@@ -214,9 +227,9 @@ const Doors = memo((props) => {
       {/*2号 靠右*/}
       <Works left={52} bottom={27}>
         <Link to={`/${Data.HomepageData[0].contend.Door2.text}`}>
-          <WorksInner>
+          <WorksInner >
             <ShakePicture delay={2} interval={4}>
-              <Mask>
+              <Mask ref={worksInnerRef3}>
                 <DoorImg
                   src={require(`../../../GlobalComponents/Image/DoorImage.png`)}
                   style={{ height: '110%', left: '-400%' }}

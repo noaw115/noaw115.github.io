@@ -1,4 +1,4 @@
-import React, {memo, useState} from "react";
+import React, {memo, useEffect, useRef, useState} from "react";
 import styled from "styled-components";
 import * as Image from "../../../GlobalComponents/image";
 const Frame = styled.div`
@@ -85,11 +85,19 @@ const TopDiv=styled(Shake)`
 `
 const ImageWithFlower = memo((props)=>{
 
-  const {children} = props;
+  const {children, pushElement} = props;
+
+  const redDoorRef = useRef()
   const [rightTopFlag,setRTFlag]=useState(false)
   const [rightBottomFlag,setRBFlag]=useState(false)
   const [topFlag,setTFlag]=useState(false)
   const [leftFlag,setLFlag] = useState(false)
+
+  useEffect(()=>{
+    if(redDoorRef){
+      pushElement(redDoorRef)
+    }
+  },[redDoorRef])
 
   return(
     <Frame>
@@ -97,7 +105,7 @@ const ImageWithFlower = memo((props)=>{
       <RightBottomDiv onMouseEnter={()=>setRBFlag(!rightBottomFlag)} flag={rightBottomFlag}/>
       <TopDiv onMouseEnter={()=>setTFlag(!topFlag)} flag={topFlag}/>
       <LeftDiv onMouseEnter={()=>setLFlag(!leftFlag)} flag={leftFlag}/>
-      <RedDoorDiv/>
+      <RedDoorDiv ref={redDoorRef}/>
       <Frame style={{overflow: 'hidden'}}>
         {children}
       </Frame>
