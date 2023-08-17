@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import * as Images from '../../../GlobalComponents/image';
 import React, {memo, useCallback, useEffect, useRef, useState} from 'react';
-import Letter from './Letter';
+import Letter from '../components/noawen/Letter';
 import qe from 'styled-components';
 import { clear } from '@testing-library/user-event/dist/clear';
 

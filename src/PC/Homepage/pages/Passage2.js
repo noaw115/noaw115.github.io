@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import * as Data from '../../../GlobalComponents/Data/static';
 import * as Image from '../../../GlobalComponents/image';
 import * as Svg from '../../../GlobalComponents/Data/svgs';
-import { PlayGroundContext } from './RenderPlayGround';
+import { PlayGroundContext } from '../components/RenderPlayGround';
 
 const Frame = styled.div`
   position: relative;

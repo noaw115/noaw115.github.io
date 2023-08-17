@@ -1,4 +1,4 @@
-import * as Images from '../../../GlobalComponents/image';
+import * as Images from '../../../../GlobalComponents/image';
 import React, { memo, useEffect, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { getElementError } from '@testing-library/react';

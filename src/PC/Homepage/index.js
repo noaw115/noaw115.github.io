@@ -1,15 +1,15 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import Passage2 from './Components/Passage2';
-import Doors from './Components/Doors';
+import Passage2 from './pages/Passage2';
+import Doors from './pages/Doors';
 import TopBar from '../../GlobalComponents/TopBar';
 import BasicData from '../../GlobalComponents/Data/movingPara';
-import NoaWen from '../Homepage/Components/NoaWen';
-import Parallax from './Components/Parallax';
-import StaticImage from './Components/StaticImage';
-import NoaWenParallax from './Components/NoaWenParallax';
-import RenderPlayGround from './Components/RenderPlayGround';
-import WithFlowers from "./Components/WithFlowers";
+import NoaWen from './pages/NoaWen';
+import Parallax from './components/Parallax';
+import StaticImage from './pages/StaticImage';
+import NoaWenParallax from './components/noawen/NoaWenParallax';
+import RenderPlayGround from './components/RenderPlayGround';
+import WithFlowers from "./components/WithFlowers";
 
 // const {LargeFrame}=MovingFrame
 const LargeFrame = memo(styled.div`
@@ -184,7 +184,20 @@ const pages = new PageData();
 const moveLimit = (pages.calTotalVw() - 100) * widthFactor;
 const snapArray = pages.calSnapArray();
 const blurArray = pages.calBlurArray(100);
+
+
 const Main = (props) => {
+  return (
+    <LargeFrame>
+      <FixedFrame>
+        <TopBar/>
+      </FixedFrame>
+      <MovePart {...props} />
+    </LargeFrame>
+  )
+}
+
+const MovePart = (props) => {
   const snapLock = useRef();
   //👆false：允许贴靠（远离边界时）
   //true：不允许贴靠（靠近边界时）
@@ -315,8 +328,6 @@ const Main = (props) => {
   };
 
   return (
-    <LargeFrame>
-      <FixedFrame>deltaX={deltaX}</FixedFrame>
       <MoveFrame id="moveFrame" offset={deltaX} width={pages.calTotalVw()}>
         <Frame width={pages.getPageField('门的页面', 'length')} color={'red'}>
           <Doors />
@@ -373,7 +384,6 @@ const Main = (props) => {
           {/*<Passage2 />*/}
         </Frame>
       </MoveFrame>
-    </LargeFrame>
   );
 };
 
