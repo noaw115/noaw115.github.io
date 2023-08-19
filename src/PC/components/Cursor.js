@@ -38,6 +38,7 @@ const CursorDiv = styled.div`
   position: absolute;
   z-index: 1000;
   display: flex;
+  pointer-events: none;
 `
 export const CursorContext = React.createContext();
 

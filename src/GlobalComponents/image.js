@@ -27,3 +27,5 @@ export const RightBottomFlower = require('./Image/FLOWER4.png')
 export const Cursor = require('./Image/cursor.gif')
 
 export const DoorImage = require('./Image/DoorImage.png')
+
+export const VideoExample = require('./Video/example.mp4')

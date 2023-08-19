@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import TopBar from '../../GlobalComponents/TopBar';
+import TopBar from '../components/TopBar';
 import BasicData from '../../GlobalComponents/Data/movingPara';
 import CursorProvider from '../components/Cursor';
 import * as Image from '../../GlobalComponents/image';

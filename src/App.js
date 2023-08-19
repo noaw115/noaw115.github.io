@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 // import Main from "./PC/Homepage/Main";
 import Main from './PC/Homepage/index';
-import MainDetailPage from './PC/DetailPages/Main';
+import MainDetailPage from './PC/DetailPages';
 import MobileMain from './Mobile/Homepage/Main';
 import MobileMainDetailPage from './Mobile/DetailPages/Main';
 import { useEffect, useState } from 'react';

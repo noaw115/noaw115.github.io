@@ -71,15 +71,21 @@ Recently, I'm obsessed with watching Chiikawa drawn by Nagano-sensei and creatin
 ];
 export const CoverData = [
   {
-    cover: '/Graphics/cover.png',
-    miniCover: '/Graphics/cover_mini.png',
-  },
-  {
+    page:'WEB&UI DESIGN',
     cover: '/Web&UI/cover.png',
+    chineseText: '零',
     miniCover: '/Web&UI/cover_mini.png',
   },
   {
+    page:'GRAPHICS',
+    cover: '/Graphics/cover.png',
+    chineseText: '壹',
+    miniCover: '/Graphics/cover_mini.png',
+  },
+  {
+    page: 'MODELINGS',
     cover: '/Modelings/cover.png',
+    chineseText: '贰',
     miniCover: '/Modelings/cover_mini.png',
   },
 ];

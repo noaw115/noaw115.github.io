@@ -90,6 +90,9 @@ const EmailAnimation = styled.div`
   transform: translateY(25%);
   transition: 0.5s;
   margin-right: 20px;
+  &:hover{
+    transform: translateY(-25%);
+  }
 `;
 
 const Consumer = memo((props) => {
@@ -144,13 +147,6 @@ const Index = memo((props) => {
   }, [offset]);
 
 
-  const handleEmailAnimation = () =>{
-    emailRef.current.style.transform = 'translateY(-25%)'
-    setTimeout(()=>{
-      emailRef.current.style.transform = 'translateY(25%)'
-    },500)
-  }
-
   return (
     <Frame blur={blur} ref={frameRef} duration={duration} direction={direction}>
 
@@ -161,7 +157,7 @@ const Index = memo((props) => {
       <Text ref={lTRef}>Loading</Text>
       <SmallText ref={lTRef2}>Loading</SmallText>
       <LeftEmailSpace>
-        <EmailAnimation ref={emailRef} onMouseEnter={handleEmailAnimation}>
+        <EmailAnimation ref={emailRef}>
           {Data.HomepageData[2].content.leftEmail}
           <br />
           {Data.HomepageData[2].content.leftEmail}
