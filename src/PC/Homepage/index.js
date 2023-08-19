@@ -2,10 +2,10 @@ import React, { memo, useEffect, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import TopBar from '../../GlobalComponents/TopBar';
 import BasicData from '../../GlobalComponents/Data/movingPara';
-import Cursor from '../components/Cursor';
+import CursorProvider from '../components/Cursor';
 import * as Image from '../../GlobalComponents/image';
 import { CursorContext } from '../components/Cursor';
-import MovePart from './Main'
+import MovePart from './Main';
 
 const LargeFrame = memo(styled.div`
   width: 100vw;
@@ -40,7 +40,6 @@ const FixedFrame = styled.div`
   //background-color: aquamarine;
   width: 100vw;
   display: flex;
-  height: 100vh;
   z-index: 10;
   position: absolute;
   pointer-events: none;
@@ -142,19 +141,21 @@ class PageData {
 
 const pages = new PageData();
 
-export default function (props){
+export default function (props) {
   return (
     <LargeFrame>
-      <Cursor>
-        <FixedFrame>
-          <TopBar />
-        </FixedFrame>
+      <CursorProvider>
         <CursorContext.Consumer>
-          {(value) =>  <MovePart {...props} pushElement={value} pages={pages} />}
+          {(value) => (
+            <>
+              <FixedFrame>
+                <TopBar  {...props} pushElement={value}/>
+              </FixedFrame>
+              <MovePart {...props} pushElement={value} pages={pages} />
+            </>
+          )}
         </CursorContext.Consumer>
-      </Cursor>
+      </CursorProvider>
     </LargeFrame>
   );
-};
-
-
+}

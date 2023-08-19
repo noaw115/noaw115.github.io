@@ -8,7 +8,8 @@ import { PlayGroundContext } from '../../components/RenderPlayGround';
 const Frame = styled.div`
   position: relative;
   width: 100%;
-  padding: 10vh;
+  padding: 180px 10vh 0 10vh;
+  //padding-top: 200px 10vh;
   height: 100%;
   box-sizing: border-box;
   flex-shrink: 0;
@@ -18,53 +19,43 @@ const Frame = styled.div`
   align-items: flex-end;
   color: black;
   filter: blur(${(props) => (props.blur ? '40' : '0')}px);
-  transition: 1.2s all ease-out,
-    ${(props) => {
-        if (props.direction) {
-          return props.duration + 's';
-        } else {
-          return '1.2s';
-        }
-      }}
-      left ease-out;
+  transition: 1.2s all ease-out;
 `;
 
 const LargeTitle = styled.div`
-  margin-top: 100px;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 42px;
-  align-self: flex-end;
   text-align: right;
 `;
 
 const LogoSpace = styled.div`
   //background-color: cadetblue;
   width: 200px;
-  height: 80px;
-  margin-bottom: 40px;
-  align-self: flex-end;
+  height: 50px;
+  margin: 50px 0 70px 0;
+  align-self: flex-start;
   position: relative;
   display: flex;
   justify-content: center;
 `;
 
 const Text = styled.div`
-  margin-top: 150px;
-  width: 50%;
+  //margin-top: 150px;
+  width: 500px;
   align-items: flex-start;
   //background-color: yellow;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 18px;
+  line-height: 26px;
   align-self: flex-start;
   margin-bottom: 20px;
 `;
 
 const SmallText = styled.div`
   margin-top: 20px;
-  width: 50%;
+  width: 500px;
   align-items: flex-start;
   //background-color: yellow;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 20px;
   align-self: flex-start;
   margin-bottom: 20px;
@@ -78,7 +69,7 @@ const LeftEmailSpace = styled.div`
   display: flex;
   align-items: center;
   align-self: flex-start;
-  margin-top: 10px;
+  margin-top: 30px;
 `;
 
 const LogoImage2 = styled.div`
@@ -94,30 +85,31 @@ const EmailAnimation = styled.div`
   //position: absolute;
   //background-color: coral;
   font-size: 20px;
-
+  //margin-top: 10px;
   line-height: 28px;
   transform: translateY(25%);
   transition: 0.5s;
-  &:hover {
-    transform: translateY(-25%);
-  }
   margin-right: 20px;
 `;
 
 const Consumer = memo((props) => {
+  console.log("props",props)
   return (
     <PlayGroundContext.Consumer>
-      {(value) => <Index {...props} offset={value} />}
+      {(value) => <Index {...props} offset={value?.offset} firstFlag={value?.firstFlag} />}
     </PlayGroundContext.Consumer>
   );
 });
 
 const Index = memo((props) => {
-  const { blur, delayTime = 3, offset, width, duration = 3, direction } = props;
+  const { blur, delayTime = 3, offset, width, duration = 3, direction, firstFlag } = props;
   const lLTRef = useRef(null);
   const lTRef = useRef(null);
   const lTRef2 = useRef(null);
   const frameRef = useRef();
+  console.log("第一次吗2",firstFlag)
+  const emailRef = useRef()
+
   useEffect(() => {
     frameRef.current.style.left = width + 'px';
     lLTRef.current.innerHTML = Data.HomepageData[2].content.largeTitle;
@@ -135,17 +127,9 @@ const Index = memo((props) => {
 
   };
 
-  // const banScrollFor = (e) => {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   setTimeout(()=>{
-  //     document.removeEventListener('mousewheel',banScrollFor, { passive: false })
-  //   },duration*1000)
-  // }
-  // console.log("offset是啥",offset)
 
   useEffect(() => {
-    if (offset === 0) {
+    if (offset === 0 && firstFlag.current ) {
       console.log('passage页准备好了');
       setTimeout(() => {
         console.log('开始变形');
@@ -153,23 +137,31 @@ const Index = memo((props) => {
         // document.addEventListener('mousewheel',banScrollFor,{passive:false})
       }, delayTime * 1000); // 停留的秒数
     }
-    if (offset < 0) {
-      console.log('恢复');
+    if (offset < 0 && firstFlag.current) {
+      console.log('恢复2');
       frameRef.current.style.left = width + 'px';
     }
   }, [offset]);
 
+
+  const handleEmailAnimation = () =>{
+    emailRef.current.style.transform = 'translateY(-25%)'
+    setTimeout(()=>{
+      emailRef.current.style.transform = 'translateY(25%)'
+    },500)
+  }
+
   return (
     <Frame blur={blur} ref={frameRef} duration={duration} direction={direction}>
+
+      <LargeTitle ref={lLTRef}>Loading</LargeTitle>
       <LogoSpace>
         <LogoImage2 />
       </LogoSpace>
-      <LargeTitle ref={lLTRef}>Loading</LargeTitle>
-
       <Text ref={lTRef}>Loading</Text>
       <SmallText ref={lTRef2}>Loading</SmallText>
       <LeftEmailSpace>
-        <EmailAnimation>
+        <EmailAnimation ref={emailRef} onMouseEnter={handleEmailAnimation}>
           {Data.HomepageData[2].content.leftEmail}
           <br />
           {Data.HomepageData[2].content.leftEmail}

@@ -231,7 +231,7 @@ const MovePart = (props) => {
       </RenderPlayGround>
 
       <Frame
-        style={{ display: 'block', overflow: 'visible' }}
+        style={{ display: 'block', overflowX: 'visible' }}
         width={pages.getPageField('山中之门页', 'length')}
       >
         <WithFlowers {...props}>
@@ -247,7 +247,7 @@ const MovePart = (props) => {
         </WithFlowers>
       </Frame>
       <Frame width={pages.getPageField('联系信息', 'length')}>
-        {/*<Passage2 />*/}
+        <Passage2 />
       </Frame>
     </MoveFrame>
   );

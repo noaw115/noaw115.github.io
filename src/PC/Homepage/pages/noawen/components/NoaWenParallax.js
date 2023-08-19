@@ -24,7 +24,7 @@ const ParallaxScroll = styled.div`
 const Consumer = memo((props) => {
   return (
     <PlayGroundContext.Consumer>
-      {(value) => <NoaWenParallaxInner {...props} offset={value} />}
+      {(value) => <NoaWenParallaxInner {...props} offset={value?.offset} firstFlag={value?.firstFlag} />}
     </PlayGroundContext.Consumer>
   );
 });
@@ -37,6 +37,7 @@ const NoaWenParallaxInner = memo((props) => {
     blur,
     duration = 3,
     direction = true,
+    firstFlag,
   } = props;
   const parallaxRef = useRef();
   // console.log("value-",value)
@@ -52,8 +53,9 @@ const NoaWenParallaxInner = memo((props) => {
       passive: false,
     })
   }
+
   useEffect(() => {
-    if (direction && offset === 0) { //direction表示必须是正向移动
+    if (direction && offset === 0 && firstFlag.current ) { //direction表示必须是正向移动
       document.addEventListener('mousewheel', cannotScroll, {
         passive: false,
       });
@@ -65,10 +67,11 @@ const NoaWenParallaxInner = memo((props) => {
         document.addEventListener('mousewheel', reScroll,{
           passive: false,
         })
+        firstFlag.current = false
       }, delayTime * 1000); // noawen停留的秒数
     }
-    if (offset < 0) {
-      // console.log('恢复');
+    if (offset < 0 && firstFlag.current) {
+      console.log('恢复1');
       parallaxRef.current.style.width = '100vw';
     }
   }, [offset]);

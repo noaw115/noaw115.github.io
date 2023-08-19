@@ -74,13 +74,18 @@ const WorksTitle = styled.div`
   font-family: Floane;
   font-size: 26px;
   color: black;
-  // background-color: #282c34;
+   //background-color: aqua;
+  width: 200px;
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   top: ${(props) => props.top}px;
-  left: 230px;
+  left: 180px;
 `;
 export default function (props) {
-  const { pushElement, innerStyle, outerStyle, titleStyle, delay, interval,index } = props;
+  const { pushElement, innerStyle, outerStyle, titleStyle, delay, interval, index, chineseText } = props;
   const workRef = useRef();
   const shadowRef= useRef();
   const imgRef= useRef();
@@ -90,20 +95,24 @@ export default function (props) {
     }
   }, [workRef]);
 
+  const handleShadowAnimation = () =>{
+    shadowRef.current.style.backgroundColor = '#FAFAFA'
+    shadowRef.current.style.transform = 'translateY(10px)'
+    imgRef.current.style.transform = 'scale(1.1)'
+    setTimeout(()=>{
+      shadowRef.current.style.backgroundColor = '#f0f0f0'
+      shadowRef.current.style.transform = 'translateY(0)'
+      imgRef.current.style.transform = 'scale(1)'
+    },1000)
+  }
+  console.log("链接",`/${Data.HomepageData[0].contend[`Door${index}`].text}`)
   return (
     <Works left={outerStyle.left} bottom={outerStyle.bottom} top={outerStyle.top} right={outerStyle.right}>
       <Link to={`/${Data.HomepageData[0].contend[`Door${index}`].text}`}>
         <WorksInner>
           <ShakePicture delay={delay} interval={interval}>
             <MaskShadow ref={shadowRef}/>
-            <Mask ref={workRef} onMouseEnter={()=>{
-              shadowRef.current.style.backgroundColor = '#FAFAFA'
-              imgRef.current.style.transform = 'scale(1.1)'
-              setTimeout(()=>{
-                shadowRef.current.style.backgroundColor = '#f0f0f0'
-                imgRef.current.style.transform = 'scale(1)'
-              },1000)
-            }}>
+            <Mask ref={workRef} onMouseEnter={handleShadowAnimation}>
               <DoorImg
                 ref={imgRef}
                 style={{ height: innerStyle.height, left: innerStyle.left }}
@@ -112,7 +121,12 @@ export default function (props) {
             </Mask>
 
             <WorksTitle top={titleStyle.top}>
-              {Data.HomepageData[0].contend[`Door${index}`].text}
+              <div style={{marginBottom: '10px', fontFamily: 'XiaoWei'}}>
+                {chineseText}
+              </div>
+              <div>
+                {Data.HomepageData[0].contend[`Door${index}`].text}
+              </div>
             </WorksTitle>
           </ShakePicture>
         </WorksInner>

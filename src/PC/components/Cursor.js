@@ -18,21 +18,36 @@ const Frame = styled.div`
 //   z-index: 20;
 //   //transition:0.1s all linear;
 // `;
-const Child = styled.div`
-  &:after{
-    content: "CCCCC";
-    position: absolute;
-    filter: blur(0);
-  }
+
+
+const Text = styled.div`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  top: 50%;
+  font-family: Floane;
+  font-size: 20px;
+  transition: 0.3s ease-out;
   
 `
-
+const Circle = styled(Text)`
+  border-radius: 50px;
+  background: black;
+`
+const CursorDiv = styled.div`
+  position: absolute;
+  z-index: 1000;
+  display: flex;
+`
 export const CursorContext = React.createContext();
 
 export default function (props) {
   const { children } = props;
   const cursorRef = useRef(null)
-  // const [elementList, setElementList] = useState([])
+  const circleRef = useRef(null)
+  const textRef = useRef(null)
+
+
   const elementList = useMemo(()=> [],[])
   const debounce = () => {
     let f;
@@ -67,21 +82,19 @@ export default function (props) {
   },[])
 
   const cursorChangeToDefault = () => {
-    cursorRef.current.style.backgroundColor = 'black'
-    cursorRef.current.style.filter = 'blur(0)'
-    cursorRef.current.style.width = '10px'
-    cursorRef.current.style.height = '10px'
-    cursorRef.current.style.opacity = '0.4'
-    cursorRef.current.innerHTML = ''
+    circleRef.current.style.filter = 'blur(0)'
+    circleRef.current.style.width = '10px'
+    circleRef.current.style.height = '10px'
+    circleRef.current.style.opacity = '0.4'
+    textRef.current.innerHTML = ''
   }
 
   const cursorChangeToClick = () => {
-    cursorRef.current.style.backgroundColor = 'rgba(0,0,0,0.1)'
-    cursorRef.current.style.filter = 'blur(6px)'
-    cursorRef.current.style.width = '70px'
-    cursorRef.current.style.height = '70px'
-    // cursorRef.current.style.opacity = '0.1'
-    cursorRef.current.innerHTML = 'CLICK'
+    circleRef.current.style.filter = 'blur(6px)'
+    circleRef.current.style.width = '70px'
+    circleRef.current.style.height = '70px'
+    circleRef.current.style.opacity = '0.1'
+    textRef.current.innerHTML = 'CLICK'
   }
 
   const isMouseOverElements = (event, elementList) => {
@@ -110,22 +123,22 @@ export default function (props) {
   }
 
   const pushElement = (element) => {
-    // const _oldElementList = elementList
-    // _oldElementList.push(element)
-    // setElementList(_oldElementList)
     elementList.push(element)
   }
 
   return (
 
     <Frame>
+      <CursorDiv style={{position:'absolute', zIndex:'20', borderRadius:'70px'}} ref={cursorRef}>
+        <div style={{position:"relative"}}>
+          <Circle ref={circleRef}/>
+          <Text ref={textRef}/>
+        </div>
 
-      <div style={{position:'absolute', zIndex:'20', borderRadius:'70px'}} ref={cursorRef}>
-      </div>
+      </CursorDiv>
       <CursorContext.Provider value={pushElement}>
         {children}
       </CursorContext.Provider>
     </Frame>
-
   );
 }

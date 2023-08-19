@@ -124,10 +124,11 @@ const Index = memo((props) => {
       <EachDoor
         outerStyle={{ left: 23, bottom: 13 }}
         innerStyle={{ height: '120%', left: '-370%' }}
-        titleStyle={{ top: 300 }}
+        titleStyle={{ top: 240 }}
         delay={0}
         interval={4}
         index={0}
+        chineseText={'贰'}
         {...props}
       />
 
@@ -139,6 +140,7 @@ const Index = memo((props) => {
         delay={0}
         interval={5}
         index={1}
+        chineseText={'零'}
         {...props}
       />
 
@@ -150,6 +152,7 @@ const Index = memo((props) => {
         delay={2}
         interval={4}
         index={2}
+        chineseText={'壹'}
         {...props}
       />
     </Frame>

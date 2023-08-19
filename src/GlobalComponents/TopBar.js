@@ -4,12 +4,13 @@ import { LogoWhite } from './image';
 import * as Data from './Data/static';
 import { useNavigate, Link } from 'react-router-dom';
 import * as SVG from './Data/svgs';
-import { memo } from 'react';
+import {memo, useEffect, useRef} from 'react';
+import {click} from "@testing-library/user-event/dist/click";
 
 const LogoPlace = styled.div`
   //background-color: darkgoldenrod;
   //width: 180px;
-  height: 80px;
+  //height: 80px;
   margin-top: 30px;
   margin-left: 50px;
   width: 95vw;
@@ -17,6 +18,12 @@ const LogoPlace = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
+const RightPart = styled.div`
+  font-family: Floane;
+  text-align: right;
+  font-size: 20px;
+`
 const CloseIconPlace = styled.div`
   width: 40px;
   height: 40px;
@@ -40,18 +47,25 @@ const LogoImage2 = styled.div`
 `;
 
 const Title = styled.div`
-  margin-left: 70px;
   //font-family: Floane;
-  font-size: 14px;
-  font-weight: bolder;
+  margin-top: 20px;
+  font-size: 16px;
   transition: 0.5s all;
   color: black;
 `;
 const TopBar = memo((props) => {
-  let { currentPage } = props;
+  let { currentPage, pushElement } = props;
   if (currentPage === -1) {
     currentPage = 0;
   }
+
+  const clickRef = useRef()
+
+  useEffect(()=>{
+    if (clickRef){
+      pushElement(clickRef)
+    }
+  },[clickRef])
   if (currentPage === 'detail') {
     return (
       <>
@@ -68,11 +82,21 @@ const TopBar = memo((props) => {
   } else {
     return (
       <>
-        <LogoPlace style={{ justifyContent: 'flex-start' }}>
-          <LogoImage2 img={'#000000'} />
-          <Title color={'#000000'}>
-            \ dssd
-          </Title>
+        <LogoPlace>
+          <div>
+            <LogoImage2 img={'#000000'} />
+            <Title color={'#000000'}>
+              Designer/ Illustrator/ Art Director
+            </Title>
+          </div>
+          <RightPart ref={clickRef}>
+            <div>
+              PLAYGROUND
+            </div>
+            <div>
+              CONTACT
+            </div>
+          </RightPart>
         </LogoPlace>
       </>
     );
