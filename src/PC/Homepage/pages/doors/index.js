@@ -23,7 +23,8 @@ const Circle = styled.div`
   top: 50%;
   border-radius: ${(props) => props.r}vw;
   border: #7d7d7d 1.5px ${(props) => (props.dashed ? 'dashed' : 'solid')};
-  z-index: 1;
+  z-index: -1;
+  pointer-events: none;
 `;
 
 const RotateStar = styled.div`

@@ -7,7 +7,7 @@ const Frame = styled.div`
   position: relative;
   //background-color: white;
   z-index: 1;
-  //overflow: hidden;
+  overflow: visible;
 `;
 
 const Shake = styled.div`
@@ -102,7 +102,7 @@ const ImageWithFlower = memo((props) => {
       pushElement(redDoorRef);
     }
   }, [redDoorRef]);
-
+  console.log("floer",topFlag)
   return (
     <Frame>
       <RightTopDiv

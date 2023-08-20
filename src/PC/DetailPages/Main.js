@@ -25,6 +25,7 @@ const FixedFrame = memo(styled.div`
   z-index: 10;
   position: absolute;
   display: flex;
+  pointer-events: none;
 `);
 
 
@@ -49,7 +50,7 @@ const NewMain = (props) => {
     data.forEach((item,index)=>{
       array.push(calStartToPage((index)))
     })
-    console.log('snapArray', array);
+    // console.log('snapArray', array);
     return array
   },[])
   
@@ -72,7 +73,7 @@ const NewMain = (props) => {
     data.forEach(() => {
       _blurControl.push(true);
     });
-    console.log("SA时的_blurControl",_blurControl)
+    // console.log("SA时的_blurControl",_blurControl)
     setBlurControl(_blurControl)
   
     window.addEventListener('mousewheel',handleScroll);
@@ -130,8 +131,6 @@ const NewMain = (props) => {
   
   
   const handleScroll = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
     let currentDelta = e.deltaY * BasicData.moveSpeedFactor;
     deltaDirection.current = currentDelta;
     setDeltaX((deltaX) => {
@@ -143,15 +142,17 @@ const NewMain = (props) => {
   
   
   return(
-    <LargeFrame>
+    <LargeFrame >
+      <FixedFrame>
+        <TopBar currentPage={'detail'} pushElement={pushElement} />
+      </FixedFrame>
       <FirstPage
         backgroundScale = {backgroundScale}
         page={page}
         coverData={coverData}
+        {...props}
       />
-      <FixedFrame>
-        <TopBar currentPage={'detail'} pushElement={pushElement} />
-      </FixedFrame>
+
       <PhotoList
         offset={deltaX}
         data={data}

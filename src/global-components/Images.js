@@ -30,13 +30,11 @@ export const DoorImage = require('../GlobalComponents/Image/DoorImage.png')
 
 export const Graphic1 = require('../GlobalComponents/Image/DoorImage.png')
 
-const GraphicsImage = {
-  
-}
 
 const Images = {
   LogoWhite,
   LogoBlack,
+  Cursor,
 }
 
 export default Images

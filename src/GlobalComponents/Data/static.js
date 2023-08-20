@@ -126,7 +126,7 @@ export const WebUIDesignDate = [
   },
   {
     type: 'text',
-    width: '600',
+    width: '800',
     // title: '西藏游记',
     text: `
         My interest in web design can be traced back to 10 years ago when I used to study various outstanding websites to guess the personality or attitude of the website owner. For me, a website is not just a platform for listing information, but also a window for communication and interaction. I draw inspiration from games, art installations, exhibitions, science fiction, or literary works to think about how to convey the spirit of clients to viewers in a more immersive way.
@@ -136,7 +136,7 @@ For me, sparking inspiration and exploring innovation are essential parts of web
   },
   {
     type: 'video',
-    width: '1700',
+    width: '1200',
     imageScale: '1',
     photoId: '/Web&UI/1.mp4',
     mask: '20',
@@ -144,7 +144,7 @@ For me, sparking inspiration and exploring innovation are essential parts of web
   },
   {
     type: 'video',
-    width: '1700',
+    width: '1200',
     imageScale: '1',
     photoId: '/Web&UI/3.mp4',
     mask: '20', //单位px
@@ -165,7 +165,7 @@ For me, sparking inspiration and exploring innovation are essential parts of web
   
   {
     type: 'video',
-    width: '1700',
+    width: '1200',
     imageScale: '1',
     photoId: '/Web&UI/4.mp4',
     mask: '20',
@@ -185,7 +185,7 @@ For me, sparking inspiration and exploring innovation are essential parts of web
   },
   {
     type: 'video',
-    width: '1500',
+    width: '1200',
     imageScale: '1',
     photoId: '/Web&UI/7.mp4',
     mask: '20',
@@ -193,7 +193,7 @@ For me, sparking inspiration and exploring innovation are essential parts of web
   },
   {
     type: 'video',
-    width: '1700',
+    width: '1200',
     imageScale: '1',
     photoId: '/Web&UI/8.mp4',
     mask: '20',

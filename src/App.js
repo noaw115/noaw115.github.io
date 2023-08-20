@@ -14,7 +14,7 @@ function App() {
     setWidth(document.body.clientWidth);
   });
 
-  if (pageWidth > 820) {
+  if (width > 820) {
     console.log('电脑版');
     return (
       <div>
@@ -24,7 +24,8 @@ function App() {
         </Routes>
       </div>
     );
-  } else {
+  }
+  else {
     console.log('手机版');
     return (
       <div>

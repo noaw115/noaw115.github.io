@@ -22,7 +22,7 @@ const MoveFrame = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  overflow-y: visible;
+  overflow-y: hidden;
   overflow-x: hidden;
   width: ${(props) => props.width}vw;
 `;
@@ -178,7 +178,7 @@ const MovePart = (props) => {
     }
     return false;
   };
-  console.log("jianchaconten",pages.getPageField('详细介绍页', 'custom').content)
+  // console.log("jianchaconten",pages.getPageField('详细介绍页', 'custom').content)
   return (
     <MoveFrame id="moveFrame" offset={deltaX} width={pages.calTotalVw()}>
       <Frame width={pages.getPageField('门的页面', 'length')} color={'red'}>
@@ -223,7 +223,7 @@ const MovePart = (props) => {
       </RenderPlayGround>
 
       <Frame
-        style={{ display: 'block', overflowX: 'visible' }}
+        style={{ display: 'block', overflow: 'visible'}}
         width={pages.getPageField('山中之门页', 'length')}
       >
         <WithFlowers {...props}>

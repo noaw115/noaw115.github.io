@@ -43,7 +43,7 @@ const Frame = styled.div`
 
 const Photo = memo((props) => {
   let { blur, data } = props;
-  console.log("props",data.mask)
+  // console.log("props",data.mask)
   return (
     <Frame blur={blur} mask={data.mask}>
       <PhotoFrame width={data.imageScale ? data.imageScale * 100 : undefined} transformY={data.transformY} >

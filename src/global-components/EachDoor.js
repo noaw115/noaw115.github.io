@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-// import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as Data from '../GlobalComponents/Data/static';
 import React, { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
@@ -101,8 +101,13 @@ export default function (props) {
     text,
   } = props;
 
-  const history = useHistory()
-  console.log("history",history)
+  const navigate = useNavigate();
+
+  const handleLinkTo = (text) => {
+    console.log("跳",`/${text}`)
+    navigate(`/${text}`)
+  }
+
   const workRef = useRef();
   const shadowRef = useRef();
   const imgRef = useRef();
@@ -130,8 +135,8 @@ export default function (props) {
       right={outerStyle.right}
       scale={scale}
     >
-      <Link to={`/${text}`}>
-        <WorksInner>
+      {/*<Link to={`/${text}`}>*/}
+        <WorksInner onClick={()=>handleLinkTo(text)}>
           <ShakePicture delay={delay} interval={interval}>
             <MaskShadow ref={shadowRef} />
             <Mask ref={workRef} onMouseEnter={handleShadowAnimation}>
@@ -150,7 +155,7 @@ export default function (props) {
             </WorksTitle>
           </ShakePicture>
         </WorksInner>
-      </Link>
+      {/*</Link>*/}
     </Works>
   );
 }

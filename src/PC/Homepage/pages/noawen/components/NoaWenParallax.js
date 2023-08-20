@@ -71,7 +71,7 @@ const NoaWenParallaxInner = memo((props) => {
       }, delayTime * 1000); // noawen停留的秒数
     }
     if (offset < 0 && firstFlag.current) {
-      console.log('恢复1');
+      // console.log('恢复1');
       parallaxRef.current.style.width = '100vw';
     }
   }, [offset]);

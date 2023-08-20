@@ -20,6 +20,7 @@ const LogoPlace = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  pointer-events: none;
 `;
 
 const RightPart = styled.div`
@@ -70,7 +71,7 @@ const TopBar = memo((props) => {
   }, [clickRef]);
   if (currentPage === 'detail') {
     return (
-      <>
+
         <LogoPlace>
           <div>
             <Link to={'/'}>
@@ -78,16 +79,18 @@ const TopBar = memo((props) => {
             </Link>
             <Title color={'#000000'}>Designer/ Illustrator/ Art Director</Title>
           </div>
+    <div style={{pointerEvents:'auto'}}>
+      <Link to={'/'}>
+        <CloseIconPlace>{SVG.close_icon_black}</CloseIconPlace>
+      </Link>
+    </div>
 
-          <Link to={'/'}>
-            <CloseIconPlace>{SVG.close_icon_black}</CloseIconPlace>
-          </Link>
         </LogoPlace>
-      </>
+
     );
   } else {
     return (
-      <>
+
         <LogoPlace>
           <div>
             <LogoImage2 img={'#000000'} />
@@ -98,7 +101,7 @@ const TopBar = memo((props) => {
             <div>CONTACT</div>
           </RightPart>
         </LogoPlace>
-      </>
+
     );
   }
 });

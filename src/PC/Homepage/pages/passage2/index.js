@@ -100,7 +100,7 @@ const EmailAnimation = styled.div`
 `;
 
 const Consumer = memo((props) => {
-  console.log("props",props)
+  // console.log("props",props)
   return (
     <PlayGroundContext.Consumer>
       {(value) => <Index {...props} offset={value?.offset} firstFlag={value?.firstFlag} />}
@@ -137,7 +137,7 @@ const Index = memo((props) => {
 
   useEffect(() => {
     if (offset === 0 && firstFlag.current ) {
-      console.log('passage页准备好了');
+      // console.log('passage页准备好了');
       setTimeout(() => {
         console.log('开始变形');
         document.addEventListener('mousewheel', reScroll, {passive: false});
@@ -145,7 +145,7 @@ const Index = memo((props) => {
       }, delayTime * 1000); // 停留的秒数
     }
     if (offset < 0 && firstFlag.current) {
-      console.log('恢复2');
+      // console.log('恢复2');
       frameRef.current.style.left = width + 'px';
     }
   }, [offset]);

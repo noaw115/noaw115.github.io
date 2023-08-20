@@ -6,8 +6,10 @@ import styled, { keyframes } from 'styled-components';
 import CursorProvider from '../components/Cursor';
 import { CursorContext } from '../components/Cursor';
 import BasicData from '../../GlobalComponents/Data/movingPara';
+import Images from "../../global-components/Images";
 
 const BlurFrame = memo(styled.div`
+  cursor: url(${Images.Cursor}), auto;
   animation: ${(props) => {
       return keyframes`
             
@@ -32,7 +34,7 @@ const BlurFrame = memo(styled.div`
 
 const DetailPage = memo(() => {
   const params = useParams();
-  console.log("params",params)
+  // console.log("params",params)
   let detailDate =[] ;
   let coverId = '';
   let coverData = {};
@@ -51,7 +53,7 @@ const DetailPage = memo(() => {
 
 
 
-  console.log("detailDate",detailDate)
+  // console.log("detailDate",detailDate)
   return (
     <CursorProvider>
       <CursorContext.Consumer>
