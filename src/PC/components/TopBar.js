@@ -6,9 +6,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import * as SVG from '../../global-components/Svgs';
 import { memo, useEffect, useRef } from 'react';
 import { click } from '@testing-library/user-event/dist/click';
-import StyledComponents from "../../global-components/StyledComponents";
+import StyledComponents from '../../global-components/StyledComponents';
 
-const {MontserratFont} = StyledComponents
+const { MontserratFont } = StyledComponents;
 
 const LogoPlace = styled.div`
   //background-color: darkgoldenrod;
@@ -71,37 +71,32 @@ const TopBar = memo((props) => {
   }, [clickRef]);
   if (currentPage === 'detail') {
     return (
-
-        <LogoPlace>
-          <div>
-            <Link to={'/'}>
-              <LogoImage2 img={'#000000'} />
-            </Link>
-            <Title color={'#000000'}>Designer/ Illustrator/ Art Director</Title>
-          </div>
-    <div style={{pointerEvents:'auto'}}>
-      <Link to={'/'}>
-        <CloseIconPlace>{SVG.close_icon_black}</CloseIconPlace>
-      </Link>
-    </div>
-
-        </LogoPlace>
-
+      <LogoPlace>
+        <div>
+          <Link to={'/'}>
+            <LogoImage2 img={'#000000'} />
+          </Link>
+          <Title color={'#000000'}>Designer/ Illustrator/ Art Director</Title>
+        </div>
+        <div style={{ pointerEvents: 'auto' }}>
+          <Link to={'/'}>
+            <CloseIconPlace>{SVG.close_icon_black}</CloseIconPlace>
+          </Link>
+        </div>
+      </LogoPlace>
     );
   } else {
     return (
-
-        <LogoPlace>
-          <div>
-            <LogoImage2 img={'#000000'} />
-            <Title color={'#000000'}>Designer/ Illustrator/ Art Director</Title>
-          </div>
-          <RightPart ref={clickRef}>
-            <div>PLAYGROUND</div>
-            <div>CONTACT</div>
-          </RightPart>
-        </LogoPlace>
-
+      <LogoPlace>
+        <div>
+          <LogoImage2 img={'#000000'} />
+          <Title color={'#000000'}>Designer/ Illustrator/ Art Director</Title>
+        </div>
+        <RightPart ref={clickRef}>
+          <div>PLAYGROUND</div>
+          <div>CONTACT</div>
+        </RightPart>
+      </LogoPlace>
     );
   }
 });

@@ -1,20 +1,16 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import MobileDoors from './components/Doors';
+import MobileDoors from './pages/Doors';
 import * as Data from '../../GlobalComponents/Data/static';
 import * as Image from '../../global-components/Images';
-import MobilePassage from './components/Passage';
-import MobilePassage2 from './components/Passage2';
+import MobilePassage from './pages/Passage';
+import MobilePassage2 from './pages/Passage2';
 import BasicData from '../../GlobalComponents/Data/movingPara';
 import {PageData} from "../../global-components/utils";
 import WithFlowers from "../../global-components/WithFlowers";
+import StaticImage from "./pages/StaticImage";
 
-const ShowImage = styled.div`
-  width: 100%;
-  height: 100%;
-  background-image: url(${(props) => props.source});
-  background-size: cover;
-`;
+
 
 const Frame = styled.div`
   background-color: ${(props) => props.color ? props.color : 'white'};
@@ -60,15 +56,9 @@ const newMain = (props) => {
       >
         <MobileDoors />
       </Frame>
-      {/*<Frame*/}
-      {/*  id={'mobileFrame2'}*/}
-      {/*  height={pages.getPageField('视差滚动NOA', 'mobileLength') }*/}
-      {/*>*/}
-      {/*  <MobilePassage content={pages.getPageField('详细介绍页', 'custom').content}/>*/}
-      {/*</Frame>*/}
       <Frame
         id={'mobileFrame3'}
-        height={pages.getPageField('详细介绍页', 'mobileLength') }
+        // height={pages.getPageField('详细介绍页', 'mobileLength') }
       >
         <MobilePassage content={pages.getPageField('详细介绍页', 'custom').content}/>
       </Frame>
@@ -76,10 +66,7 @@ const newMain = (props) => {
         id={'mobileFrame4'}
         height={pages.getPageField('山中之门页', 'mobileLength') }
       >
-        <WithFlowers scale={0.7}>
-          <ShowImage source={Image.GreenBack} />
-        </WithFlowers>
-
+        <StaticImage/>
       </Frame>
       <Frame
         id={"mobileFrame5"}

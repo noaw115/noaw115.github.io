@@ -99,6 +99,7 @@ export default function (props) {
     chineseText,
     scale =1,
     text,
+    isMobile = false,
   } = props;
 
   const navigate = useNavigate();
@@ -118,14 +119,16 @@ export default function (props) {
   }, [workRef]);
 
   const handleShadowAnimation = () => {
-    shadowRef.current.style.backgroundColor = '#FAFAFA';
-    shadowRef.current.style.transform = 'translateY(10px)';
-    imgRef.current.style.transform = 'scale(1.1)';
-    setTimeout(() => {
-      shadowRef.current.style.backgroundColor = '#f0f0f0';
-      shadowRef.current.style.transform = 'translateY(0)';
-      imgRef.current.style.transform = 'scale(1)';
-    }, 1000);
+    if (!isMobile && shadowRef && imgRef){
+      shadowRef.current.style.backgroundColor = '#FAFAFA';
+      shadowRef.current.style.transform = 'translateY(10px)';
+      imgRef.current.style.transform = 'scale(1.1)';
+      setTimeout(() => {
+        shadowRef.current.style.backgroundColor = '#f0f0f0';
+        shadowRef.current.style.transform = 'translateY(0)';
+        imgRef.current.style.transform = 'scale(1)';
+      }, 1000);
+    }
   };
   return (
     <Works

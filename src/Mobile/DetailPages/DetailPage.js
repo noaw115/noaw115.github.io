@@ -4,7 +4,7 @@ import MobileTitleAndText from './components/TitleAndText';
 import MobilePhoto from './components/Photo';
 import * as SVG from '../../global-components/Svgs';
 import { Link } from 'react-router-dom';
-import Video from "../../global-components/Video";
+import Video from "./components/Video";
 
 const LargeFrame = styled.div`
   width: 100vw;
