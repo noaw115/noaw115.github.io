@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useRef, useState} from "react";
+import React, {memo, useEffect, useRef, useState,useMemo} from "react";
 import BasicData from "../../GlobalComponents/Data/movingPara";
 import Doors from "./pages/doors";
 import RenderPlayGround from "./components/RenderPlayGround";
@@ -10,7 +10,7 @@ import Parallax from "./pages/passage2/components/Parallax";
 import StaticImage from "./pages/StaticImage";
 import styled, {keyframes} from "styled-components";
 import * as Image from "../../GlobalComponents/image";
-
+import {limitNumber} from "../../utils";
 
 const MoveFrame = styled.div`
   //background-image: linear-gradient(to right, red , yellow);
@@ -39,15 +39,6 @@ const Frame = memo(styled.div`
 `);
 
 
-const limitNumber = (number, upper, lower) => {
-  if (number < upper && number > lower) {
-    return number;
-  } else if (number >= upper) {
-    return upper;
-  } else if (number <= lower) {
-    return lower;
-  }
-};
 
 const widthFactor = document.body.clientWidth / 100;
 //意义👆给我一个vw的数如70vw，70*withFactor得到真实的像素数
@@ -56,8 +47,8 @@ const MovePart = (props) => {
 
   const {pages} = props;
   const moveLimit = (pages.calTotalVw() - 100) * widthFactor;
-  const snapArray = pages.calSnapArray();
-  const blurArray = pages.calBlurArray(100);
+  const snapArray = useMemo(()=>pages.calSnapArray(),[]);
+  const blurArray = useMemo(()=>pages.calBlurArray(100),[]);
 
   const snapLock = useRef();
   //👆false：允许贴靠（远离边界时）
@@ -187,7 +178,7 @@ const MovePart = (props) => {
     }
     return false;
   };
-
+  console.log("jianchaconten",pages.getPageField('详细介绍页', 'custom').content)
   return (
     <MoveFrame id="moveFrame" offset={deltaX} width={pages.calTotalVw()}>
       <Frame width={pages.getPageField('门的页面', 'length')} color={'red'}>
@@ -225,6 +216,7 @@ const MovePart = (props) => {
             duration={
               pages.getPageField('详细介绍页', 'custom').animationDuration
             }
+            content={pages.getPageField('详细介绍页', 'custom').content}
             direction={deltaDirection.current > 0}
           />
         </Frame>

@@ -1,72 +1,16 @@
 export const HomepageData = [
   {
     num: 0,
-    mobileLength: 130, //单位vh
-    backgroundColor: 'linear-gradient(to right, white , #F4FAFD)',
-    logoColor: '#000000',
-    ParallaxScroll: false,
-    describe: '目录部分',
-    title: 'Unnamed0',
-    contend: {
-      Door0: {
-        position: [20, 45],
-        text: 'GRAPHICS',
-        chinese_text: '贰',
-      },
-      Door1: {
-        position: [36, 1],
-        text: 'WEB&UI DESIGN',
-        chinese_text: '零',
-      },
-      Door2: {
-        position: [52, 30],
-        text: 'MODELINGS',
-        chinese_text: '壹',
-      },
-    },
   },
   {
     num: 1,
-    mobileLength: 100,
-    backgroundColor: '#ffffff',
-    logoColor: '#000000',
-    ParallaxScroll: true,
-    title: 'Unnamed5',
-    describe: '白幕文字',
   },
  
   {
     num: 2,
-    mobileLength: 100,
-    backgroundColor: '#e0e0e0',
-    logoColor: '#000000',
-    ParallaxScroll: false,
-    describe: '黑幕文字',
-    title: 'Unnamed4',
-    content: {
-      largeTitle: `Web Design/ App Design/ Interactive Design/ Illustration/<br/> Branding/ Art Direction/ Design Consultancy/ 3D <br/>Prototyping/ Package Design
-                        `,
-      text: `
-      I'm Noa, a creative designer and illustrator, and also a hardcore otaku.
-      <br/><br/>
-I see designing is like playing a video game, where I analyze objectives from clients, extract stories, and challenge myself to connect them using various interactive methods to present to the target audience.
-      `,
-      smallText: `
-        My special skills are figure skating and having an exceptional memory for anime.
-Recently, I'm obsessed with watching Chiikawa drawn by Nagano-sensei and creating Live 2D models.
-      `,
-      leftEmail: 'tsuruta@unou.jp',
-      rightLargeTitle: 'RYO TSURUTA',
-    },
   },
   {
     num: 3,
-    mobileLength: 40,
-    backgroundColor: '#ffffff',
-    logoColor: '#000000',
-    ParallaxScroll: true,
-    describe: '图片',
-    title: 'Unnamed1',
   },
 ];
 export const CoverData = [
@@ -191,46 +135,63 @@ For me, sparking inspiration and exploring innovation are essential parts of web
         `,
   },
   {
-    type: 'photo',
-    width: '1200',
+    type: 'video',
+    width: '1700',
     imageScale: '1',
-    photoId: '/Web&UI/1.png',
-    mask: '30',
+    photoId: '/Web&UI/1.mp4',
+    mask: '20',
   },
   {
-    type: 'photo',
-    width: '1200',
+    type: 'video',
+    width: '1700',
     imageScale: '1',
-    photoId: '/Web&UI/2.png',
-    mask: '30',
-    transformY: '20px',
+    photoId: '/Web&UI/3.mp4',
+    mask: '20', //单位px
+    // transformY: '20px',
+    // 电脑端的花
   },
   {
-    type: 'photo',
-    width: '1200',
-    imageScale: '1',
-    photoId: '/Web&UI/3.png',
+    type: 'video',
+    width: '1100',
+    imageScale: '0.5',
+    photoId: '/Web&UI/2.mp4',
     mask: '30',
-    transformY: '20px',
+    // transformY: '20px',
+    //手机端的花
   },
+  
   {
-    type: 'photo',
-    width: '1200',
+    type: 'video',
+    width: '1700',
     imageScale: '1',
-    photoId: '/Web&UI/4.png',
-    mask: '30',
+    photoId: '/Web&UI/4.mp4',
+    mask: '20',
   },
   {
     type: 'photo',
     width: '1200',
     imageScale: '1',
     photoId: '/Web&UI/5.png',
-    mask: '30',
   },
   {
     type: 'photo',
-    imageScale: '0.7',
+    width: '1200',
+    imageScale: '1',
     photoId: '/Web&UI/6.png',
+  },
+  {
+    type: 'video',
+    width: '1500',
+    imageScale: '1',
+    photoId: '/Web&UI/7.mp4',
+    mask: '20',
+  },
+  {
+    type: 'video',
+    width: '1700',
+    imageScale: '1',
+    photoId: '/Web&UI/8.mp4',
+    mask: '20',
   },
 ];
 

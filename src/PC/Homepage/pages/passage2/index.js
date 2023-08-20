@@ -105,19 +105,19 @@ const Consumer = memo((props) => {
 });
 
 const Index = memo((props) => {
-  const { blur, delayTime = 3, offset, width, duration = 3, direction, firstFlag } = props;
+  const { blur, delayTime = 3, offset, width, duration = 3, direction, firstFlag,content:_content } = props;
   const lLTRef = useRef(null);
   const lTRef = useRef(null);
   const lTRef2 = useRef(null);
   const frameRef = useRef();
-  console.log("第一次吗2",firstFlag)
   const emailRef = useRef()
 
+  const content ={..._content}
   useEffect(() => {
     frameRef.current.style.left = width + 'px';
-    lLTRef.current.innerHTML = Data.HomepageData[2].content.largeTitle;
-    lTRef.current.innerHTML = Data.HomepageData[2].content.text;
-    lTRef2.current.innerHTML = Data.HomepageData[2].content.smallText;
+    lLTRef.current.innerHTML = content.largeTitle;
+    lTRef.current.innerHTML = content.text;
+    lTRef2.current.innerHTML = content.smallText;
   }, []);
 
   const reScroll = (e) => {
@@ -158,9 +158,9 @@ const Index = memo((props) => {
       <SmallText ref={lTRef2}>Loading</SmallText>
       <LeftEmailSpace>
         <EmailAnimation ref={emailRef}>
-          {Data.HomepageData[2].content.leftEmail}
+          {content.leftEmail}
           <br />
-          {Data.HomepageData[2].content.leftEmail}
+          {content.leftEmail}
         </EmailAnimation>
         {Svg.FrontArrow}
       </LeftEmailSpace>

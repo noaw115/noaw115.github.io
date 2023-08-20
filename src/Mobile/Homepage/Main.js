@@ -14,7 +14,7 @@ const ShowImage = styled.div`
 `;
 
 const Frame = styled.div`
-  background-color: ${(props) => props.color};
+  background-color: ${(props) => props.color ? props.color : 'white'};
   width: 100vw;
   height: ${(props) => props.height}vh;
   position: relative;
@@ -118,7 +118,7 @@ class MobileMain extends React.Component {
         >
           <MobileDoors />
         </Frame>
-        <Frame id={'mobileFrame2'} color={Data.HomepageData[2].backgroundColor}>
+        <Frame id={'mobileFrame2'} >
           <MobilePassage blur={this.state.blurControl[2]} />
         </Frame>
         <Frame
@@ -128,7 +128,7 @@ class MobileMain extends React.Component {
         >
           <ShowImage source={Image.GreenBack} />
         </Frame>
-        <Frame id={'mobileFrame4'} color={Data.HomepageData[4].backgroundColor}>
+        <Frame id={'mobileFrame4'} >
           <MobilePassage2 blur={this.state.blurControl[4]} />
         </Frame>
         {/*<Frame id={"mobileFrame5"} height={Data.HomepageData[5].mobileLength} color={Data.HomepageData[5].backgroundColor}>*/}

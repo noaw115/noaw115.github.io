@@ -129,6 +129,7 @@ const Index = memo((props) => {
         interval={4}
         index={0}
         chineseText={'贰'}
+        text='GRAPHICS'
         {...props}
       />
 
@@ -141,6 +142,7 @@ const Index = memo((props) => {
         interval={5}
         index={1}
         chineseText={'零'}
+        text='WEB&UI DESIGN'
         {...props}
       />
 
@@ -153,6 +155,7 @@ const Index = memo((props) => {
         interval={4}
         index={2}
         chineseText={'壹'}
+        text='MODELINGS'
         {...props}
       />
     </Frame>

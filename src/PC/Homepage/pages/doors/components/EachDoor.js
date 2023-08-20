@@ -49,7 +49,7 @@ const Mask = styled.div`
   border-radius: 170px 170px 0 0;
   background-color: #f0f0f0;
   position: relative;
-  border: 1px #D6D6D6 solid;
+  border: 1px #d6d6d6 solid;
   transition: 0.3s all;
 `;
 const MaskShadow = styled.div`
@@ -74,7 +74,7 @@ const WorksTitle = styled.div`
   font-family: Floane;
   font-size: 26px;
   color: black;
-   //background-color: aqua;
+  //background-color: aqua;
   width: 200px;
   position: absolute;
   display: flex;
@@ -85,33 +85,47 @@ const WorksTitle = styled.div`
   left: 180px;
 `;
 export default function (props) {
-  const { pushElement, innerStyle, outerStyle, titleStyle, delay, interval, index, chineseText } = props;
+  const {
+    pushElement,
+    innerStyle,
+    outerStyle,
+    titleStyle,
+    delay,
+    interval,
+    index,
+    chineseText,
+    text,
+  } = props;
   const workRef = useRef();
-  const shadowRef= useRef();
-  const imgRef= useRef();
+  const shadowRef = useRef();
+  const imgRef = useRef();
   useEffect(() => {
     if (workRef) {
       pushElement(workRef);
     }
   }, [workRef]);
 
-  const handleShadowAnimation = () =>{
-    shadowRef.current.style.backgroundColor = '#FAFAFA'
-    shadowRef.current.style.transform = 'translateY(10px)'
-    imgRef.current.style.transform = 'scale(1.1)'
-    setTimeout(()=>{
-      shadowRef.current.style.backgroundColor = '#f0f0f0'
-      shadowRef.current.style.transform = 'translateY(0)'
-      imgRef.current.style.transform = 'scale(1)'
-    },1000)
-  }
-  console.log("链接",`/${Data.HomepageData[0].contend[`Door${index}`].text}`)
+  const handleShadowAnimation = () => {
+    shadowRef.current.style.backgroundColor = '#FAFAFA';
+    shadowRef.current.style.transform = 'translateY(10px)';
+    imgRef.current.style.transform = 'scale(1.1)';
+    setTimeout(() => {
+      shadowRef.current.style.backgroundColor = '#f0f0f0';
+      shadowRef.current.style.transform = 'translateY(0)';
+      imgRef.current.style.transform = 'scale(1)';
+    }, 1000);
+  };
   return (
-    <Works left={outerStyle.left} bottom={outerStyle.bottom} top={outerStyle.top} right={outerStyle.right}>
-      <Link to={`/${Data.HomepageData[0].contend[`Door${index}`].text}`}>
+    <Works
+      left={outerStyle.left}
+      bottom={outerStyle.bottom}
+      top={outerStyle.top}
+      right={outerStyle.right}
+    >
+      <Link to={`/${text}`}>
         <WorksInner>
           <ShakePicture delay={delay} interval={interval}>
-            <MaskShadow ref={shadowRef}/>
+            <MaskShadow ref={shadowRef} />
             <Mask ref={workRef} onMouseEnter={handleShadowAnimation}>
               <DoorImg
                 ref={imgRef}
@@ -121,12 +135,10 @@ export default function (props) {
             </Mask>
 
             <WorksTitle top={titleStyle.top}>
-              <div style={{marginBottom: '10px', fontFamily: 'XiaoWei'}}>
+              <div style={{ marginBottom: '10px', fontFamily: 'XiaoWei' }}>
                 {chineseText}
               </div>
-              <div>
-                {Data.HomepageData[0].contend[`Door${index}`].text}
-              </div>
+              <div>{text}</div>
             </WorksTitle>
           </ShakePicture>
         </WorksInner>

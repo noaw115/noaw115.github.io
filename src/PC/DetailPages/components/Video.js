@@ -3,6 +3,9 @@ import { memo, useRef, useState } from 'react';
 import BasicData from '../../../GlobalComponents/Data/movingPara';
 import * as Image from '../../../GlobalComponents/image';
 
+const timeBeforeRePlay = 0.8
+const timeCircleExpand = 1
+
 const Describe = styled.div`
   font-size: 16px;
   margin-bottom: 40px;
@@ -11,18 +14,17 @@ const Describe = styled.div`
 const PhotoFrame = styled.div`
   position: relative;
   width: ${(props) => (props.width ? props.width : '100')}%;
-  max-width: 700px;
-  //background-color: coral;
-  min-height: 200px;
-  max-height: 80vh;
-  margin-bottom: 30px;
+  filter: blur(${(props) => (props.blur ? '40' : '0')}px) grayscale(70%);
   overflow: hidden;
-  display: flex;
   transform: ${(props) =>
     props.transformY ? `translateY(${props.transformY})` : 'none'};
-  align-items: center;
-  justify-content: center;
-  transition: 0.4s all ease-out;
+  transition: ${props=>timeCircleExpand+'s'} all ease-out;
+  clip-path: ${(props) =>
+          props.mask ? `circle(${props.mask}% at center)` : 'none'};
+  &:hover {
+    clip-path: circle(100% at center);
+    filter: blur(0) grayscale(0%);
+  }
 `;
 
 const rotateAnimation = keyframes`
@@ -38,83 +40,101 @@ const resetAnimation = keyframes`
   from {
     //transform: rotate(-2deg);
     opacity: 0.1;
-    filter: blur(10px)
+    filter: blur(10px) grayscale(70%);
   }
   to {
     opacity: 1;
     transform: rotate(0deg);
+    filter: blur(0px) grayscale(0%);
   }
-`;
+`; //这个动画需要0.8s
 
 const RotatingVideo = styled.video`
-  animation: ${(props) => rotateAnimation} 24s linear infinite;
+  width: 100%;
+  animation: ${(props) => rotateAnimation} 48s linear infinite;
   transition: transform 2s ease-out;
   &:hover {
-    animation: ${(props) => resetAnimation} 0.5s linear forwards;
+    animation: ${(props) => resetAnimation} ${props=>timeBeforeRePlay}s linear forwards;
   }
 `;
 
-const VideoPart = styled.video`
-  animation: ${(props) => {
-      console.log('rotate', props.rotate);
-      return (
-        props.rotate &&
-        keyframes`
-            0%{
-              transform: rotate(0deg);
-            }
-            
-            100%{
-              transform: rotate(360deg);
-            }
-           `
-      );
-    }}
-    linear 12s infinite;
-  transition: 0.3s all;
-  &:hover {
-    animation: none;
-  }
-`;
-
-const PhotoImg = styled.img`
-  width: 100%;
-`;
 
 const Frame = styled.div`
   //background-color: #61dafb;
-  filter: blur(${(props) => (props.blur ? '40' : '0')}px);
+  
   transition:
     ${BasicData.PCBlurTime} all ease-out,
-    1s clip-path ease-out;
+    0.3s clip-path ease-out;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  clip-path: ${(props) =>
-    props.mask ? `circle(${props.mask}% at center)` : 'none'};
-  &:hover {
-    clip-path: circle(100% at center);
+  position: relative;
+`;
+
+const Loading = styled.div`
+  width: 400px;
+  height: 400px;
+  border-radius: 400px;
+  background-color: #e0e0e0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(-50%) translateY(-50%);
+`
+const BigBar = styled.div`
+  width:260px;
+  position: relative;
+  height: 8px;
+  border-radius: 15px;
+  background-color: #e0e0e0;
+`
+
+const barGoing = keyframes`
+  0% {
+    width: 5px;
+  }
+  10%{
+    width: 50%;
+  }
+  50% {
+    width: 80%;
+  }
+  70% {
+    width: 90%;
+  }
+  90% {
+    width: 95%;
+  }
+  100%{
+    width: 100%;
   }
 `;
+const SmallBar = styled.div`
+  height: 100%;
+  border-radius: 15px;
+  background-color: black;
+  animation: ${props=>barGoing} 50s forwards;
+`
+
 
 const Video = memo((props) => {
   let { blur, data } = props;
-  const mask = '30';
   const [rotate, setRotate] = useState(true);
-  const [deg, setDeg] = useState(0);
   const videoRef = useRef(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [loaded, setLoaded] = useState(false);
   const handlePlay = () => {
-    if (videoRef) {
-      videoRef.current.play();
-    }
-    console.log(
-      'videoRef.current.style.transform',
-      videoRef.current.style.transform,
-    );
     setRotate(false);
-    videoRef.current.style.transform = 'rotate(0deg)';
+    setTimeout(()=>{
+      if (videoRef) {
+        videoRef.current.play();
+      }
+      videoRef.current.style.transform = 'rotate(0deg)';
+    },(timeBeforeRePlay/2)*1000)
+    
   };
 
   const handlePause = () => {
@@ -125,43 +145,43 @@ const Video = memo((props) => {
       }, 300);
     }
   };
-  const handleRotate = () => {
-    if (rotate) {
-      setInterval(() => {
-        if (deg === 0) {
-          setDeg(360);
-        } else {
-          setDeg(0);
-        }
-      }, 2000);
-    }
-  };
+
   const handleVideoLoaded = () => {
-    setIsLoading(false);
+    console.log("加载好了")
+    setLoaded(true)
   };
   return (
-    <Frame blur={blur} mask={mask}>
-      {isLoading && <div>ss</div>}
+    <Frame >
+      {!loaded && <Loading>
+        <BigBar>
+          <SmallBar/>
+        </BigBar>
+      </Loading>}
       <PhotoFrame
         width={data.imageScale ? data.imageScale * 100 : undefined}
+        blur={blur}
         transformY={data.transformY}
+        mask={data.mask}
+        onMouseEnter={handlePlay} onMouseLeave={handlePause}
       >
-        <div onMouseEnter={handlePlay} onMouseLeave={handlePause}>
-          <RotatingVideo
-            isHovered={!rotate}
-            ref={videoRef}
-            muted
-            style={{ width: '800px' }}
-            onLoadedData={handleVideoLoaded}
-          >
-            <source
-              src="https://download.samplelib.com/mp4/sample-20s.mp4"
-              type="video/mp4"
-            />
-          </RotatingVideo>
-        </div>
+        
+        <RotatingVideo
+          // controls
+          // width={data.imageScale ? data.imageScale * 100 : undefined}
+          isHovered={!rotate}
+          ref={videoRef}
+          muted
+          onLoadedData={handleVideoLoaded}
+          onLoadedMetadata={handleVideoLoaded}
+        >
+          <source
+            // src="https://download.samplelib.com/mp4/sample-20s.mp4"
+            src={require(`../../../GlobalComponents/Image${data.photoId}`)}
+            type="video/mp4"
+          />
+        </RotatingVideo>
       </PhotoFrame>
-      <Describe>{props.data.describe}</Describe>
+      {data.describe && <Describe>{data.describe}</Describe> }
     </Frame>
   );
 });

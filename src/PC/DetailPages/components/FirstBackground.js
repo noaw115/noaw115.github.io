@@ -34,7 +34,7 @@ const BackgroundImage2 = styled.div`
 const FirstBackground = memo((props) => {
   return (
     <BackgroundFrame width={props.width}>
-      <BackgroundImage2 height={props.height} />
+      {/*<BackgroundImage2 height={props.height} />*/}
       {props.children}
     </BackgroundFrame>
   );
