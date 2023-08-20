@@ -140,6 +140,7 @@ For me, sparking inspiration and exploring innovation are essential parts of web
     imageScale: '1',
     photoId: '/Web&UI/1.mp4',
     mask: '20',
+    mobileMask: '30',
   },
   {
     type: 'video',
@@ -147,6 +148,7 @@ For me, sparking inspiration and exploring innovation are essential parts of web
     imageScale: '1',
     photoId: '/Web&UI/3.mp4',
     mask: '20', //单位px
+    mobileMask: '30',
     // transformY: '20px',
     // 电脑端的花
   },
@@ -156,6 +158,7 @@ For me, sparking inspiration and exploring innovation are essential parts of web
     imageScale: '0.5',
     photoId: '/Web&UI/2.mp4',
     mask: '30',
+    mobileMask: '30',
     // transformY: '20px',
     //手机端的花
   },
@@ -166,6 +169,7 @@ For me, sparking inspiration and exploring innovation are essential parts of web
     imageScale: '1',
     photoId: '/Web&UI/4.mp4',
     mask: '20',
+    mobileMask: '30',
   },
   {
     type: 'photo',
@@ -185,6 +189,7 @@ For me, sparking inspiration and exploring innovation are essential parts of web
     imageScale: '1',
     photoId: '/Web&UI/7.mp4',
     mask: '20',
+    mobileMask: '30',
   },
   {
     type: 'video',
@@ -192,6 +197,7 @@ For me, sparking inspiration and exploring innovation are essential parts of web
     imageScale: '1',
     photoId: '/Web&UI/8.mp4',
     mask: '20',
+    mobileMask: '30',
   },
 ];
 

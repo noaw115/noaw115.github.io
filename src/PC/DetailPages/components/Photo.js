@@ -48,7 +48,7 @@ const Photo = memo((props) => {
     <Frame blur={blur} mask={data.mask}>
       <PhotoFrame width={data.imageScale ? data.imageScale * 100 : undefined} transformY={data.transformY} >
         <PhotoImg
-          src={require(`../../../GlobalComponents/Image${props.data.photoId}`)}
+          src={require(`../../../GlobalComponents/Image${data.photoId}`)}
         />
       </PhotoFrame>
       <Describe>{props.data.describe}</Describe>

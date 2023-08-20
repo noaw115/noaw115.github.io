@@ -1,14 +1,13 @@
-import React from "react";
-import MobileDetailPage from "./DetailPage";
-import {useParams} from "react-router-dom";
-import * as Data from "../../GlobalComponents/Data/static"
-import styled ,{keyframes} from "styled-components";
-import BasicData from "../../GlobalComponents/Data/movingPara";
+import React from 'react';
+import MobileDetailPage from './DetailPage';
+import { useParams } from 'react-router-dom';
+import * as Data from '../../GlobalComponents/Data/static';
+import styled, { keyframes } from 'styled-components';
+import BasicData from '../../GlobalComponents/Data/movingPara';
 
-const BlurFrame=styled.div`
-  animation: ${props => {
-    return (
-        keyframes`
+const BlurFrame = styled.div`
+  animation: ${(props) => {
+      return keyframes`
             
             0%{
               opacity: 0;
@@ -22,30 +21,34 @@ const BlurFrame=styled.div`
               filter: blur(0);
             }
             
-           `
-    )
-}} ease-out ${BasicData.mobileBlurTime} forwards;
-`
-function MobileMainDetailPage (){
-    const params=useParams()
-    let DetailDate=null
-    let coverId=""
-    if(params.page==="GRAPHICS"){
-        DetailDate=Data.GraphicsData
-        coverId=Data.CoverData[0].cover
-    }else if(params.page==="WEB&UI DESIGN"){
-        DetailDate=Data.WebUIDesignDate
-        coverId=Data.CoverData[1].cover
-    }else if(params.page==="MODELINGS"){
-        DetailDate=Data.ModelingsDate
-        coverId=Data.CoverData[2].cover
-    }
-    // console.log("main",params)
-    return(
-        <BlurFrame>
-            <MobileDetailPage params={params} data={DetailDate} cover={coverId}/>
-        </BlurFrame>
-    )
+           `;
+    }}
+    ease-out ${BasicData.mobileBlurTime} forwards;
+`;
+function MobileMainDetailPage() {
+  const params = useParams();
+  console.log('params', params);
+  let detailDate = [];
+  let coverId = '';
+  let coverData = {};
+
+  if (params.page === 'GRAPHICS') {
+    detailDate = Data.GraphicsData;
+    coverId = Data.CoverData[0].cover;
+  } else if (params.page === 'WEB&UI DESIGN') {
+    detailDate = Data.WebUIDesignDate;
+    coverId = Data.CoverData[1].cover;
+  } else if (params.page === 'MODELINGS') {
+    detailDate = Data.ModelingsDate;
+    coverId = Data.CoverData[2].cover;
+  }
+
+  // console.log("main",params)
+  return (
+    <BlurFrame>
+      <MobileDetailPage params={params} data={detailDate} cover={coverId} />
+    </BlurFrame>
+  );
 }
 
 export default MobileMainDetailPage;

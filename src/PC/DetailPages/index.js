@@ -40,7 +40,7 @@ const DetailPage = memo(() => {
 
   if (params.page === 'GRAPHICS') {
     detailDate = Data.GraphicsData;
-    coverData = Data.CoverData;
+    coverId = Data.CoverData[0].cover;
   } else if (params.page === 'WEB&UI DESIGN') {
     detailDate = Data.WebUIDesignDate;
     coverId = Data.CoverData[1].cover;
@@ -48,6 +48,8 @@ const DetailPage = memo(() => {
     detailDate = Data.ModelingsDate;
     coverId = Data.CoverData[2].cover;
   }
+
+
 
   console.log("detailDate",detailDate)
   return (

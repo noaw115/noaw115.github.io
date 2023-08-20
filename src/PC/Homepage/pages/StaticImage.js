@@ -1,6 +1,6 @@
 import React, {memo, useEffect, useRef, useState} from 'react';
 import styled, { keyframes } from 'styled-components';
-import * as Image from '../../../GlobalComponents/image';
+import * as Image from '../../../global-components/Images';
 
 const ParallaxImg = styled.img`
   width: 100%;

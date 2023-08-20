@@ -1,16 +1,19 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import MobileDoors from './Components/Doors';
+import MobileDoors from './components/Doors';
 import * as Data from '../../GlobalComponents/Data/static';
-import * as Image from '../../GlobalComponents/image';
-import MobilePassage from './Components/Passage';
-import MobilePassage2 from './Components/Passage2';
+import * as Image from '../../global-components/Images';
+import MobilePassage from './components/Passage';
+import MobilePassage2 from './components/Passage2';
 import BasicData from '../../GlobalComponents/Data/movingPara';
+import {PageData} from "../../global-components/utils";
+import WithFlowers from "../../global-components/WithFlowers";
 
 const ShowImage = styled.div`
   width: 100%;
   height: 100%;
   background-image: url(${(props) => props.source});
+  background-size: cover;
 `;
 
 const Frame = styled.div`
@@ -46,97 +49,46 @@ const LargeFrame = styled.div`
     ease-out ${BasicData.mobileBlurTime} forwards;
 `;
 
-class MobileMain extends React.Component {
-  constructor() {
-    super();
-    this.blurControl = [];
-    this.isBlur = 1000;
-    this.currentPage = 1;
-  }
+const pages = new PageData();
 
-  state = {
-    blurControl: [],
-  };
-
-  handleScroll = (e) => {
-    /**设置模糊**/
-    if (document.getElementById(`mobileFrame${this.currentPage}`)) {
-      this.isBlur =
-        document
-          .getElementById(`mobileFrame${this.currentPage}`)
-          .getBoundingClientRect().top - window.screen.height;
-    }
-
-    if (this.isBlur < 100) {
-      this.blurControl[this.currentPage] = false;
-      this.setState({ blurControl: this.blurControl });
-      //console.log("置false",i)
-      if (this.currentPage < Data.HomepageData.length - 1) {
-        this.currentPage++;
-      }
-    }
-    if (
-      Math.abs(
-        document.getElementById(`mobileFrame0`).getBoundingClientRect().top
-      ) < 100
-    ) {
-      this.currentPage = 1;
-      for (let i = 1; i < this.blurControl.length; i++) {
-        this.blurControl[i] = true;
-      }
-      this.setState({ blurControl: this.blurControl });
-    }
-  };
-
-  componentDidMount() {
-    Data.HomepageData.map((item) => {
-      this.blurControl.push(true); //初始全都是模糊态
-    });
-    this.blurControl[0] = false;
-
-    this.setState({
-      blurControl: this.blurControl,
-    });
-
-    // window.addEventListener('wheel',this.handleWheel)
-    window.addEventListener('touchstart', this.handleScroll);
-    window.addEventListener('wheel', this.handleScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('touchstart', this.handleScroll);
-    window.removeEventListener('wheel', this.handleScroll);
-  }
-
-  render() {
-    return (
-      <LargeFrame>
-        <Frame
-          id={'mobileFrame0'}
-          height={Data.HomepageData[0].mobileLength}
-          style={{ backgroundImage: Data.HomepageData[0].backgroundColor }}
-        >
-          <MobileDoors />
-        </Frame>
-        <Frame id={'mobileFrame2'} >
-          <MobilePassage blur={this.state.blurControl[2]} />
-        </Frame>
-        <Frame
-          id={'mobileFrame3'}
-          height={Data.HomepageData[3].mobileLength}
-          color={Data.HomepageData[3].backgroundColor}
-        >
+const newMain = (props) => {
+  return(
+    <LargeFrame>
+      <Frame
+        id={'mobileFrame0'}
+        height={pages.getPageField('门的页面', 'mobileLength') }
+      >
+        <MobileDoors />
+      </Frame>
+      {/*<Frame*/}
+      {/*  id={'mobileFrame2'}*/}
+      {/*  height={pages.getPageField('视差滚动NOA', 'mobileLength') }*/}
+      {/*>*/}
+      {/*  <MobilePassage content={pages.getPageField('详细介绍页', 'custom').content}/>*/}
+      {/*</Frame>*/}
+      <Frame
+        id={'mobileFrame3'}
+        height={pages.getPageField('详细介绍页', 'mobileLength') }
+      >
+        <MobilePassage content={pages.getPageField('详细介绍页', 'custom').content}/>
+      </Frame>
+      <Frame
+        id={'mobileFrame4'}
+        height={pages.getPageField('山中之门页', 'mobileLength') }
+      >
+        <WithFlowers scale={0.7}>
           <ShowImage source={Image.GreenBack} />
-        </Frame>
-        <Frame id={'mobileFrame4'} >
-          <MobilePassage2 blur={this.state.blurControl[4]} />
-        </Frame>
-        {/*<Frame id={"mobileFrame5"} height={Data.HomepageData[5].mobileLength} color={Data.HomepageData[5].backgroundColor}>*/}
-        {/*    <MobilePassage2/>*/}
-        {/*</Frame>*/}
-      </LargeFrame>
-    );
-  }
+        </WithFlowers>
+
+      </Frame>
+      <Frame
+        id={"mobileFrame5"}
+        height={pages.getPageField('联系信息', 'mobileLength') }
+      >
+          {/*<MobilePassage2/>*/}
+      </Frame>
+    </LargeFrame>
+  )
 }
 
-export default MobileMain;
+export default newMain;

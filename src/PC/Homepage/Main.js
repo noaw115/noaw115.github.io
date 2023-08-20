@@ -5,12 +5,12 @@ import RenderPlayGround from "./components/RenderPlayGround";
 import NoaWenParallax from "./pages/noawen/components/NoaWenParallax";
 import NoaWen from "./pages/noawen";
 import Passage2 from "./pages/passage2";
-import WithFlowers from "./components/WithFlowers";
+import WithFlowers from "../../global-components/WithFlowers";
 import Parallax from "./pages/passage2/components/Parallax";
 import StaticImage from "./pages/StaticImage";
 import styled, {keyframes} from "styled-components";
-import * as Image from "../../GlobalComponents/image";
-import {limitNumber} from "../../utils";
+import * as Image from "../../global-components/Images";
+import {limitNumber} from "../../global-components/utils";
 
 const MoveFrame = styled.div`
   //background-image: linear-gradient(to right, red , yellow);

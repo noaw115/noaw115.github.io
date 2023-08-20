@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
-import * as Svg from '../../../../GlobalComponents/Data/svgs';
-import EachDoor from './components/EachDoor';
+import * as Svg from '../../../../global-components/Svgs';
+import EachDoor from '../../../../global-components/EachDoor';
 
 const Frame = styled.div`
   background-color: ${(props) => props.color};

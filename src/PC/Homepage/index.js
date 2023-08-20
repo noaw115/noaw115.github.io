@@ -3,10 +3,10 @@ import styled, { keyframes } from 'styled-components';
 import TopBar from '../components/TopBar';
 import BasicData from '../../GlobalComponents/Data/movingPara';
 import CursorProvider from '../components/Cursor';
-import * as Image from '../../GlobalComponents/image';
+import * as Image from '../../global-components/Images';
 import { CursorContext } from '../components/Cursor';
 import MovePart from './Main';
-import {PageData} from '../../utils'
+import {PageData} from '../../global-components/utils'
 
 const LargeFrame = memo(styled.div`
   width: 100vw;
@@ -45,8 +45,6 @@ const FixedFrame = styled.div`
   position: absolute;
   pointer-events: none;
 `;
-
-const widthFactor = document.body.clientWidth / 100;
 
 
 const pages = new PageData();

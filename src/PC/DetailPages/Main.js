@@ -5,10 +5,10 @@ import TitleAndText from './components/TitleAndText';
 import Photo from './components/Photo';
 import BasicData from '../../GlobalComponents/Data/movingPara';
 import FirstBackground from './components/FirstBackground';
-import Video from "./components/Video";
+import Video from "../../global-components/Video";
 import PhotoList from "./pages/PhotoList";
 import FirstPage from "./pages/FirstPage";
-import {limitNumber} from "../../utils";
+import {limitNumber} from "../../global-components/utils";
 
 const LargeFrame = styled.div`
   width: 100vw;

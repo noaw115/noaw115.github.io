@@ -1,8 +1,8 @@
 import React, { memo, useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import * as Data from '../../../../GlobalComponents/Data/static';
-import * as Image from '../../../../GlobalComponents/image';
-import * as Svg from '../../../../GlobalComponents/Data/svgs';
+import * as Image from '../../../../global-components/Images';
+import * as Svg from '../../../../global-components/Svgs';
 import { PlayGroundContext } from '../../components/RenderPlayGround';
 
 const Frame = styled.div`

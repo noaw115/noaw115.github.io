@@ -1,4 +1,4 @@
-import Video from "../components/Video";
+import Video from "../../../global-components/Video";
 import TitleAndText from "../components/TitleAndText";
 import Photo from "../components/Photo";
 import React, {memo} from "react";
