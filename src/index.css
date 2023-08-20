@@ -21,3 +21,12 @@ code {
   font-family: 'XiaoWei';
   src:url('GlobalComponents/Fonts/xiaowei.ttf') format('TrueType');
 }
+
+@font-face {
+  font-family: 'Montserrat';
+  src:url('GlobalComponents/Fonts/Montserrat-Light.otf') format('TrueType');
+}
+@font-face {
+  font-family: 'MontserratLight';
+  src:url('GlobalComponents/Fonts/Montserrat-ExtraLight.otf') format('TrueType');
+}

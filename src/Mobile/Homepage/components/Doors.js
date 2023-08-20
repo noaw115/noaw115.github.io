@@ -197,7 +197,7 @@ function MobileDoors(props) {
           <EachDoor
             outerStyle={{ left: 20, top: -10 }}
             innerStyle={{ height: '120%', left: '-370%' }}
-            titleStyle={{ top: 240, left: 160 }}
+            titleStyle={{ top: 240, left: 100 }}
             delay={0}
             interval={4}
             index={0}
@@ -210,9 +210,9 @@ function MobileDoors(props) {
         <HalfFrame>
           <QuarterFrame>
             <EachDoor
-              outerStyle={{ left: 0, top: 0 }}
+              outerStyle={{ left: 5, top: 0 }}
               innerStyle={{ height: '120%', left: '-370%' }}
-              titleStyle={{ top: 240, left: 140 }}
+              titleStyle={{ top: 240, left: 100 }}
               delay={0}
               interval={4}
               index={0}
@@ -225,9 +225,9 @@ function MobileDoors(props) {
 
           <QuarterFrame>
             <EachDoor
-              outerStyle={{ left: -15, top: -50 }}
+              outerStyle={{ left: -5, top: -50 }}
               innerStyle={{ height: '120%', left: '-370%' }}
-              titleStyle={{ top: 240, left: 140 }}
+              titleStyle={{ top: 240, left: 100 }}
               delay={0}
               interval={4}
               index={0}

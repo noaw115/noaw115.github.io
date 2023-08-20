@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import * as Data from '../../../GlobalComponents/Data/static';
 import BasicData from '../../../GlobalComponents/Data/movingPara';
+import StyledComponents from "../../../global-components/StyledComponents";
+
+const {MontserratFont,MontserratLightFont} = StyledComponents
 
 const Frame = styled.div`
   background-color: #ebebeb;
@@ -16,7 +19,7 @@ const Frame = styled.div`
   filter: blur(${(props) => (props.blur ? '40' : '0')}px);
   transition: ${BasicData.mobileBlurTime} all ease-out;
 `;
-const Title = styled.div`
+const Title = styled(MontserratFont)`
   font-size: 22px;
   //background-color: aqua;
 `;
@@ -29,17 +32,17 @@ const PassageFrame = styled.div`
   //background-color: aquamarine;
 `;
 
-const LeftPassage = styled.div`
+const LeftPassage = styled(MontserratLightFont)`
   //background-color: red;
   width: 100%;
   flex-shrink: 0;
   margin-right: 132px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 28px;
   margin-bottom: 60px;
 `;
 
-const RightPassage = styled.div`
+const RightPassage = styled(MontserratLightFont)`
   //background-color: blue;
   flex-grow: 1;
   display: flex;
@@ -66,7 +69,7 @@ function MobilePassage(props) {
       <Title ref={titleRef}>Loading...</Title>
       <PassageFrame>
         <LeftPassage ref={text1Ref}>Loading...</LeftPassage>
-        <RightPassage ref={text2Ref}>Loading...</RightPassage>
+        <LeftPassage ref={text2Ref}>Loading...</LeftPassage>
       </PassageFrame>
     </Frame>
   );

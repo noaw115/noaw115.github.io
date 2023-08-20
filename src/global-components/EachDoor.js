@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import * as Data from '../GlobalComponents/Data/static';
 import React, { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
@@ -99,6 +100,9 @@ export default function (props) {
     scale =1,
     text,
   } = props;
+
+  const history = useHistory()
+  console.log("history",history)
   const workRef = useRef();
   const shadowRef = useRef();
   const imgRef = useRef();

@@ -6,6 +6,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import * as SVG from '../../global-components/Svgs';
 import { memo, useEffect, useRef } from 'react';
 import { click } from '@testing-library/user-event/dist/click';
+import StyledComponents from "../../global-components/StyledComponents";
+
+const {MontserratFont} = StyledComponents
 
 const LogoPlace = styled.div`
   //background-color: darkgoldenrod;
@@ -46,8 +49,7 @@ const LogoImage2 = styled.div`
   transition: 0.5s all;
 `;
 
-const Title = styled.div`
-  //font-family: Floane;
+const Title = styled(MontserratFont)`
   margin-top: 20px;
   font-size: 16px;
   transition: 0.5s all;

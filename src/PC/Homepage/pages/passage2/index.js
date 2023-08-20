@@ -1,9 +1,11 @@
 import React, { memo, useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
-import * as Data from '../../../../GlobalComponents/Data/static';
 import * as Image from '../../../../global-components/Images';
 import * as Svg from '../../../../global-components/Svgs';
 import { PlayGroundContext } from '../../components/RenderPlayGround';
+import StyledComponents from "../../../../global-components/StyledComponents";
+
+const {MontserratFont,MontserratLightFont} = StyledComponents
 
 const Frame = styled.div`
   position: relative;
@@ -22,10 +24,12 @@ const Frame = styled.div`
   transition: 1.2s all ease-out;
 `;
 
-const LargeTitle = styled.div`
+const LargeTitle = styled(MontserratFont)`
   font-size: 22px;
   line-height: 42px;
   text-align: right;
+  font-family: Montserrat;
+  transform: scaleY(0.95);
 `;
 
 const LogoSpace = styled.div`
@@ -39,7 +43,7 @@ const LogoSpace = styled.div`
   justify-content: center;
 `;
 
-const Text = styled.div`
+const Text = styled(MontserratLightFont)`
   //margin-top: 150px;
   width: 500px;
   align-items: flex-start;
@@ -50,7 +54,7 @@ const Text = styled.div`
   margin-bottom: 20px;
 `;
 
-const SmallText = styled.div`
+const SmallText = styled(MontserratLightFont)`
   margin-top: 20px;
   width: 500px;
   align-items: flex-start;
