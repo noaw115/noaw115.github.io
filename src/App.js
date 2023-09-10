@@ -13,14 +13,15 @@ function App() {
     //console.log("窗口变动",document.body.clientWidth)
     setWidth(document.body.clientWidth);
   });
-
+  console.log("版本0.1.2")
+  window.__route__='/WenyenuoProject';
   if (width > 820) {
     console.log('电脑版');
     return (
       <div>
         <Routes>
-          <Route path={'/'} element={<Main />} />
-          <Route path={'/:page'} element={<MainDetailPage />} />
+          <Route path={`${window.__route__}/`} element={<Main />} />
+          <Route path={`${window.__route__}/:page`} element={<MainDetailPage />} />
         </Routes>
       </div>
     );
@@ -30,8 +31,8 @@ function App() {
     return (
       <div>
         <Routes>
-          <Route path={'/'} element={<MobileMain />} />
-          <Route path={'/:page'} element={<MobileMainDetailPage />} />
+          <Route path={'/WenyenuoProject/'} exact element={<MobileMain />} />
+          <Route path={'/WenyenuoProject/:page'} element={<MobileMainDetailPage />} />
         </Routes>
       </div>
     );

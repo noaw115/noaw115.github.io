@@ -43,7 +43,7 @@ const FirstPage = (props) =>{
   const param = useParams()
   const handleLinkTo = (text) => {
     // console.log("跳")
-    navigate(`/${text}`)
+    navigate(`${window.__route__}/${text}`)
   }
   const [showText,setShowText] = useState()
   const nextRef= useRef()

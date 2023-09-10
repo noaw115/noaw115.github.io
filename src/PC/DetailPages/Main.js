@@ -96,7 +96,7 @@ const NewMain = (props) => {
   
   useEffect(()=>{
     // 处理模糊
-    isBlur.current = document.getElementById(`detail${currentPage.current}`).getBoundingClientRect().right - window.innerWidth *2;
+    isBlur.current = document.getElementById(`detail${currentPage.current}`)?.getBoundingClientRect().right - window.innerWidth *2;
     if (blurControl.length>0 && isBlur.current < 0) {
       const _blurControl = blurControl
       _blurControl[currentPage.current] = false;

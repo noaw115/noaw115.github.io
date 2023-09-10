@@ -122,7 +122,7 @@ const newMain = (props) => {
       <BackgroundFrame id="mobileDetailCover">
         <Title>{page}</Title>
         <CloseIconPlace>
-          <Link to={'/'}>{SVG.close_icon_black}</Link>
+          <Link to={`${window.__route__}/`}>{SVG.close_icon_black}</Link>
         </CloseIconPlace>
       </BackgroundFrame>
 

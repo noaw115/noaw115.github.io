@@ -73,13 +73,13 @@ const TopBar = memo((props) => {
     return (
       <LogoPlace>
         <div>
-          <Link to={'/'}>
+          <Link to={`${window.__route__}/`}>
             <LogoImage2 img={'#000000'} />
           </Link>
           <Title color={'#000000'}>Designer/ Illustrator/ Art Director</Title>
         </div>
         <div style={{ pointerEvents: 'auto' }}>
-          <Link to={'/'}>
+          <Link to={`${window.__route__}/`}>
             <CloseIconPlace>{SVG.close_icon_black}</CloseIconPlace>
           </Link>
         </div>

@@ -106,7 +106,7 @@ export default function (props) {
 
   const handleLinkTo = (text) => {
     console.log("跳",`/${text}`)
-    navigate(`/${text}`)
+    navigate(`${window.__route__}/${text}`)
   }
 
   const workRef = useRef();
