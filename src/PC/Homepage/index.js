@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import TopBar from '../components/TopBar';
 import BasicData from '../../GlobalComponents/Data/movingPara';
 import CursorProvider from '../components/Cursor';
+import { observer, useLocalObservable } from 'mobx-react';
 import * as Image from '../../global-components/Images';
 import { CursorContext } from '../components/Cursor';
 import MovePart from './Main';
@@ -47,9 +48,16 @@ const FixedFrame = styled.div`
 `;
 
 
+
 const pages = new PageData();
 
-export default function (props) {
+export default observer(function (props) {
+  
+  const store = useLocalObservable(() => ({
+    firstShowPlayground: true,
+    jumpTo: undefined,
+  }));
+  
   return (
     <LargeFrame>
       <CursorProvider>
@@ -57,13 +65,13 @@ export default function (props) {
           {(value) => (
             <>
               <FixedFrame>
-                <TopBar {...props} pushElement={value} />
+                <TopBar {...props} pushElement={value} store={store}/>
               </FixedFrame>
-              <MovePart {...props} pushElement={value} pages={pages} />
+              <MovePart {...props} pushElement={value} pages={pages} store={store}/>
             </>
           )}
         </CursorContext.Consumer>
       </CursorProvider>
     </LargeFrame>
   );
-}
+})

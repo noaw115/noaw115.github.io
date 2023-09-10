@@ -99,10 +99,10 @@ const ImageWithFlower = memo((props) => {
 
   useEffect(() => {
     if (redDoorRef) {
-      pushElement(redDoorRef);
+      pushElement(redDoorRef, 'white');
     }
   }, [redDoorRef]);
-  console.log("floer",topFlag)
+  
   return (
     <Frame>
       <RightTopDiv

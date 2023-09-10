@@ -11,6 +11,7 @@ import StaticImage from "./pages/StaticImage";
 import styled, {keyframes} from "styled-components";
 import * as Image from "../../global-components/Images";
 import {limitNumber} from "../../global-components/utils";
+import { observer } from 'mobx-react';
 
 const MoveFrame = styled.div`
   //background-image: linear-gradient(to right, red , yellow);
@@ -44,8 +45,8 @@ const widthFactor = document.body.clientWidth / 100;
 //意义👆给我一个vw的数如70vw，70*withFactor得到真实的像素数
 
 const MovePart = (props) => {
-
-  const {pages} = props;
+  const {pages, store} = props;
+  console.log("firstShowPlayground",store.firstShowPlayground)
   const moveLimit = (pages.calTotalVw() - 100) * widthFactor;
   const snapArray = useMemo(()=>pages.calSnapArray(),[]);
   const blurArray = useMemo(()=>pages.calBlurArray(100),[]);
@@ -155,7 +156,6 @@ const MovePart = (props) => {
 
   const handleParaScreenPercent = (descri, upper = 0.5, lower = -0.5) => {
     // 针对视差滚动的函数,返回值是视差滚动的offset
-
     const rangeLength = upper - lower;
     let _percent =
       (deltaX +
@@ -178,10 +178,37 @@ const MovePart = (props) => {
     }
     return false;
   };
+  
+  useEffect(()=>{
+    console.log("监听到",store.jumpTo)
+    const {jumpTo} = store
+    if (jumpTo) {
+      handleJumpTo(jumpTo)
+    }
+  },[store.jumpTo])
+  
+  const handleJumpTo = (descri) => {
+    const target = pages.calStartToPageVw(descri)
+    const index = pages.getPageField(descri, 'index')
+    console.log("target,index",target,index)
+    for (let i = 0; i<= index; i++) {
+      setBlurControl(i, false)
+    }
+    if (store.firstShowPlayground && descri === '视差滚动NOA'){
+    
+    } else {
+      setDeltaX(target*widthFactor>moveLimit ? moveLimit : target*widthFactor-20)
+    }
+
+    
+    
+  }
   // console.log("jianchaconten",pages.getPageField('详细介绍页', 'custom').content)
   return (
     <MoveFrame id="moveFrame" offset={deltaX} width={pages.calTotalVw()}>
+     
       <Frame width={pages.getPageField('门的页面', 'length')} color={'red'}>
+        {/*<button onClick={()=>handleJumpTo('视差滚动NOA')}>dsd</button>*/}
         <Doors {...props} />
       </Frame>
 
@@ -201,6 +228,7 @@ const MovePart = (props) => {
               pages.getPageField('视差滚动NOA', 'custom').animationDuration
             }
             direction={deltaDirection.current > 0}
+            store={store}
           >
             <NoaWen deltaY={deltaX} />
           </NoaWenParallax>
@@ -211,7 +239,7 @@ const MovePart = (props) => {
         >
           <Passage2
             width={pages.getPageField('详细介绍页', 'length') * widthFactor}
-            blur={handleBlur('详细介绍页')}
+            // blur={handleBlur('详细介绍页')}
             delayTime={pages.getPageField('详细介绍页', 'custom').delayTime}
             duration={
               pages.getPageField('详细介绍页', 'custom').animationDuration
@@ -245,4 +273,4 @@ const MovePart = (props) => {
   );
 };
 
-export default MovePart;
+export default observer(MovePart);

@@ -59,9 +59,7 @@ export default function (props) {
       f = requestAnimationFrame(() => {
         if (cursorRef) {
           // console.log("elementList",elementList)
-          if (isMouseOverElements(e,elementList)){
-            cursorChangeToClick()
-          } else {
+          if (!isMouseOverElements(e,elementList)){
             cursorChangeToDefault()
           }
           const selfWidth = cursorRef.current.offsetWidth
@@ -90,22 +88,29 @@ export default function (props) {
     circleRef.current.style.height = '10px'
     circleRef.current.style.opacity = '0.4'
     textRef.current.innerHTML = ''
+    circleRef.current.style.backgroundColor = 'black';
   }
 
-  const cursorChangeToClick = () => {
+  const cursorChangeToClick = (color) => {
+    if (color === 'white') {
+      circleRef.current.style.backgroundColor = color;
+      circleRef.current.style.opacity = '0.5'
+    } else {
+      circleRef.current.style.opacity = '0.1'
+      circleRef.current.style.backgroundColor = 'black';
+    }
+    textRef.current.innerHTML = 'CLICK'
     circleRef.current.style.filter = 'blur(6px)'
     circleRef.current.style.width = '70px'
     circleRef.current.style.height = '70px'
-    circleRef.current.style.opacity = '0.1'
-    textRef.current.innerHTML = 'CLICK'
   }
 
   const isMouseOverElements = (event, elementList) => {
     let res = false;
     // console.log("elementList",elementList)
     if (elementList && elementList.length>0){
-      elementList.forEach((element)=>{
-        if (isMouseOverElement(event,element)) {
+      elementList.forEach(({element, color})=>{
+        if (isMouseOverElement(event,element, color)) {
           // console.log("isMouseOverElement")
           res = true;
         }
@@ -114,19 +119,23 @@ export default function (props) {
     return res
   }
 
-  const isMouseOverElement = (event, element) => {
+  const isMouseOverElement = (event, element, color) => {
     if (element && element.current) {
       const {left,top,right,bottom} = element.current.getBoundingClientRect()
-      return ( event.clientX >= left &&
+      if ( event.clientX >= left &&
         event.clientX <= right &&
         event.clientY >= top &&
-        event.clientY <= bottom )
+        event.clientY <= bottom ){
+        // console.log("此时color",color)
+        cursorChangeToClick(color)
+        return true
+      }
     }
     return false
   }
 
-  const pushElement = (element) => {
-    elementList.push(element)
+  const pushElement = (element, color) => {
+    elementList.push({element, color})
   }
 
   return (

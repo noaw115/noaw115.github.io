@@ -27,6 +27,7 @@ const RightPart = styled.div`
   font-family: Floane;
   text-align: right;
   font-size: 20px;
+  pointer-events: auto;
 `;
 const CloseIconPlace = styled.div`
   width: 40px;
@@ -57,13 +58,16 @@ const Title = styled(MontserratFont)`
   color: black;
 `;
 const TopBar = memo((props) => {
-  let { currentPage, pushElement } = props;
+  let { currentPage, pushElement, store } = props;
   if (currentPage === -1) {
     currentPage = 0;
   }
 
   const clickRef = useRef();
-
+  const readyToJump = (descrip) => {
+    console.log("点击",descrip)
+    store.jumpTo = descrip
+  }
   useEffect(() => {
     if (clickRef) {
       pushElement(clickRef);
@@ -93,8 +97,8 @@ const TopBar = memo((props) => {
           <Title color={'#000000'}>Designer/ Illustrator/ Art Director</Title>
         </div>
         <RightPart ref={clickRef}>
-          <div>PLAYGROUND</div>
-          <div>CONTACT</div>
+          <div onClick={()=>{readyToJump('视差滚动NOA')}}>PLAYGROUND</div>
+          <div onClick={()=>{readyToJump('联系信息')}}>CONTACT</div>
         </RightPart>
       </LogoPlace>
     );

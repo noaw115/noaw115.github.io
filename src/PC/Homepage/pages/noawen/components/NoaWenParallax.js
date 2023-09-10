@@ -38,6 +38,7 @@ const NoaWenParallaxInner = memo((props) => {
     duration = 3,
     direction = true,
     firstFlag,
+    store,
   } = props;
   const parallaxRef = useRef();
   // console.log("value-",value)
@@ -68,6 +69,7 @@ const NoaWenParallaxInner = memo((props) => {
           passive: false,
         })
         firstFlag.current = false
+        store.firstShowPlayground = false
       }, delayTime * 1000); // noawen停留的秒数
     }
     if (offset < 0 && firstFlag.current) {
