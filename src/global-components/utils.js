@@ -97,7 +97,7 @@ Recently, I'm obsessed with watching Chiikawa drawn by Nagano-sensei and creatin
     this.lengthMap.forEach((item) => {
       array.push(this.calStartToPageVw(item.descri) * widthFactor);
     });
-    console.log('snapArray', array);
+    // console.log('snapArray', array);
     return array;
   };
 
@@ -113,7 +113,7 @@ Recently, I'm obsessed with watching Chiikawa drawn by Nagano-sensei and creatin
           offset
       );
     });
-    console.log('calBlurArray', array);
+    // console.log('calBlurArray', array);
     return array;
   };
 }

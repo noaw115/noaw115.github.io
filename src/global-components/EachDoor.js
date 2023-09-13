@@ -105,7 +105,7 @@ export default function (props) {
   const navigate = useNavigate();
 
   const handleLinkTo = (text) => {
-    console.log('跳', `/${text}`);
+    // console.log('跳', `/${text}`);
     navigate(`${window.__route__}/${text}`);
   };
 

@@ -117,7 +117,6 @@ const Index = memo((props) => {
     offset,
     width,
     duration = 3,
-    direction,
     firstFlag,
     content: _content,
   } = props;
@@ -140,7 +139,7 @@ const Index = memo((props) => {
     e.stopPropagation();
     frameRef.current.style.left = '0';
     setFirstBlur(false);
-    console.log('开始清晰');
+    // console.log('开始清晰');
     setTimeout(() => {
       document.removeEventListener('mousewheel', reScroll, { passive: false });
     }, duration * 1000);
@@ -150,7 +149,7 @@ const Index = memo((props) => {
     if (offset === 0 && firstFlag.current) {
       // console.log('passage页准备好了');
       setTimeout(() => {
-        console.log('Passage开始变形');
+        // console.log('Passage开始变形');
         document.addEventListener('mousewheel', reScroll, { passive: false });
         // document.addEventListener('mousewheel',banScrollFor,{passive:false})
       }, delayTime * 1000); // 停留的秒数
@@ -165,7 +164,6 @@ const Index = memo((props) => {
       blur={blur || firstBlur}
       ref={frameRef}
       duration={duration}
-      direction={direction}
     >
       <LargeTitle ref={lLTRef}>Loading</LargeTitle>
       <LogoSpace>

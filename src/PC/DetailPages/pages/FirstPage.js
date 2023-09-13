@@ -129,7 +129,7 @@ const FirstPage = (props) =>{
       // height={110 * (1.5 - backgroundScale * 0.5)}
 
     >
-      <TitlePart onClick={()=>console.log("sds")}  >
+      <TitlePart>
         <Title  ref={lastRef} style={{fontSize: '16px'}} onClick={()=>handleLinkTo(showText.last.text)} >
           <div style={{fontFamily:'Xiaowei', marginBottom: '20px'}}>
             {showText && showText.last.chineseText}

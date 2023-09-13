@@ -82,7 +82,7 @@ const RightPassage = styled(MontserratLightFont)`
 function MobilePassage(props) {
   const navigate = useNavigate();
   const handleLinkTo = (text) => {
-    console.log("跳",`/${text}`)
+    // console.log("跳",`/${text}`)
     navigate(`${window.__route__}/${text}`)
   }
   return (

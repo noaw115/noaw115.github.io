@@ -78,7 +78,7 @@ const TopBar = observer((props) => {
 
   const clickRef = useRef();
   const readyToJump = (descrip) => {
-    console.log('点击', descrip);
+    // console.log('点击', descrip);
     store.jumpTo = descrip;
   };
 

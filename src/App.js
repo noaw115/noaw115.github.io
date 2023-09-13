@@ -16,7 +16,7 @@ function App() {
   console.log("版本0.1.5导航能用了")
   window.__route__='/WenyenuoProject';
   if (width > 820) {
-    console.log('电脑版');
+    // console.log('电脑版');
     return (
       <div>
         <Routes>
@@ -27,7 +27,7 @@ function App() {
     );
   }
   else {
-    console.log('手机版');
+    // console.log('手机版');
     return (
       <div>
         <Routes>

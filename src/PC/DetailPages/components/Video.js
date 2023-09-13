@@ -160,7 +160,7 @@ const Video = memo((props) => {
   };
 
   const handleVideoLoaded = () => {
-    console.log("加载好了")
+    // console.log("加载好了")
     setLoaded(true)
   };
   return (

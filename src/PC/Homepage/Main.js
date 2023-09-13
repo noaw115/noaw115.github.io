@@ -116,7 +116,7 @@ const MovePart = (props) => {
       }
     }
   }, [store.deltaX]);
-  console.log('blurControl', blurControl, 'blurControl', blurPage.current);
+  // console.log('blurControl', blurControl, 'blurControl', blurPage.current);
   useEffect(() => {
     //处理高斯模糊相关的逻辑
     if (blurControl) {
@@ -201,7 +201,7 @@ const MovePart = (props) => {
   const handleJumpTo = (descri) => {
     const target = pages.calStartToPageVw(descri);
     const index = pages.getPageField(descri, 'index');
-    console.log('target,index', target, index);
+    // console.log('target,index', target, index);
     for (let i = 0; i <= index; i++) {
       setBlurControl(i, false);
     }
@@ -248,7 +248,6 @@ const MovePart = (props) => {
             duration={
               pages.getPageField('视差滚动NOA', 'custom').animationDuration
             }
-            direction={deltaDirection.current > 0}
             store={store}
           >
             <NoaWen deltaY={store.deltaX} />
@@ -266,7 +265,6 @@ const MovePart = (props) => {
               pages.getPageField('详细介绍页', 'custom').animationDuration
             }
             content={pages.getPageField('详细介绍页', 'custom').content}
-            direction={deltaDirection.current > 0}
           />
         </Frame>
       </RenderPlayGround>

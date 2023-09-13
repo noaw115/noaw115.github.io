@@ -27,7 +27,7 @@ const BlurFrame = styled.div`
 `;
 function MobileMainDetailPage() {
   const params = useParams();
-  console.log('params', params);
+  // console.log('params', params);
   let detailDate = [];
   let coverId = '';
   let coverData = {};

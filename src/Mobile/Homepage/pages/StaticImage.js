@@ -13,7 +13,7 @@ const ShowImage = styled.div`
 const StaticImage = () => {
   const flowerRef = useRef();
   const [size, setSize] = useState();
-  console.log('size', size);
+  // console.log('size', size);
   const handleScroll = () => {
     // console.log("监听")
     if (flowerRef && flowerRef.current) {

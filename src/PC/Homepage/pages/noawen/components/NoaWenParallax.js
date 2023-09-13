@@ -37,7 +37,6 @@ const NoaWenParallaxInner = memo((props) => {
     delayTime = 3,
     blur,
     duration = 3,
-    direction = true,
     firstFlag,
     store,
   } = props;
@@ -58,7 +57,7 @@ const NoaWenParallaxInner = memo((props) => {
 
   useEffect(() => {
     if (firstFlag.current && offset === 0) { //direction表示必须是正向移动
-      console.log("到位了？",store.deltaX)
+      // console.log("到位了？",store.deltaX)
       document.addEventListener('mousewheel', cannotScroll, {
         passive: false,
       });
@@ -87,7 +86,6 @@ const NoaWenParallaxInner = memo((props) => {
       style={{ overflow: 'visible' }}
       offset={offset}
       duration={duration}
-      direction={direction}
     >
       {children}
     </ParallaxScroll>

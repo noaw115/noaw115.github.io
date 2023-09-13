@@ -65,7 +65,7 @@ const Index = memo(() => {
   useEffect(() => {
     window.addEventListener('mousemove', runDebounce);
     return () => {
-      console.log('remove了');
+      // console.log('remove了');
       window.removeEventListener('mousemove', runDebounce);
     };
   }, []);
