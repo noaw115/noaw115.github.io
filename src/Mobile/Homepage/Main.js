@@ -4,16 +4,14 @@ import MobileDoors from './pages/Doors';
 import * as Data from '../../GlobalComponents/Data/static';
 import * as Image from '../../global-components/Images';
 import MobilePassage from './pages/Passage';
-import MobilePassage2 from './pages/Passage2';
+import Contact from './pages/Contant';
 import BasicData from '../../GlobalComponents/Data/movingPara';
-import {PageData} from "../../global-components/utils";
-import WithFlowers from "../../global-components/WithFlowers";
-import StaticImage from "./pages/StaticImage";
-
-
+import { PageData } from '../../global-components/utils';
+import WithFlowers from '../../global-components/WithFlowers';
+import StaticImage from './pages/StaticImage';
 
 const Frame = styled.div`
-  background-color: ${(props) => props.color ? props.color : 'white'};
+  background-color: ${(props) => (props.color ? props.color : 'white')};
   width: 100vw;
   height: ${(props) => props.height}vh;
   position: relative;
@@ -48,11 +46,11 @@ const LargeFrame = styled.div`
 const pages = new PageData();
 
 const newMain = (props) => {
-  return(
+  return (
     <LargeFrame>
       <Frame
         id={'mobileFrame0'}
-        height={pages.getPageField('门的页面', 'mobileLength') }
+        height={pages.getPageField('门的页面', 'mobileLength')}
       >
         <MobileDoors />
       </Frame>
@@ -60,22 +58,24 @@ const newMain = (props) => {
         id={'mobileFrame3'}
         // height={pages.getPageField('详细介绍页', 'mobileLength') }
       >
-        <MobilePassage content={pages.getPageField('详细介绍页', 'custom').content}/>
+        <MobilePassage
+          content={pages.getPageField('详细介绍页', 'custom').content}
+        />
       </Frame>
       <Frame
         id={'mobileFrame4'}
-        height={pages.getPageField('山中之门页', 'mobileLength') }
+        height={pages.getPageField('山中之门页', 'mobileLength')}
       >
-        <StaticImage/>
+        <StaticImage />
       </Frame>
       <Frame
-        id={"mobileFrame5"}
-        height={pages.getPageField('联系信息', 'mobileLength') }
+        id={'mobileFrame5'}
+        height={pages.getPageField('联系信息', 'mobileLength')}
       >
-          {/*<MobilePassage2/>*/}
+        <Contact />
       </Frame>
     </LargeFrame>
-  )
-}
+  );
+};
 
 export default newMain;

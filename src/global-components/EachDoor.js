@@ -14,7 +14,7 @@ const Works = styled.div`
   left: ${(props) => props.left}%;
   top: ${(props) => props.top}%;
   bottom: ${(props) => props.bottom}%;
-  transform: scale(${props=>props.scale});
+  transform: scale(${(props) => props.scale});
   transform-origin: left center;
 `;
 const WorksInner = styled.div`
@@ -85,7 +85,7 @@ const WorksTitle = styled.div`
   justify-content: center;
   align-items: center;
   top: ${(props) => props.top}px;
-  left: ${(props=> (props.left || '180'))}px;
+  left: ${(props) => props.left || '180'}px;
 `;
 export default function (props) {
   const {
@@ -97,7 +97,7 @@ export default function (props) {
     interval,
     index,
     chineseText,
-    scale =1,
+    scale = 1,
     text,
     isMobile = false,
   } = props;
@@ -105,9 +105,9 @@ export default function (props) {
   const navigate = useNavigate();
 
   const handleLinkTo = (text) => {
-    console.log("跳",`/${text}`)
-    navigate(`${window.__route__}/${text}`)
-  }
+    console.log('跳', `/${text}`);
+    navigate(`${window.__route__}/${text}`);
+  };
 
   const workRef = useRef();
   const shadowRef = useRef();
@@ -119,7 +119,7 @@ export default function (props) {
   }, [workRef]);
 
   const handleShadowAnimation = () => {
-    if (!isMobile && shadowRef && imgRef){
+    if (!isMobile && shadowRef && imgRef) {
       shadowRef.current.style.backgroundColor = '#FAFAFA';
       shadowRef.current.style.transform = 'translateY(10px)';
       imgRef.current.style.transform = 'scale(1.1)';
@@ -138,27 +138,25 @@ export default function (props) {
       right={outerStyle.right}
       scale={scale}
     >
-      {/*<Link to={`/${text}`}>*/}
-        <WorksInner onClick={()=>handleLinkTo(text)}>
-          <ShakePicture delay={delay} interval={interval}>
-            <MaskShadow ref={shadowRef} />
-            <Mask ref={workRef} onMouseEnter={handleShadowAnimation}>
-              <DoorImg
-                ref={imgRef}
-                style={{ height: innerStyle.height, left: innerStyle.left }}
-                src={Image.DoorImage}
-              />
-            </Mask>
+      <WorksInner onClick={() => handleLinkTo(text)}>
+        <ShakePicture delay={delay} interval={interval}>
+          <MaskShadow ref={shadowRef} />
+          <Mask ref={workRef} onMouseEnter={handleShadowAnimation}>
+            <DoorImg
+              ref={imgRef}
+              style={{ height: innerStyle.height, left: innerStyle.left }}
+              src={Image.DoorImage}
+            />
+          </Mask>
 
-            <WorksTitle top={titleStyle.top} left={titleStyle.left}>
-              <div style={{ marginBottom: '10px', fontFamily: 'XiaoWei' }}>
-                {chineseText}
-              </div>
-              <div>{text}</div>
-            </WorksTitle>
-          </ShakePicture>
-        </WorksInner>
-      {/*</Link>*/}
+          <WorksTitle top={titleStyle.top} left={titleStyle.left}>
+            <div style={{ marginBottom: '10px', fontFamily: 'XiaoWei' }}>
+              {chineseText}
+            </div>
+            <div>{text}</div>
+          </WorksTitle>
+        </ShakePicture>
+      </WorksInner>
     </Works>
   );
 }

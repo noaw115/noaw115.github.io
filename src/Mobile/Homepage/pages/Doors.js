@@ -5,7 +5,7 @@ import * as Data from '../../../GlobalComponents/Data/static';
 import * as Image from '../../../global-components/Images';
 import { useNavigate, Link } from 'react-router-dom';
 import EachDoor from '../../../global-components/EachDoor';
-import Images from "../../../global-components/Images";
+import Images from '../../../global-components/Images';
 
 const Frame = styled.div`
   width: 100%;
@@ -94,19 +94,19 @@ const LogoImage = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
 `;
-const HalfFrame =styled.div`
+const HalfFrame = styled.div`
   width: 100%;
   height: 50%;
   //background: rebeccapurple;
   display: flex;
   position: relative;
-`
-const QuarterFrame =styled.div`
+`;
+const QuarterFrame = styled.div`
   width: 50%;
   height: 100%;
   //background: wheat;
   position: relative;
-`
+`;
 
 const RotateStar = styled.div`
   position: absolute;
@@ -115,8 +115,8 @@ const RotateStar = styled.div`
 
             0%{
               transform: rotate( ${props.startDeg}deg)  scale(${
-                props.correction
-              });
+        props.correction
+      });
             }
 
             100%{
@@ -136,7 +136,7 @@ const RotateStar = styled.div`
 function MobileDoors(props) {
   const CircleR = [80, 60, 40];
   // const scale =0.7
-  const scale=window.screen.height/1200
+  const scale = window.screen.height / 1200;
   return (
     <>
       {/*内圈*/}
@@ -188,9 +188,7 @@ function MobileDoors(props) {
       </Circle>
 
       <LogoPlace>
-        <LogoImage
-          img={Images.LogoBlack}
-        />
+        <LogoImage img={Images.LogoBlack} />
       </LogoPlace>
       <Frame>
         <HalfFrame>
@@ -217,7 +215,7 @@ function MobileDoors(props) {
               delay={0}
               interval={4}
               index={0}
-              chineseText={'贰'}  // 左下
+              chineseText={'贰'} // 左下
               text="GRAPHICS"
               scale={scale}
               isMobile
@@ -240,10 +238,7 @@ function MobileDoors(props) {
               {...props}
             />
           </QuarterFrame>
-      </HalfFrame>
-
-
-
+        </HalfFrame>
       </Frame>
     </>
   );

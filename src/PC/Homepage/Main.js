@@ -1,16 +1,16 @@
-import React, {memo, useEffect, useRef, useState,useMemo} from "react";
-import BasicData from "../../GlobalComponents/Data/movingPara";
-import Doors from "./pages/doors";
-import RenderPlayGround from "./components/RenderPlayGround";
-import NoaWenParallax from "./pages/noawen/components/NoaWenParallax";
-import NoaWen from "./pages/noawen";
-import Passage2 from "./pages/passage2";
-import WithFlowers from "../../global-components/WithFlowers";
-import Parallax from "./pages/passage2/components/Parallax";
-import StaticImage from "./pages/StaticImage";
-import styled, {keyframes} from "styled-components";
-import * as Image from "../../global-components/Images";
-import {limitNumber} from "../../global-components/utils";
+import React, { memo, useEffect, useRef, useState, useMemo } from 'react';
+import BasicData from '../../GlobalComponents/Data/movingPara';
+import Doors from './pages/doors';
+import RenderPlayGround from './components/RenderPlayGround';
+import NoaWenParallax from './pages/noawen/components/NoaWenParallax';
+import NoaWen from './pages/noawen';
+import Passage2 from './pages/passage2';
+import Passage from './pages/passage';
+import WithFlowers from '../../global-components/WithFlowers';
+import Parallax from './pages/passage2/components/Parallax';
+import StaticImage from './pages/StaticImage';
+import styled, { keyframes } from 'styled-components';
+import { limitNumber } from '../../global-components/utils';
 import { observer } from 'mobx-react';
 
 const MoveFrame = styled.div`
@@ -39,17 +39,15 @@ const Frame = memo(styled.div`
   background-color: transparent;
 `);
 
-
-
 const widthFactor = document.body.clientWidth / 100;
 //意义👆给我一个vw的数如70vw，70*withFactor得到真实的像素数
 
 const MovePart = (props) => {
-  const {pages, store} = props;
-  console.log("firstShowPlayground",store.firstShowPlayground)
+  const { pages, store } = props;
+  // console.log("firstShowPlayground",store.firstShowPlayground)
   const moveLimit = (pages.calTotalVw() - 100) * widthFactor;
-  const snapArray = useMemo(()=>pages.calSnapArray(),[]);
-  const blurArray = useMemo(()=>pages.calBlurArray(100),[]);
+  const snapArray = useMemo(() => pages.calSnapArray(), []);
+  const blurArray = useMemo(() => pages.calBlurArray(100), []);
 
   const snapLock = useRef();
   //👆false：允许贴靠（远离边界时）
@@ -58,8 +56,8 @@ const MovePart = (props) => {
   const snapPage = useRef();
   const blurPage = useRef();
 
-  const [deltaX, setDeltaX] = useState(0);
-  const deltaDirection = useRef();
+  // const [deltaX, setDeltaX] = useState(0);
+  const deltaDirection = useRef(0);
   const [blurControl, _setBlurControl] = useState(); //true表示模糊，false表示不模糊
 
   const setBlurControl = (index, state = false) => {
@@ -93,50 +91,64 @@ const MovePart = (props) => {
   useEffect(() => {
     // 处理吸附相关的逻辑
     if (!snapLock.current && deltaDirection.current > 0) {
-      if (Math.abs(snapArray[snapPage.current + 1] - deltaX) < 150) {
+      if (Math.abs(snapArray[snapPage.current + 1] - store.deltaX) < 150) {
         // console.log('正允许吸附，现在的delta是', deltaX, '距离第', snapPage.current + 1, '页即', snapArray[snapPage.current + 1], '的距离是', snapArray[snapPage.current + 1] - deltaX);
 
         snapLock.current = true;
         snapPage.current = limitNumber(
           snapPage.current + 1,
           pages.lengthMap.length - 1,
-          0,
+          0
         );
-        setDeltaX(snapArray[snapPage.current]);
+        store.deltaX = snapArray[snapPage.current];
       }
     } else if (!snapLock.current && deltaDirection.current < 0) {
-      if (Math.abs(snapArray[snapPage.current - 1] - deltaX) < 150) {
+      if (Math.abs(snapArray[snapPage.current - 1] - store.deltaX) < 150) {
         // console.log('倒允许吸附，现在的delta是', deltaX, '距离第', snapPage.current - 1, '页即', snapArray[snapPage.current - 1], '的距离是', snapArray[snapPage.current - 1] - deltaX);
 
         snapLock.current = true;
         snapPage.current = limitNumber(
           snapPage.current - 1,
           pages.lengthMap.length - 1,
-          0,
+          0
         );
-        setDeltaX(snapArray[snapPage.current]);
+        store.deltaX = snapArray[snapPage.current];
       }
     }
-  }, [deltaX]);
-
+  }, [store.deltaX]);
+  console.log('blurControl', blurControl, 'blurControl', blurPage.current);
   useEffect(() => {
     //处理高斯模糊相关的逻辑
     if (blurControl) {
+      // 前进的逻辑
       // console.log('现在的delta是', deltaX, '是否小于第', blurPage.current, '页即',blurArray[blurPage.current] ,"?", deltaX>blurArray[blurPage.current] );
-      if (deltaDirection.current > 0 && deltaX > blurArray[blurPage.current]) {
+      if (
+        deltaDirection.current > 0 &&
+        store.deltaX > blurArray[blurPage.current] + window.innerWidth / 4 // 页面露出1/4开始变清晰
+      ) {
         blurPage.current = limitNumber(
           blurPage.current + 1,
           pages.lengthMap.length - 1,
-          0,
+          0
         );
         setBlurControl(blurPage.current);
       }
-      // if (deltaDirection.current < 0 && deltaX < blurArray[blurPage.current-1]){
-      //   blurPage.current = limitNumber(blurPage.current-1, pages.lengthMap.length-1, 0)
-      //   setBlurControl(blurPage.current, true)
-      // }
+
+      // 后退的逻辑
+      if (
+        deltaDirection.current < 0 &&
+        store.deltaX <
+          blurArray[blurPage.current + 1] - (window.innerWidth * 3) / 5
+      ) {
+        setBlurControl(blurPage.current, true);
+        blurPage.current = limitNumber(
+          blurPage.current - 1,
+          pages.lengthMap.length,
+          0
+        );
+      }
     }
-  }, [deltaX]);
+  }, [store.deltaX]);
 
   const handleWheel = (e) => {
     // 在范围内把滚轮产生的deltaX累加起来，更新deltaX值
@@ -148,17 +160,16 @@ const MovePart = (props) => {
     } else {
       deltaDirection.current = -1;
     }
-    setDeltaX((deltaX) => {
-      const noLimitedDeltaX = deltaX + e.deltaY * BasicData.moveSpeedFactor;
-      return limitNumber(noLimitedDeltaX, moveLimit, 0);
-    });
+
+    const noLimitedDeltaX = store.deltaX + e.deltaY * BasicData.moveSpeedFactor;
+    store.deltaX = limitNumber(noLimitedDeltaX, moveLimit, 0);
   };
 
   const handleParaScreenPercent = (descri, upper = 0.5, lower = -0.5) => {
     // 针对视差滚动的函数,返回值是视差滚动的offset
     const rangeLength = upper - lower;
     let _percent =
-      (deltaX +
+      (store.deltaX +
         document.body.clientWidth -
         pages.calStartToPageVw(descri) * widthFactor) /
       (pages.getPageField(descri, 'length') * widthFactor +
@@ -178,35 +189,45 @@ const MovePart = (props) => {
     }
     return false;
   };
-  
-  useEffect(()=>{
-    console.log("监听到",store.jumpTo)
-    const {jumpTo} = store
-    if (jumpTo) {
-      handleJumpTo(jumpTo)
-    }
-  },[store.jumpTo])
-  
-  const handleJumpTo = (descri) => {
-    const target = pages.calStartToPageVw(descri)
-    const index = pages.getPageField(descri, 'index')
-    console.log("target,index",target,index)
-    for (let i = 0; i<= index; i++) {
-      setBlurControl(i, false)
-    }
-    if (store.firstShowPlayground && descri === '视差滚动NOA'){
-    
-    } else {
-      setDeltaX(target*widthFactor>moveLimit ? moveLimit : target*widthFactor-20)
-    }
 
-    
-    
-  }
-  // console.log("jianchaconten",pages.getPageField('详细介绍页', 'custom').content)
+  useEffect(() => {
+    // console.log("监听到",store.jumpTo)
+    const { jumpTo } = store;
+    if (jumpTo) {
+      handleJumpTo(jumpTo);
+    }
+  }, [store.jumpTo]);
+
+  const handleJumpTo = (descri) => {
+    const target = pages.calStartToPageVw(descri);
+    const index = pages.getPageField(descri, 'index');
+    console.log('target,index', target, index);
+    for (let i = 0; i <= index; i++) {
+      setBlurControl(i, false);
+    }
+    store.deltaX =
+      target * widthFactor > moveLimit ? moveLimit : target * widthFactor - 20;
+  };
+
+  useEffect(() => {
+    // 判断导航颜色变化的
+    if (
+      Math.abs(
+        store.deltaX - pages.calStartToPageVw('视差滚动NOA') * widthFactor
+      ) < 50
+    ) {
+      store.nowPage = '视差滚动NOA';
+    } else if (Math.abs(store.deltaX - moveLimit) < 50) {
+      // console.log("BBB")
+      store.nowPage = '联系信息';
+    } else {
+      store.nowPage = '';
+    }
+  }, [store.deltaX]);
+
+  // console.log("deltaX",store.deltaX,)
   return (
-    <MoveFrame id="moveFrame" offset={deltaX} width={pages.calTotalVw()}>
-     
+    <MoveFrame id="moveFrame" offset={store.deltaX} width={pages.calTotalVw()}>
       <Frame width={pages.getPageField('门的页面', 'length')} color={'red'}>
         {/*<button onClick={()=>handleJumpTo('视差滚动NOA')}>dsd</button>*/}
         <Doors {...props} />
@@ -230,7 +251,7 @@ const MovePart = (props) => {
             direction={deltaDirection.current > 0}
             store={store}
           >
-            <NoaWen deltaY={deltaX} />
+            <NoaWen deltaY={store.deltaX} />
           </NoaWenParallax>
         </Frame>
         <Frame
@@ -239,7 +260,7 @@ const MovePart = (props) => {
         >
           <Passage2
             width={pages.getPageField('详细介绍页', 'length') * widthFactor}
-            // blur={handleBlur('详细介绍页')}
+            blur={handleBlur('详细介绍页')}
             delayTime={pages.getPageField('详细介绍页', 'custom').delayTime}
             duration={
               pages.getPageField('详细介绍页', 'custom').animationDuration
@@ -251,7 +272,7 @@ const MovePart = (props) => {
       </RenderPlayGround>
 
       <Frame
-        style={{ display: 'block', overflow: 'visible'}}
+        style={{ display: 'block', overflow: 'visible' }}
         width={pages.getPageField('山中之门页', 'length')}
       >
         <WithFlowers {...props}>
@@ -267,7 +288,7 @@ const MovePart = (props) => {
         </WithFlowers>
       </Frame>
       <Frame width={pages.getPageField('联系信息', 'length')}>
-        <Passage2 />
+        <Passage />
       </Frame>
     </MoveFrame>
   );

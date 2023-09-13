@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef, useState } from 'react';
+import React, { memo } from 'react';
 import styled, { keyframes } from 'styled-components';
 import TopBar from '../components/TopBar';
 import BasicData from '../../GlobalComponents/Data/movingPara';
@@ -7,7 +7,7 @@ import { observer, useLocalObservable } from 'mobx-react';
 import * as Image from '../../global-components/Images';
 import { CursorContext } from '../components/Cursor';
 import MovePart from './Main';
-import {PageData} from '../../global-components/utils'
+import { PageData } from '../../global-components/utils';
 
 const LargeFrame = memo(styled.div`
   width: 100vw;
@@ -47,17 +47,16 @@ const FixedFrame = styled.div`
   pointer-events: none;
 `;
 
-
-
 const pages = new PageData();
 
 export default observer(function (props) {
-  
   const store = useLocalObservable(() => ({
     firstShowPlayground: true,
     jumpTo: undefined,
+    nowPage: '', // TODO 这里最好是和组件内部的state统一 但是现在没时间了 只能这样
+    deltaX: 0, // 替代原本的deltaX
   }));
-  
+
   return (
     <LargeFrame>
       <CursorProvider>
@@ -65,13 +64,23 @@ export default observer(function (props) {
           {(value) => (
             <>
               <FixedFrame>
-                <TopBar {...props} pushElement={value} store={store}/>
+                <TopBar
+                  {...props}
+                  pushElement={value}
+                  pages={pages}
+                  store={store}
+                />
               </FixedFrame>
-              <MovePart {...props} pushElement={value} pages={pages} store={store}/>
+              <MovePart
+                {...props}
+                pushElement={value}
+                pages={pages}
+                store={store}
+              />
             </>
           )}
         </CursorContext.Consumer>
       </CursorProvider>
     </LargeFrame>
   );
-})
+});

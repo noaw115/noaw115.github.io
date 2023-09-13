@@ -22,7 +22,7 @@ const Line = styled.div`
 const BigBlock = styled.div`
   width: 275px;
   height: 400px;
-  background-color: rgba(103,193,220,0.4);
+  background-color: rgba(103, 193, 220, 0.4);
   margin: 1px;
   transition: 0.5s all;
   display: flex;
@@ -86,7 +86,6 @@ const DoorsFrame = () => {
           <ChineseTitle style={{ top: '95px', left: '30px' }}>
             {Data.HomepageData[0].contend.Door1.chinese_text}
           </ChineseTitle>
-          
         </BigBlock>
         <BigBlock />
       </Line>

@@ -7,6 +7,7 @@ import * as SVG from '../../global-components/Svgs';
 import { memo, useEffect, useRef } from 'react';
 import { click } from '@testing-library/user-event/dist/click';
 import StyledComponents from '../../global-components/StyledComponents';
+import { observer } from 'mobx-react';
 
 const { MontserratFont } = StyledComponents;
 
@@ -27,6 +28,7 @@ const RightPart = styled.div`
   font-family: Floane;
   text-align: right;
   font-size: 20px;
+  //background-color: greenyellow;
   pointer-events: auto;
 `;
 const CloseIconPlace = styled.div`
@@ -40,6 +42,17 @@ const CloseIconPlace = styled.div`
   align-items: center;
   transform: scale(0.8);
   //background-color: aqua;
+`;
+
+const Navigate = styled.div`
+  //background-color: red;
+  width: 200px;
+  padding-right: 80px;
+  transition: 0.3s all;
+  transform: translateX(70px);
+  &:hover {
+    transform: translateX(50px);
+  }
 `;
 
 const LogoImage2 = styled.div`
@@ -57,7 +70,7 @@ const Title = styled(MontserratFont)`
   transition: 0.5s all;
   color: black;
 `;
-const TopBar = memo((props) => {
+const TopBar = observer((props) => {
   let { currentPage, pushElement, store } = props;
   if (currentPage === -1) {
     currentPage = 0;
@@ -65,9 +78,10 @@ const TopBar = memo((props) => {
 
   const clickRef = useRef();
   const readyToJump = (descrip) => {
-    console.log("点击",descrip)
-    store.jumpTo = descrip
-  }
+    console.log('点击', descrip);
+    store.jumpTo = descrip;
+  };
+
   useEffect(() => {
     if (clickRef) {
       pushElement(clickRef);
@@ -97,8 +111,26 @@ const TopBar = memo((props) => {
           <Title color={'#000000'}>Designer/ Illustrator/ Art Director</Title>
         </div>
         <RightPart ref={clickRef}>
-          <div onClick={()=>{readyToJump('视差滚动NOA')}}>PLAYGROUND</div>
-          <div onClick={()=>{readyToJump('联系信息')}}>CONTACT</div>
+          <Navigate
+            onClick={() => {
+              readyToJump('视差滚动NOA');
+            }}
+            style={{
+              color: store.nowPage === '视差滚动NOA' ? '#B6E5E3' : 'black',
+            }}
+          >
+            PLAYGROUND
+          </Navigate>
+          <Navigate
+            onClick={() => {
+              readyToJump('联系信息');
+            }}
+            style={{
+              color: store.nowPage === '联系信息' ? '#B6E5E3' : 'black',
+            }}
+          >
+            CONTACT
+          </Navigate>
         </RightPart>
       </LogoPlace>
     );

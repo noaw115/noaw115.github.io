@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, {useEffect, useMemo, useRef, useState} from "react";
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 const Frame = styled.div`
   width: 100%;
@@ -21,7 +21,6 @@ const Frame = styled.div`
 //   //transition:0.1s all linear;
 // `;
 
-
 const Text = styled.div`
   position: absolute;
   left: 50%;
@@ -30,28 +29,26 @@ const Text = styled.div`
   font-family: Floane;
   font-size: 20px;
   transition: 0.3s ease-out;
-  
-`
+`;
 const Circle = styled(Text)`
   border-radius: 50px;
   background: black;
-`
+`;
 const CursorDiv = styled.div`
   position: absolute;
   z-index: 1000;
   display: flex;
   pointer-events: none;
-`
+`;
 export const CursorContext = React.createContext();
 
 export default function (props) {
   const { children } = props;
-  const cursorRef = useRef(null)
-  const circleRef = useRef(null)
-  const textRef = useRef(null)
+  const cursorRef = useRef(null);
+  const circleRef = useRef(null);
+  const textRef = useRef(null);
 
-
-  const elementList = useMemo(()=> [],[])
+  const elementList = useMemo(() => [], []);
   const debounce = () => {
     let f;
     return function (e) {
@@ -59,94 +56,95 @@ export default function (props) {
       f = requestAnimationFrame(() => {
         if (cursorRef) {
           // console.log("elementList",elementList)
-          if (!isMouseOverElements(e,elementList)){
-            cursorChangeToDefault()
+          if (!isMouseOverElements(e, elementList)) {
+            cursorChangeToDefault();
           }
-          const selfWidth = cursorRef.current.offsetWidth
+          const selfWidth = cursorRef.current.offsetWidth;
           // console.log("鼠标位置",e.clientX,e.clientY,selfWidth)
-          cursorRef.current.style.left = (e.clientX-selfWidth/2)+'px'
-          cursorRef.current.style.top = (e.clientY-selfWidth/2)+'px'
-
+          cursorRef.current.style.left = e.clientX - selfWidth / 2 + 'px';
+          cursorRef.current.style.top = e.clientY - selfWidth / 2 + 'px';
         }
-      })
+      });
     };
   };
-  const runDebounce =debounce();
+  const runDebounce = debounce();
 
-
-
-  useEffect(()=>{
+  useEffect(() => {
     window.addEventListener('mousemove', runDebounce);
-    return ()=>{
+    return () => {
       window.removeEventListener('mousemove', runDebounce);
-    }
-  },[])
+    };
+  }, []);
 
   const cursorChangeToDefault = () => {
-    circleRef.current.style.filter = 'blur(0)'
-    circleRef.current.style.width = '10px'
-    circleRef.current.style.height = '10px'
-    circleRef.current.style.opacity = '0.4'
-    textRef.current.innerHTML = ''
+    circleRef.current.style.filter = 'blur(0)';
+    circleRef.current.style.width = '10px';
+    circleRef.current.style.height = '10px';
+    circleRef.current.style.opacity = '0.4';
+    textRef.current.innerHTML = '';
     circleRef.current.style.backgroundColor = 'black';
-  }
+  };
 
   const cursorChangeToClick = (color) => {
     if (color === 'white') {
       circleRef.current.style.backgroundColor = color;
-      circleRef.current.style.opacity = '0.5'
+      circleRef.current.style.opacity = '0.5';
     } else {
-      circleRef.current.style.opacity = '0.1'
+      circleRef.current.style.opacity = '0.1';
       circleRef.current.style.backgroundColor = 'black';
     }
-    textRef.current.innerHTML = 'CLICK'
-    circleRef.current.style.filter = 'blur(6px)'
-    circleRef.current.style.width = '70px'
-    circleRef.current.style.height = '70px'
-  }
+    textRef.current.innerHTML = 'CLICK';
+    circleRef.current.style.filter = 'blur(6px)';
+    circleRef.current.style.width = '70px';
+    circleRef.current.style.height = '70px';
+  };
 
   const isMouseOverElements = (event, elementList) => {
     let res = false;
     // console.log("elementList",elementList)
-    if (elementList && elementList.length>0){
-      elementList.forEach(({element, color})=>{
-        if (isMouseOverElement(event,element, color)) {
+    if (elementList && elementList.length > 0) {
+      elementList.forEach(({ element, color }) => {
+        if (isMouseOverElement(event, element, color)) {
           // console.log("isMouseOverElement")
           res = true;
         }
-      })
+      });
     }
-    return res
-  }
+    return res;
+  };
 
   const isMouseOverElement = (event, element, color) => {
     if (element && element.current) {
-      const {left,top,right,bottom} = element.current.getBoundingClientRect()
-      if ( event.clientX >= left &&
+      const { left, top, right, bottom } =
+        element.current.getBoundingClientRect();
+      if (
+        event.clientX >= left &&
         event.clientX <= right &&
         event.clientY >= top &&
-        event.clientY <= bottom ){
+        event.clientY <= bottom
+      ) {
         // console.log("此时color",color)
-        cursorChangeToClick(color)
-        return true
+        cursorChangeToClick(color);
+        return true;
       }
     }
-    return false
-  }
+    return false;
+  };
 
   const pushElement = (element, color) => {
-    elementList.push({element, color})
-  }
+    elementList.push({ element, color });
+  };
 
   return (
-
     <Frame>
-      <CursorDiv style={{position:'absolute', zIndex:'20', borderRadius:'70px'}} ref={cursorRef}>
-        <div style={{position:"relative"}}>
-          <Circle ref={circleRef}/>
-          <Text ref={textRef}/>
+      <CursorDiv
+        style={{ position: 'absolute', zIndex: '20', borderRadius: '70px' }}
+        ref={cursorRef}
+      >
+        <div style={{ position: 'relative' }}>
+          <Circle ref={circleRef} />
+          <Text ref={textRef} />
         </div>
-
       </CursorDiv>
       <CursorContext.Provider value={pushElement}>
         {children}

@@ -61,7 +61,7 @@ const Loading = styled.div`
   width: 400px;
   height: 400px;
   border-radius: 400px;
-  background-color: #e0e0e0;
+  background-color: rgba(0,0,0,0.05);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -71,13 +71,12 @@ const Loading = styled.div`
   transform: translateX(-50%) translateY(-50%);
 `
 const BigBar = styled.div`
-  width:260px;
+  width:200px;
   position: relative;
   height: 8px;
   border-radius: 15px;
   background-color: #e0e0e0;
 `
-
 const barGoing = keyframes`
   0% {
     width: 5px;
@@ -100,9 +99,23 @@ const barGoing = keyframes`
 `;
 const SmallBar = styled.div`
   height: 100%;
+  position: absolute;
+  top: 0;
   border-radius: 15px;
   background-color: black;
   animation: ${props=>barGoing} 50s forwards;
+`
+const SmallBarBack = styled.div`
+  height: 100%;
+  position: absolute;
+  top: 0;
+  border-radius: 15px;
+  border: 1px black solid;
+  width: 100%;
+  background-color: white;
+  box-sizing: border-box;
+  //background-color: red;
+  // animation: ${props=>barGoing} 50s forwards;
 `
 
 
@@ -122,10 +135,19 @@ const Video = memo((props) => {
       }
     }
   };
-
-
+  
+  const handleVideoLoaded = () => {
+    console.log("加载好了")
+    setLoaded(true)
+  };
   return (
     <Frame >
+      {!loaded && <Loading>
+        <BigBar>
+          <SmallBarBack/>
+          <SmallBar/>
+        </BigBar>
+      </Loading>}
       <PhotoFrame
         width={100}
         blur={blur}
@@ -139,8 +161,8 @@ const Video = memo((props) => {
           // width={data.imageScale ? data.imageScale * 100 : undefined}
           ref={videoRef}
           muted
-          // onLoadedData={handleVideoLoaded}
-          // onLoadedMetadata={handleVideoLoaded}
+          onLoadedData={handleVideoLoaded}
+          onLoadedMetadata={handleVideoLoaded}
         >
           <source
             // src="https://download.samplelib.com/mp4/sample-20s.mp4"

@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useRef, useState} from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import * as Image from '../../../global-components/Images';
 
@@ -6,8 +6,6 @@ const ParallaxImg = styled.img`
   width: 100%;
   transform: translateY(0px) translateX(-80px);
 `;
-
-
 
 const StaticImage = memo((props) => {
   const imgRef = useRef(null);
@@ -45,10 +43,6 @@ const StaticImage = memo((props) => {
     };
   }, []);
 
-
-
-  return (
-      <ParallaxImg src={Image.GreenBack} ref={imgRef} />
-  );
+  return <ParallaxImg src={Image.GreenBack} ref={imgRef} />;
 });
 export default StaticImage;

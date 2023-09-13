@@ -3,9 +3,9 @@ import styled, { keyframes } from 'styled-components';
 import * as Image from '../../../../global-components/Images';
 import * as Svg from '../../../../global-components/Svgs';
 import { PlayGroundContext } from '../../components/RenderPlayGround';
-import StyledComponents from "../../../../global-components/StyledComponents";
+import StyledComponents from '../../../../global-components/StyledComponents';
 
-const {MontserratFont,MontserratLightFont} = StyledComponents
+const { MontserratFont, MontserratLightFont } = StyledComponents;
 
 const Frame = styled.div`
   position: relative;
@@ -16,7 +16,7 @@ const Frame = styled.div`
   box-sizing: border-box;
   flex-shrink: 0;
   display: flex;
-  background-color: #EBEBEB;
+  background-color: #ebebeb;
   flex-direction: column;
   align-items: flex-end;
   color: black;
@@ -25,7 +25,7 @@ const Frame = styled.div`
 `;
 
 const LargeTitle = styled(MontserratFont)`
-  font-size: 22px;
+  font-size: 20px;
   line-height: 42px;
   text-align: right;
   font-family: Montserrat;
@@ -94,7 +94,7 @@ const EmailAnimation = styled.div`
   transform: translateY(25%);
   transition: 0.5s;
   margin-right: 20px;
-  &:hover{
+  &:hover {
     transform: translateY(-25%);
   }
 `;
@@ -103,20 +103,31 @@ const Consumer = memo((props) => {
   // console.log("props",props)
   return (
     <PlayGroundContext.Consumer>
-      {(value) => <Index {...props} offset={value?.offset} firstFlag={value?.firstFlag} />}
+      {(value) => (
+        <Index {...props} offset={value?.offset} firstFlag={value?.firstFlag} />
+      )}
     </PlayGroundContext.Consumer>
   );
 });
 
 const Index = memo((props) => {
-  const { blur, delayTime = 3, offset, width, duration = 3, direction, firstFlag,content:_content } = props;
+  const {
+    blur,
+    delayTime = 3,
+    offset,
+    width,
+    duration = 3,
+    direction,
+    firstFlag,
+    content: _content,
+  } = props;
   const lLTRef = useRef(null);
   const lTRef = useRef(null);
   const lTRef2 = useRef(null);
   const frameRef = useRef();
-  const emailRef = useRef()
-
-  const content ={..._content}
+  const emailRef = useRef();
+  const [firstBlur, setFirstBlur] = useState(true);
+  const content = { ..._content };
   useEffect(() => {
     frameRef.current.style.left = width + 'px';
     lLTRef.current.innerHTML = content.largeTitle;
@@ -128,46 +139,48 @@ const Index = memo((props) => {
     e.preventDefault();
     e.stopPropagation();
     frameRef.current.style.left = '0';
-    setTimeout(()=>{
-      document.removeEventListener('mousewheel',reScroll, { passive: false })
-    },duration*1000)
-
+    setFirstBlur(false);
+    console.log('开始清晰');
+    setTimeout(() => {
+      document.removeEventListener('mousewheel', reScroll, { passive: false });
+    }, duration * 1000);
   };
 
-
   useEffect(() => {
-    if (offset === 0 && firstFlag.current ) {
+    if (offset === 0 && firstFlag.current) {
       // console.log('passage页准备好了');
       setTimeout(() => {
-        console.log('开始变形');
-        document.addEventListener('mousewheel', reScroll, {passive: false});
+        console.log('Passage开始变形');
+        document.addEventListener('mousewheel', reScroll, { passive: false });
         // document.addEventListener('mousewheel',banScrollFor,{passive:false})
       }, delayTime * 1000); // 停留的秒数
     }
     if (offset < 0 && firstFlag.current) {
-      // console.log('恢复2');
       frameRef.current.style.left = width + 'px';
     }
   }, [offset]);
 
-
   return (
-    <Frame blur={blur} ref={frameRef} duration={duration} direction={direction}>
-
+    <Frame
+      blur={blur || firstBlur}
+      ref={frameRef}
+      duration={duration}
+      direction={direction}
+    >
       <LargeTitle ref={lLTRef}>Loading</LargeTitle>
       <LogoSpace>
         <LogoImage2 />
       </LogoSpace>
       <Text ref={lTRef}>Loading</Text>
       <SmallText ref={lTRef2}>Loading</SmallText>
-      <LeftEmailSpace>
-        <EmailAnimation ref={emailRef}>
-          {content.leftEmail}
-          <br />
-          {content.leftEmail}
-        </EmailAnimation>
-        {Svg.FrontArrow}
-      </LeftEmailSpace>
+      {/*<LeftEmailSpace>*/}
+      {/*  <EmailAnimation ref={emailRef}>*/}
+      {/*    {content.leftEmail}*/}
+      {/*    <br />*/}
+      {/*    {content.leftEmail}*/}
+      {/*  </EmailAnimation>*/}
+      {/*  {Svg.FrontArrow}*/}
+      {/*</LeftEmailSpace>*/}
     </Frame>
   );
 });

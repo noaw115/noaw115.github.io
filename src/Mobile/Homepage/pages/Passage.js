@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import * as Data from '../../../GlobalComponents/Data/static';
 import BasicData from '../../../GlobalComponents/Data/movingPara';
-import StyledComponents from "../../../global-components/StyledComponents";
+import StyledComponents from '../../../global-components/StyledComponents';
 
-const {MontserratFont,MontserratLightFont} = StyledComponents
+const { MontserratFont, MontserratLightFont } = StyledComponents;
 
 const Frame = styled.div`
   background-color: #ebebeb;
@@ -12,6 +12,7 @@ const Frame = styled.div`
   padding-top: 7vh;
   padding-left: 5vw;
   padding-right: 5vw;
+  padding-bottom: 7vh;
   width: 100vw;
   box-sizing: border-box;
   flex-shrink: 0;

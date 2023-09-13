@@ -76,7 +76,7 @@ const Loading = styled.div`
   width: 400px;
   height: 400px;
   border-radius: 400px;
-  background-color: #e0e0e0;
+  background-color: rgba(0,0,0,0.05);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -86,7 +86,7 @@ const Loading = styled.div`
   transform: translateX(-50%) translateY(-50%);
 `
 const BigBar = styled.div`
-  width:260px;
+  width:200px;
   position: relative;
   height: 8px;
   border-radius: 15px;
@@ -115,11 +115,24 @@ const barGoing = keyframes`
 `;
 const SmallBar = styled.div`
   height: 100%;
+  position: absolute;
+  top: 0;
   border-radius: 15px;
   background-color: black;
   animation: ${props=>barGoing} 50s forwards;
 `
-
+const SmallBarBack = styled.div`
+  height: 100%;
+  position: absolute;
+  top: 0;
+  border-radius: 15px;
+  border: 1px black solid;
+  width: 100%;
+  background-color: white;
+  box-sizing: border-box;
+  //background-color: red;
+  // animation: ${props=>barGoing} 50s forwards;
+`
 
 const Video = memo((props) => {
   let { blur, data, isMobile=false } = props;
@@ -154,6 +167,7 @@ const Video = memo((props) => {
     <Frame >
       {!loaded && <Loading>
         <BigBar>
+          <SmallBarBack/>
           <SmallBar/>
         </BigBar>
       </Loading>}

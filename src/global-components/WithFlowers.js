@@ -25,7 +25,7 @@ const RedDoorDiv = styled(Shake)`
   left: 50%;
   top: 35%;
   z-index: 10;
-  transform: translateX(-50%) scale(${props=>props.scale});
+  transform: translateX(-50%) scale(${(props) => props.scale});
 `;
 
 const LeftDiv = styled(Shake)`
@@ -39,7 +39,7 @@ const LeftDiv = styled(Shake)`
   top: 22%;
   left: -50px;
   z-index: 10;
-  transform: scale(${props=>props.scale});
+  transform: scale(${(props) => props.scale});
   transform-origin: left bottom;
   //z-index: 1000;
 `;
@@ -54,7 +54,7 @@ const RightBottomDiv = styled(Shake)`
   bottom: -20px;
   right: -200px;
   z-index: 10;
-  transform: scale(${props=>props.scale});
+  transform: scale(${(props) => props.scale});
   transform-origin: right bottom;
   //z-index: 1000;
 `;
@@ -69,7 +69,7 @@ const RightTopDiv = styled(Shake)`
   top: 0;
   right: -100px;
   z-index: 10;
-  transform: scale(${props=>props.scale});
+  transform: scale(${(props) => props.scale});
   transform-origin: right top;
   //z-index: 1000;
 `;
@@ -84,12 +84,12 @@ const TopDiv = styled(Shake)`
   top: -20px;
   left: -150px;
   z-index: 10;
-  transform: scale(${props=>props.scale});
+  transform: scale(${(props) => props.scale});
   transform-origin: right center;
   //z-index: 1000;
 `;
 const ImageWithFlower = memo((props) => {
-  const { children, pushElement = () => {} , scale= 1 } = props;
+  const { children, pushElement = () => {}, scale = 1 } = props;
 
   const redDoorRef = useRef();
   const [rightTopFlag, setRTFlag] = useState(false);
@@ -102,7 +102,7 @@ const ImageWithFlower = memo((props) => {
       pushElement(redDoorRef, 'white');
     }
   }, [redDoorRef]);
-  
+
   return (
     <Frame>
       <RightTopDiv
@@ -115,9 +115,17 @@ const ImageWithFlower = memo((props) => {
         flag={rightBottomFlag}
         scale={scale}
       />
-      <TopDiv onMouseEnter={() => setTFlag(!topFlag)} flag={topFlag} scale={scale} />
-      <LeftDiv onMouseEnter={() => setLFlag(!leftFlag)} flag={leftFlag}  scale={scale}  />
-      <RedDoorDiv ref={redDoorRef}  scale={scale}  />
+      <TopDiv
+        onMouseEnter={() => setTFlag(!topFlag)}
+        flag={topFlag}
+        scale={scale}
+      />
+      <LeftDiv
+        onMouseEnter={() => setLFlag(!leftFlag)}
+        flag={leftFlag}
+        scale={scale}
+      />
+      <RedDoorDiv ref={redDoorRef} scale={scale} />
       <Frame style={{ overflow: 'hidden' }}>{children}</Frame>
     </Frame>
   );

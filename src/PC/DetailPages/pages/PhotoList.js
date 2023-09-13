@@ -5,8 +5,6 @@ import React, {memo} from "react";
 import styled from "styled-components";
 
 const MoveFrame = styled.div`
-  // background-image: linear-gradient(to right, red , yellow);
-  // background-color: green;
   position: relative;
   top: 0;
   height: 100%;

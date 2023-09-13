@@ -1,11 +1,7 @@
 import React, {memo, lazy, Suspense, useMemo, useEffect, useState, useRef} from 'react';
 import styled, { keyframes } from 'styled-components';
 import TopBar from '../components/TopBar';
-import TitleAndText from './components/TitleAndText';
-import Photo from './components/Photo';
 import BasicData from '../../GlobalComponents/Data/movingPara';
-import FirstBackground from './components/FirstBackground';
-import Video from "./components/Video";
 import PhotoList from "./pages/PhotoList";
 import FirstPage from "./pages/FirstPage";
 import {limitNumber} from "../../global-components/utils";

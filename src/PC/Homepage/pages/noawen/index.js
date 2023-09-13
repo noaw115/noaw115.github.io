@@ -2,8 +2,6 @@ import styled, { keyframes } from 'styled-components';
 import * as Images from '../../../../global-components/Images';
 import React, {memo, useCallback, useEffect, useRef, useState} from 'react';
 import Letter from './components/Letter';
-import qe from 'styled-components';
-import { clear } from '@testing-library/user-event/dist/clear';
 
 const LargeFrame = styled.div`
   width: 100%;

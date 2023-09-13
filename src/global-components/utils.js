@@ -12,7 +12,7 @@ const widthFactor = document.body.clientWidth / 100;
 export class PageData {
   constructor() {
     this.lengthMap = [
-      { descri: '门的页面', length: 100, blur: false, mobileLength: 110, },
+      { descri: '门的页面', length: 100, blur: false, mobileLength: 110 },
       {
         descri: '视差滚动NOA',
         length: 60,
@@ -44,14 +44,14 @@ I see designing is like playing a video game, where I analyze objectives from cl
 Recently, I'm obsessed with watching Chiikawa drawn by Nagano-sensei and creating Live 2D models.
       `,
             leftEmail: 'tsuruta@unou.jp',
-          }
+          },
         },
       },
-      { descri: '山中之门页', length: 50, blur: true,mobileLength: 100, },
-      { descri: '联系信息', length: 50, blur: true,mobileLength: 100, },
+      { descri: '山中之门页', length: 50, blur: true, mobileLength: 100 },
+      { descri: '联系信息', length: 30, blur: true, mobileLength: 100 },
     ];
   }
-  
+
   calTotalVw = () => {
     // 计算总长度
     let res = 0;
@@ -60,7 +60,7 @@ Recently, I'm obsessed with watching Chiikawa drawn by Nagano-sensei and creatin
     });
     return res;
   };
-  
+
   getPageField = (descri, field) => {
     // 找到某一页的属性，第二项代表属性名，不传则是所有属性，传index则是返回index
     let res;
@@ -77,7 +77,7 @@ Recently, I'm obsessed with watching Chiikawa drawn by Nagano-sensei and creatin
     });
     return res;
   };
-  
+
   calStartToPageVw = (descri) => {
     // 找到某一页的起点长度（vw长度）
     let res = 0;
@@ -90,7 +90,7 @@ Recently, I'm obsessed with watching Chiikawa drawn by Nagano-sensei and creatin
     });
     return res;
   };
-  
+
   calSnapArray = () => {
     // 计算吸附列表 是一个[0,width1,width1+width2,...]这样的列表（实际长度）
     let array = [];
@@ -100,7 +100,7 @@ Recently, I'm obsessed with watching Chiikawa drawn by Nagano-sensei and creatin
     console.log('snapArray', array);
     return array;
   };
-  
+
   calBlurArray = (offset = 0) => {
     // 计算高斯模糊列表，是一个[width1-100,width1+width2-100,width1+width2+width3-100,...]这样的列表（实际长度）
     let array = [];
@@ -109,8 +109,8 @@ Recently, I'm obsessed with watching Chiikawa drawn by Nagano-sensei and creatin
         (this.calStartToPageVw(item.descri) +
           this.getPageField(item.descri, 'length') -
           100) *
-        widthFactor +
-        offset
+          widthFactor +
+          offset
       );
     });
     console.log('calBlurArray', array);

@@ -1,6 +1,7 @@
 import React, { memo, lazy, Suspense, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { PlayGroundContext } from '../../../components/RenderPlayGround';
+import { observer } from 'mobx-react';
 
 const ParallaxScroll = styled.div`
   height: 100%;
@@ -21,7 +22,7 @@ const ParallaxScroll = styled.div`
   width: 100vw;
 `;
 
-const Consumer = memo((props) => {
+const Consumer = observer((props) => {
   return (
     <PlayGroundContext.Consumer>
       {(value) => <NoaWenParallaxInner {...props} offset={value?.offset} firstFlag={value?.firstFlag} />}
@@ -56,7 +57,8 @@ const NoaWenParallaxInner = memo((props) => {
   }
 
   useEffect(() => {
-    if (direction && offset === 0 && firstFlag.current ) { //direction表示必须是正向移动
+    if (firstFlag.current && offset === 0) { //direction表示必须是正向移动
+      console.log("到位了？",store.deltaX)
       document.addEventListener('mousewheel', cannotScroll, {
         passive: false,
       });
@@ -73,7 +75,6 @@ const NoaWenParallaxInner = memo((props) => {
       }, delayTime * 1000); // noawen停留的秒数
     }
     if (offset < 0 && firstFlag.current) {
-      // console.log('恢复1');
       parallaxRef.current.style.width = '100vw';
     }
   }, [offset]);
