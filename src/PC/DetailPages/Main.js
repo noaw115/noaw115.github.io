@@ -1,7 +1,7 @@
 import React, {memo, lazy, Suspense, useMemo, useEffect, useState, useRef} from 'react';
 import styled, { keyframes } from 'styled-components';
 import TopBar from '../components/TopBar';
-import BasicData from '../../GlobalComponents/Data/movingPara';
+import BasicData from '../../apiData/movingPara';
 import PhotoList from "./pages/PhotoList";
 import FirstPage from "./pages/FirstPage";
 import {limitNumber} from "../../global-components/utils";
@@ -58,6 +58,10 @@ const NewMain = (props) => {
   const [blurControl,setBlurControl]= useState([])
   const [deltaX, setDeltaX] = useState(0)
   const [backgroundScale, setBackgroundScale]=useState(0)
+  
+  useEffect(()=>{
+  
+  },[])
   
   useEffect(()=>{
     // 初始化逻辑

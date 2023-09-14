@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import * as Data from '../GlobalComponents/Data/static';
+import * as Data from '../apiData/static';
 import React, { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import * as Image from './Images';

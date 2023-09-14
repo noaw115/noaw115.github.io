@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef, useState, useMemo } from 'react';
-import BasicData from '../../GlobalComponents/Data/movingPara';
+import BasicData from '../../apiData/movingPara';
 import Doors from './pages/doors';
 import RenderPlayGround from './components/RenderPlayGround';
 import NoaWenParallax from './pages/noawen/components/NoaWenParallax';

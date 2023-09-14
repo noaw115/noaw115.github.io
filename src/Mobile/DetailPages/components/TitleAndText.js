@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useEffect, useRef } from 'react';
-import BasicData from '../../../GlobalComponents/Data/movingPara';
+import BasicData from '../../../apiData/movingPara';
 
 const Title = styled.div`
   font-weight: bolder;

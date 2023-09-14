@@ -124,7 +124,7 @@ const FirstPage = (props) =>{
   return(
     <Back
       width={100 * (1 - backgroundScale)}
-      // img={require(`../../GlobalComponents/Image${this.props.cover}`)}
+      // img={require(`../../asserts/Image${this.props.cover}`)}
       // blur={this.state.backgroundScale * 20}
       // height={110 * (1.5 - backgroundScale * 0.5)}
 

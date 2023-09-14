@@ -227,7 +227,7 @@ class MobileDetailPage extends React.Component {
     return (
       <LargeFrame>
         <BackgroundFrame id="mobileDetailCover">
-          {/*<BackgroundImage2 img={require(`../../GlobalComponents/Image${this.props.cover}`)}  />*/}
+          {/*<BackgroundImage2 img={require(`../../asserts/Image${this.props.cover}`)}  />*/}
           <Title>{this.props.params.page}</Title>
           <CloseIconPlace>
             <Link to={'/'}>{SVG.close_icon_black}</Link>

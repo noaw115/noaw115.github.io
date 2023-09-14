@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { memo } from 'react';
-import BasicData from '../../../GlobalComponents/Data/movingPara';
+import BasicData from '../../../apiData/movingPara';
 
 const Describe = styled.div`
   font-size: 16px;
@@ -48,7 +48,7 @@ const Photo = memo((props) => {
     <Frame blur={blur} mask={data.mask}>
       <PhotoFrame width={data.imageScale ? data.imageScale * 100 : undefined} transformY={data.transformY} >
         <PhotoImg
-          src={require(`../../../GlobalComponents/Image${data.photoId}`)}
+          src={require(`../../../asserts/Image${data.photoId}`)}
         />
       </PhotoFrame>
       <Describe>{props.data.describe}</Describe>

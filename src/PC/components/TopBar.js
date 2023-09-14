@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import * as Image from '../../global-components/Images';
 import { LogoWhite } from '../../global-components/Images';
-import * as Data from '../../GlobalComponents/Data/static';
+import * as Data from '../../apiData/static';
 import { useNavigate, Link } from 'react-router-dom';
 import * as SVG from '../../global-components/Svgs';
 import { memo, useEffect, useRef } from 'react';

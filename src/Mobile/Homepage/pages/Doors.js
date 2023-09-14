@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import * as Svg from '../../../global-components/Svgs';
-import * as Data from '../../../GlobalComponents/Data/static';
+import * as Data from '../../../apiData/static';
 import * as Image from '../../../global-components/Images';
 import { useNavigate, Link } from 'react-router-dom';
 import EachDoor from '../../../global-components/EachDoor';

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
-import * as Data from '../../../GlobalComponents/Data/static';
-import BasicData from '../../../GlobalComponents/Data/movingPara';
+import * as Data from '../../../apiData/static';
+import BasicData from '../../../apiData/movingPara';
 import StyledComponents from "../../../global-components/StyledComponents";
 import * as Image from "../../../global-components/Images";
 import {useNavigate} from "react-router-dom";

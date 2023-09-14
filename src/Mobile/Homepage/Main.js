@@ -1,11 +1,11 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import MobileDoors from './pages/Doors';
-import * as Data from '../../GlobalComponents/Data/static';
+import * as Data from '../../apiData/static';
 import * as Image from '../../global-components/Images';
 import MobilePassage from './pages/Passage';
 import Contact from './pages/Contant';
-import BasicData from '../../GlobalComponents/Data/movingPara';
+import BasicData from '../../apiData/movingPara';
 import { PageData } from '../../global-components/utils';
 import WithFlowers from '../../global-components/WithFlowers';
 import StaticImage from './pages/StaticImage';

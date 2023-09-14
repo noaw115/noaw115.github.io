@@ -1,4 +1,4 @@
-import * as Images from '../../../GlobalComponents/image';
+import * as Images from '../../../asserts/image';
 import React, { memo } from 'react';
 import styled, { keyframes } from 'styled-components';
 

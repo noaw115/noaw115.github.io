@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useEffect, useRef, memo } from 'react';
-import BasicData from '../../../GlobalComponents/Data/movingPara';
+import BasicData from '../../../apiData/movingPara';
 
 const Frame = styled.div`
   //background-color: #61dafb;

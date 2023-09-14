@@ -13,7 +13,12 @@ function App() {
     //console.log("窗口变动",document.body.clientWidth)
     setWidth(document.body.clientWidth);
   });
-  console.log("版本0.1.5导航能用了")
+  
+  window.addEventListener('contextmenu', function(e) {
+    e.preventDefault(); // 全局禁用右键菜单
+  });
+  
+  console.log("版本0.2.0右键菜单已禁用")
   window.__route__='/WenyenuoProject';
   if (width > 820) {
     // console.log('电脑版');

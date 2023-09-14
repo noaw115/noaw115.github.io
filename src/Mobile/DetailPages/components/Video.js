@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import {memo, useEffect, useRef, useState} from 'react';
-import BasicData from '../../../GlobalComponents/Data/movingPara';
+import BasicData from '../../../apiData/movingPara';
 
 
 const timeBeforeRePlay = 0.8
@@ -166,7 +166,7 @@ const Video = memo((props) => {
         >
           <source
             // src="https://download.samplelib.com/mp4/sample-20s.mp4"
-            src={require(`../../../GlobalComponents/Image${data.photoId}`)}
+            src={require(`../../../asserts/Image${data.photoId}`)}
             type="video/mp4"
           />
         </RotatingVideo>

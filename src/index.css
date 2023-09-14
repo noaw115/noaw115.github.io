@@ -14,19 +14,19 @@ code {
 
 @font-face{
   font-family:'Floane';
-  src:url('GlobalComponents/Fonts/Floane-Regular.otf') format('TrueType');
+  src:url('asserts/Fonts/Floane-Regular.otf') format('TrueType');
 }
 
 @font-face {
   font-family: 'XiaoWei';
-  src:url('GlobalComponents/Fonts/xiaowei.ttf') format('TrueType');
+  src:url('asserts/Fonts/xiaowei.ttf') format('TrueType');
 }
 
 @font-face {
   font-family: 'Montserrat';
-  src:url('GlobalComponents/Fonts/Montserrat-Light.otf') format('TrueType');
+  src:url('asserts/Fonts/Montserrat-Light.otf') format('TrueType');
 }
 @font-face {
   font-family: 'MontserratLight';
-  src:url('GlobalComponents/Fonts/Montserrat-ExtraLight.otf') format('TrueType');
+  src:url('asserts/Fonts/Montserrat-ExtraLight.otf') format('TrueType');
 }

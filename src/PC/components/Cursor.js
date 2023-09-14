@@ -82,6 +82,7 @@ export default function (props) {
     circleRef.current.style.height = '10px';
     circleRef.current.style.opacity = '0.4';
     textRef.current.innerHTML = '';
+    textRef.current.style.color = 'black';
     circleRef.current.style.backgroundColor = 'black';
   };
 
@@ -89,6 +90,7 @@ export default function (props) {
     if (color === 'white') {
       circleRef.current.style.backgroundColor = color;
       circleRef.current.style.opacity = '0.5';
+      textRef.current.style.color = color;
     } else {
       circleRef.current.style.opacity = '0.1';
       circleRef.current.style.backgroundColor = 'black';

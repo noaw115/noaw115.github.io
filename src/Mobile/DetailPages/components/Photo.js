@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import BasicData from '../../../GlobalComponents/Data/movingPara';
+import BasicData from '../../../apiData/movingPara';
 
 import { useEffect, useRef } from 'react';
 const Frame = styled.div`
@@ -32,7 +32,7 @@ function MobilePhoto(props) {
     <Frame blur={blur}>
       <PhotoFrame>
         <PhotoImg
-          src={require(`../../../GlobalComponents/Image${data.photoId}`)}
+          src={require(`../../../asserts/Image${data.photoId}`)}
         />
       </PhotoFrame>
       {data.describe && <Describe>{data.describe}</Describe>}

@@ -1,9 +1,9 @@
 import React from 'react';
 import MobileDetailPage from './DetailPage';
 import { useParams } from 'react-router-dom';
-import * as Data from '../../GlobalComponents/Data/static';
+import * as Data from '../../apiData/static';
 import styled, { keyframes } from 'styled-components';
-import BasicData from '../../GlobalComponents/Data/movingPara';
+import BasicData from '../../apiData/movingPara';
 
 const BlurFrame = styled.div`
   animation: ${(props) => {

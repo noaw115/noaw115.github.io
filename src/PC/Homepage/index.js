@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import styled, { keyframes } from 'styled-components';
 import TopBar from '../components/TopBar';
-import BasicData from '../../GlobalComponents/Data/movingPara';
+import BasicData from '../../apiData/movingPara';
 import CursorProvider from '../components/Cursor';
 import { observer, useLocalObservable } from 'mobx-react';
 import * as Image from '../../global-components/Images';

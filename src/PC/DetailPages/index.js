@@ -1,11 +1,11 @@
 import React, {memo, useEffect} from 'react';
 import Main from './Main';
 import { useParams } from 'react-router-dom';
-import * as Data from '../../GlobalComponents/Data/static';
+import * as Data from '../../apiData/static';
 import styled, { keyframes } from 'styled-components';
 import CursorProvider from '../components/Cursor';
 import { CursorContext } from '../components/Cursor';
-import BasicData from '../../GlobalComponents/Data/movingPara';
+import BasicData from '../../apiData/movingPara';
 import Images from "../../global-components/Images";
 
 const BlurFrame = memo(styled.div`
