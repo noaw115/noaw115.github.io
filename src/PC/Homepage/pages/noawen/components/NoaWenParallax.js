@@ -57,7 +57,7 @@ const NoaWenParallaxInner = memo((props) => {
 
   useEffect(() => {
     if (firstFlag.current && offset === 0) { //direction表示必须是正向移动
-      console.log("到位了？",store.deltaX)
+      // console.log("到位了？",store.deltaX)
       document.addEventListener('mousewheel', cannotScroll, {
         passive: false,
       });

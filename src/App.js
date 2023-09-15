@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 // import Main from "./PC/Homepage/Main";
 import Main from './PC/Homepage/index';
 import MainDetailPage from './PC/DetailPages';
@@ -18,8 +18,8 @@ function App() {
     e.preventDefault(); // 全局禁用右键菜单
   });
   
-  console.log("版本0.2.0右键菜单已禁用")
-  window.__route__='/WenyenuoProject';
+  console.log("版本0.2.2启用哈希路由")
+  window.__route__='';
   if (width > 820) {
     // console.log('电脑版');
     return (

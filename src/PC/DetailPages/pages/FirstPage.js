@@ -41,6 +41,7 @@ const FirstPage = (props) =>{
   // console.log("coverData",coverData)
   const navigate = useNavigate();
   const param = useParams()
+  console.log("params",props,param)
   const handleLinkTo = (text) => {
     // console.log("跳")
     navigate(`${window.__route__}/${text}`)

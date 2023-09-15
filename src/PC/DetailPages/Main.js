@@ -60,10 +60,6 @@ const NewMain = (props) => {
   const [backgroundScale, setBackgroundScale]=useState(0)
   
   useEffect(()=>{
-  
-  },[])
-  
-  useEffect(()=>{
     // 初始化逻辑
     isBlur.current = 1000
     currentPage.current = 0

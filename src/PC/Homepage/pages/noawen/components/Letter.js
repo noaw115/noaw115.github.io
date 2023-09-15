@@ -106,7 +106,7 @@ const Letter = (props) => {
       </LetterShadow>
       <LetterShadow
         ref={shadowRef2}
-        style={{ opacity: '0.3', filter: 'blur(20px);' }}
+        style={{ opacity: '0.3', filter: 'blur(20px)' }}
       >
         <Image src={children} rotate={props.rotate} />
       </LetterShadow>
