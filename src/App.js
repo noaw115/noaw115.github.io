@@ -18,7 +18,7 @@ function App() {
     e.preventDefault(); // 全局禁用右键菜单
   });
   
-  console.log("版本0.2.2启用哈希路由")
+  console.log("版本0.3.0发布版")
   window.__route__='';
   if (width > 820) {
     // console.log('电脑版');
