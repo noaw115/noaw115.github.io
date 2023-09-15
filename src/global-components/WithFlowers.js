@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import * as Image from './Images';
+import {handleEmail} from "./utils";
 const Frame = styled.div`
   width: 100%;
   height: 100%;
@@ -125,7 +126,7 @@ const ImageWithFlower = memo((props) => {
         flag={leftFlag}
         scale={scale}
       />
-      <RedDoorDiv ref={redDoorRef} scale={scale} />
+      <RedDoorDiv ref={redDoorRef} scale={scale} onClick={handleEmail}/>
       <Frame style={{ overflow: 'hidden' }}>{children}</Frame>
     </Frame>
   );

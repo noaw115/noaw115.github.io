@@ -5,6 +5,7 @@ import BasicData from '../../../apiData/movingPara';
 import StyledComponents from "../../../global-components/StyledComponents";
 import * as Image from "../../../global-components/Images";
 import {useNavigate} from "react-router-dom";
+import {handleEmail} from "../../../global-components/utils";
 
 const {MontserratFont,MontserratLightFont} = StyledComponents
 
@@ -94,7 +95,7 @@ function MobilePassage(props) {
       </PassageFrame>
       <PassageFrame2>
         <PassageFrame  style={{height:'100%'}}>
-          <div>Inquiries</div>
+          <div onClick={handleEmail}>Inquiries</div>
           <div>Behance</div>
           <div>Instagram</div>
           <div>Twitter</div>

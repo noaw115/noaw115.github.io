@@ -1,7 +1,9 @@
 import React, { memo, useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import StyledComponents from '../../../../global-components/StyledComponents';
+import {handleEmail} from "../../../../global-components/utils";
 const { MontserratFont } = StyledComponents;
+
 const Frame = styled.div`
   //background-color: #61dafb;
   position: relative;
@@ -32,13 +34,18 @@ const OnePassage = styled(MontserratFont)`
 `;
 
 const Index = memo((props) => {
-  let { blur } = props;
-
+  let { blur, pushElement } = props;
+  const clickRef = useRef();
+  useEffect(() => {
+    if (clickRef) {
+      pushElement(clickRef,'no-text');
+    }
+  }, [clickRef]);
   return (
     <Frame blur={blur}>
       <div />
-      <Title>
-        <div>Inquiries</div>
+      <Title ref={clickRef}>
+        <div onClick={handleEmail}>Inquiries</div>
         <div>Behance</div>
         <div>Instagram</div>
         <div>Twitter</div>

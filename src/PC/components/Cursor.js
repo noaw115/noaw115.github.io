@@ -91,11 +91,16 @@ export default function (props) {
       circleRef.current.style.backgroundColor = color;
       circleRef.current.style.opacity = '0.5';
       textRef.current.style.color = color;
+      textRef.current.innerHTML = 'EMAIL';
+    } else if (color === 'no-text') {
+      textRef.current.innerHTML = '';
+      circleRef.current.style.opacity = '0.1';
+      circleRef.current.style.backgroundColor = 'black';
     } else {
+      textRef.current.innerHTML = 'CLICK';
       circleRef.current.style.opacity = '0.1';
       circleRef.current.style.backgroundColor = 'black';
     }
-    textRef.current.innerHTML = 'CLICK';
     circleRef.current.style.filter = 'blur(6px)';
     circleRef.current.style.width = '70px';
     circleRef.current.style.height = '70px';

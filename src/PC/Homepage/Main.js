@@ -43,7 +43,7 @@ const widthFactor = document.body.clientWidth / 100;
 //意义👆给我一个vw的数如70vw，70*withFactor得到真实的像素数
 
 const MovePart = (props) => {
-  const { pages, store } = props;
+  const { pages, store, pushElement } = props;
   // console.log("firstShowPlayground",store.firstShowPlayground)
   const moveLimit = (pages.calTotalVw() - 100) * widthFactor;
   const snapArray = useMemo(() => pages.calSnapArray(), []);
@@ -276,7 +276,7 @@ const MovePart = (props) => {
         <WithFlowers {...props}>
           <Parallax
             blur={handleBlur('山中之门页')}
-            percent={handleParaScreenPercent('山中之门页', 0.1, -0.1)}
+            percent={handleParaScreenPercent('山中之门页', 0.15, -0.05)}
             pageLength={
               pages.getPageField('山中之门页', 'length') * widthFactor
             }
@@ -286,7 +286,7 @@ const MovePart = (props) => {
         </WithFlowers>
       </Frame>
       <Frame width={pages.getPageField('联系信息', 'length')}>
-        <Passage />
+        <Passage pushElement={pushElement}/>
       </Frame>
     </MoveFrame>
   );

@@ -117,3 +117,12 @@ Recently, I'm obsessed with watching Chiikawa drawn by Nagano-sensei and creatin
     return array;
   };
 }
+
+export const handleEmail = (e) => {
+  e.preventDefault();
+  const email = 'oawen115@gmail.com'; // 收件人的电子邮件地址
+  const subject = ''; // 电子邮件的主题
+  const body = ''; // 电子邮件的正文内容
+  const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = mailtoUrl; // 调用电子邮件客户端
+}

@@ -84,7 +84,7 @@ const TopBar = observer((props) => {
 
   useEffect(() => {
     if (clickRef) {
-      pushElement(clickRef);
+      pushElement(clickRef,'no-text');
     }
   }, [clickRef]);
   if (currentPage === 'detail') {
