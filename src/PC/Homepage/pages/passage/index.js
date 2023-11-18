@@ -46,9 +46,9 @@ const Index = memo((props) => {
       <div />
       <Title ref={clickRef}>
         <div onClick={handleEmail}>Inquiries</div>
-        <div>Behance</div>
+        <div>Dribbble</div>
         <div>Instagram</div>
-        <div>Twitter</div>
+
       </Title>
       <OnePassage>©️Noaw all rights reserved.</OnePassage>
     </Frame>
