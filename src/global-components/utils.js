@@ -35,13 +35,12 @@ export class PageData {
             largeTitle: `Web Design/ App Design/ Interactive Design/ Illustration/<br/> Branding/ Art Direction/ Design Consultancy/ 3D <br/>Prototyping/ Package Design
                         `,
             text: `
-      I'm Noa, a creative designer and illustrator with a dash of hardcore otaku passion.
+      I'm Noa, a creative designer and illustrator with a dash of hardcore Otaku passion.
       <br/><br/>
 To me, design is more than just a profession; it's an exhilarating adventure, much like a video game. I approach each project like a quest, diving deep into my clients' goals, unearthing the stories they want to tell, and challenging myself to connect the dots using a myriad of interactive methods, all in service of captivating the target audience.
       `,
             smallText: `
-        Beyond my design prowess, I also have a few unique talents up my sleeve.
-        When I'm not crafting compelling visuals, you might find me gliding on the ice as a figure skating enthusiast or, thanks to my extraordinary memory, engaging in deep discussions about anime. 
+        Welcome to my digital haven! Explore my portfolio and get to know me better. Thanks for dropping by! 
       `,
             leftEmail: 'noawen115@gmail.com',
           },

@@ -31,7 +31,7 @@ export const GraphicsData = [
     type: 'text',
     width: '600',
     text: `
-        My design approach is characterized by pushing the boundaries of traditional graphic design, experimenting fearlessly with unconventional color palettes and combinations. I believe that colors are a powerful tool to evoke emotions, convey messages, and create unique visual experiences. As I continue my journey in graphic design, I am excited to keep pushing the envelope and creating designs that captivate and inspire audiences.
+I'm on a relentless quest for mind-bending visual experiences, where I sculpt entire worldviews with vivid, high-impact colors and elements. My design ethos is an unapologetic rebellion against the ordinary in graphic design. I boldly tread into uncharted territories of color, firmly convinced of their ability to awaken emotions, transmit messages, and forge unforgettable visual odysseys.
         `,
   },
   {
@@ -127,9 +127,13 @@ export const WebUIDesignDate = [
     width: '800',
     // title: '西藏游记',
     text: `
-        My interest in web design can be traced back to 10 years ago when I used to study various outstanding websites to guess the personality or attitude of the website owner. For me, a website is not just a platform for listing information, but also a window for communication and interaction. I draw inspiration from games, art installations, exhibitions, science fiction, or literary works to think about how to convey the spirit of clients to viewers in a more immersive way.
-I also enjoy experimenting with cutting-edge or fun technologies with my friends as a way of storytelling within the limited pages/ screens.
-For me, sparking inspiration and exploring innovation are essential parts of website design. I am willing to continuously experiment and try new things, incorporating more unique elements into designs, making each project full of personality and distinctive charm.
+        My journey into web design began a decade ago, as I meticulously analyzed outstanding websites to grasp the personality behind them. 
+        For me, a website isn't just a static information hub; it's a dynamic avenue for communication.
+Inspiration fuels my work, drawn from various sources such as games, art, exhibitions, science fiction, and literature. I explore ways to immerse viewers in the spirit of my clients. 
+I also love experimenting with cutting-edge technologies with friends, turning web pages into storytelling canvases.
+ <br/>
+ <br/>
+My passion lies in sparking inspiration and embracing innovation. I'm dedicated to pushing boundaries, incorporating unique elements into my designs, ensuring each project radiates personality and charm.
         `,
   },
   {
@@ -227,11 +231,10 @@ export const ModelingsDate = [
     type: 'text',
     width: '600',
     text: `
-        As a designer with a background in industrial design, I have witnessed the rapid evolution of 3D technology. It's astonishing how quickly the field has progressed, and I must admit that keeping up with the latest software like Blender and mastering various rendering techniques has been an exhilarating journey.
+With a background in industrial design, I've ridden the rollercoaster of 3D technology's rapid evolution. Exploring diverse rendering techniques has been an electrifying ride.      
+<br/>
       <br/>
-      <br/>
-As the world of 3D design continues to evolve, I am energized by the opportunities to constantly learn, grow, and create groundbreaking designs. The ever-changing landscape of 3D technology fuels my curiosity and motivates me to continue honing my skills and creating innovative and awe-inspiring 3D designs that push the boundaries of what's possible.
-        `,
+I'm fueled by the ever-changing tech landscape, driving me to craft innovative, boundary-pushing 3D designs that leave jaws dropping.        `,
   },
   {
     type: 'photo',
