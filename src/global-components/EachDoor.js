@@ -56,15 +56,15 @@ const Mask = styled.div`
   transition: 0.3s all;
 `;
 const MaskShadow = styled.div`
-  height: 370px;
+  height: 320px;
   width: 170px;
   overflow: hidden;
-  top: 40px;
-  left: 40px;
+  top: 80px;
+  left: 20px;
   border-radius: 170px 170px 0 0;
   background-color: #f0f0f0;
   position: absolute;
-  transition: 0.5s all;
+  transition: 0.3s all;
 `;
 const DoorImg = styled.img`
   z-index: 1;
@@ -85,7 +85,7 @@ const WorksTitle = styled.div`
   justify-content: center;
   align-items: center;
   top: ${(props) => props.top}px;
-  left: ${(props) => props.left || '180'}px;
+  left: ${(props) => props.left || '60'}px;
 `;
 export default function (props) {
   const {
