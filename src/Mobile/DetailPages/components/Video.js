@@ -161,8 +161,10 @@ const Video = memo((props) => {
           // width={data.imageScale ? data.imageScale * 100 : undefined}
           ref={videoRef}
           muted
+          autoPlay={isMobile}
+          preload='auto'
           onLoadedData={handleVideoLoaded}
-          onLoadedMetadata={handleVideoLoaded}
+          // onLoadedMetadata={handleVideoLoaded}
         >
           <source
             // src="https://download.samplelib.com/mp4/sample-20s.mp4"
