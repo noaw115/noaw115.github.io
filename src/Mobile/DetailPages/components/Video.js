@@ -168,7 +168,7 @@ const Video = memo((props) => {
         >
           <source
             // src="https://download.samplelib.com/mp4/sample-20s.mp4"
-            src={require(`../../../asserts/Image${data.photoId}`)}
+            src={require(`../../../asserts/Image${data.photoId}`) + "#t=0.001"}
             type="video/mp4"
           />
         </RotatingVideo>
