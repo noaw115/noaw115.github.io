@@ -1,13 +1,12 @@
 {
   "files": {
     "main.css": "./static/css/main.f1c170cf.css",
-    "main.js": "./static/js/main.5629ba4e.js",
+    "main.js": "./static/js/main.8160809d.js",
     "static/media/7.mp4": "./static/media/7.4ef24cd10c8dc5500488.mp4",
     "static/media/1.mp4": "./static/media/1.3ab43a734e2d3e64dd01.mp4",
-    "static/media/3.gif": "./static/media/3.71677932978ed02f2830.gif",
     "static/media/8.mp4": "./static/media/8.f5823639eb2e91697f38.mp4",
-    "static/media/10.mp4": "./static/media/10.34e3abdaca03c50555b7.mp4",
     "static/media/4.mp4": "./static/media/4.97a8f11d188590ff196e.mp4",
+    "static/media/10.mp4": "./static/media/10.f37b51ad217abd46e4fa.mp4",
     "static/media/2.mp4": "./static/media/2.b2c4ccaeff57ba6881a3.mp4",
     "static/media/3.mp4": "./static/media/3.121d1b5ec73fa74d6705.mp4",
     "static/media/5.png": "./static/media/5.b1572796fd3a2c30dbc6.png",
@@ -15,14 +14,16 @@
     "static/media/4.png": "./static/media/4.0e059ddf1599728d2ae8.png",
     "static/media/10.png": "./static/media/10.70d384daa14b86b1fd2f.png",
     "static/media/greenBack.png": "./static/media/greenBack.69f2cd5bdf8a00035be3.png",
+    "static/media/1.jpg": "./static/media/1.47de5f797e492e6cc827.jpg",
     "static/media/6.mp4": "./static/media/6.049f045e718796d9c340.mp4",
+    "static/media/2.jpg": "./static/media/2.408a0419ee7f382df604.jpg",
     "static/media/FLOWER2.png": "./static/media/FLOWER2.4e8fc0efd28a49872a19.png",
+    "static/media/3.jpg": "./static/media/3.cdc7e52b2518e55c787a.jpg",
     "static/media/9.mp4": "./static/media/9.bdbe0800d7049bc07397.mp4",
-    "static/media/1.png": "./static/media/1.8467ef6dfb77ae1a562e.png",
+    "static/media/1.png": "./static/media/1.232a8e20e52c3a5cab1c.png",
     "static/media/FLOWER4.png": "./static/media/FLOWER4.51c13c9091133a597ce5.png",
     "static/media/FLOWER1.png": "./static/media/FLOWER1.5a78189ddbb9b2bd47e3.png",
     "static/media/3.png": "./static/media/3.a876cdab6ef2a0432e4e.png",
-    "static/media/2.png": "./static/media/2.93c284b5056d4379946d.png",
     "static/media/11.png": "./static/media/11.e7fbb87ad595075fae25.png",
     "static/media/7.png": "./static/media/7.ce35c13f39b36000aa51.png",
     "static/media/9.png": "./static/media/9.217eb431249b519978a7.png",
@@ -34,6 +35,7 @@
     "static/media/8.3.png": "./static/media/8.3.8f89be91377a96c031f0.png",
     "static/media/Montserrat-Light.otf": "./static/media/Montserrat-Light.dcccd61bf06aba5c5c99.otf",
     "static/media/Montserrat-ExtraLight.otf": "./static/media/Montserrat-ExtraLight.bf201011a21349894765.otf",
+    "static/media/2.png": "./static/media/2.93c284b5056d4379946d.png",
     "static/media/redDoor.png": "./static/media/redDoor.e01dda8bedf04a9df14b.png",
     "static/media/Floane-Regular.otf": "./static/media/Floane-Regular.38a6e0004cd686fbb63c.otf",
     "static/media/w.png": "./static/media/w.6a8784cfd9334c88a319.png",
@@ -48,10 +50,10 @@
     "static/media/xiaowei.ttf": "./static/media/xiaowei.839d3df9e32663871237.ttf",
     "index.html": "./index.html",
     "main.f1c170cf.css.map": "./static/css/main.f1c170cf.css.map",
-    "main.5629ba4e.js.map": "./static/js/main.5629ba4e.js.map"
+    "main.8160809d.js.map": "./static/js/main.8160809d.js.map"
   },
   "entrypoints": [
     "static/css/main.f1c170cf.css",
-    "static/js/main.5629ba4e.js"
+    "static/js/main.8160809d.js"
   ]
 }
