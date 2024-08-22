@@ -119,7 +119,7 @@ To me, design is more than just a profession; it's an exhilarating adventure, mu
 
 export const handleEmail = (e) => {
   e.preventDefault();
-  const email = 'oawen115@gmail.com'; // 收件人的电子邮件地址
+  const email = 'noawen115@gmail.com'; // 收件人的电子邮件地址
   const subject = ''; // 电子邮件的主题
   const body = ''; // 电子邮件的正文内容
   const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;

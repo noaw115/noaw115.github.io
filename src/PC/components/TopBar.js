@@ -62,7 +62,9 @@ const LogoImage2 = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   transition: 0.5s all;
+  cursor: pointer; // 显示为指针，表示可点击
 `;
+
 
 const Title = styled(MontserratFont)`
   margin-top: 20px;
@@ -91,7 +93,7 @@ const TopBar = observer((props) => {
     return (
       <LogoPlace>
         <div>
-          <Link to={`${window.__route__}/`}>
+          <Link to={`${window.__route__}/`} onClick={() => window.location.reload()}>
             <LogoImage2 img={'#000000'} />
           </Link>
           <Title color={'#000000'}>Designer/ Illustrator/ Art Director</Title>

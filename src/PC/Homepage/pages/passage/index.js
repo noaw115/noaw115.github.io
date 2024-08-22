@@ -27,7 +27,14 @@ const Title = styled.div`
   font-family: Floane;
 `;
 
+const LinkItem = styled.div`
+  margin-bottom: 20px;
 
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+`;
 
 const OnePassage = styled(MontserratFont)`
   // background-color: cadetblue;
@@ -41,15 +48,22 @@ const Index = memo((props) => {
       pushElement(clickRef,'no-text');
     }
   }, [clickRef]);
-  return (
-    <Frame blur={blur}>
-      <div />
-      <Title ref={clickRef}>
-        <div onClick={handleEmail}>Inquiries</div>
-        <div>Dribbble</div>
-        <div>Instagram</div>
+    return (
+        <Frame blur={blur}>
+            <div />
+            <Title ref={clickRef}>
+                <LinkItem onClick={handleEmail}>Inquiries</LinkItem>
+                <LinkItem>
+                    <a
+                        href="https://www.behance.net/noaw_"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Behance
+                    </a>
+                </LinkItem>
 
-      </Title>
+            </Title>
       <OnePassage>©️Noaw all rights reserved.</OnePassage>
     </Frame>
   );

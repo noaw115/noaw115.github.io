@@ -94,13 +94,17 @@ function MobilePassage(props) {
         <div onClick={()=>handleLinkTo('GRAPHICS')}>GRAPHICS</div>
       </PassageFrame>
       <PassageFrame2>
-        <PassageFrame  style={{height:'100%'}}>
+        <PassageFrame  style={{height:'50%'}}>
           <div onClick={handleEmail}>Inquiries</div>
-          <div>Behance</div>
-          <div>Instagram</div>
-          <div>Twitter</div>
+          <div onClick={() => window.open('https://www.behance.net/noaw_', '_blank')}>Behance</div>
         </PassageFrame>
-        <LogoImage2/>
+          <LogoImage2
+              onClick={() => {
+                  console.log('LogoImage2 clicked!');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+          />
+
       </PassageFrame2>
       <MontserratFont>©️Noaw all rights reserved.</MontserratFont>
     </Frame>

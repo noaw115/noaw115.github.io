@@ -33,12 +33,15 @@ const Text = styled.div`
 const Circle = styled(Text)`
   border-radius: 50px;
   background: black;
+  //mix-blend-mode: difference; // 或者 'screen'
+  //transition: 0.3s ease-out;
 `;
 const CursorDiv = styled.div`
   position: absolute;
   z-index: 1000;
   display: flex;
   pointer-events: none;
+  //mix-blend-mode: difference; // 或者 'screen'
 `;
 export const CursorContext = React.createContext();
 
@@ -124,6 +127,7 @@ export default function (props) {
     if (element && element.current) {
       const { left, top, right, bottom } =
         element.current.getBoundingClientRect();
+
       if (
         event.clientX >= left &&
         event.clientX <= right &&
